@@ -37,6 +37,9 @@
 #include "libdat/template.h"
 #include "libdat/types.h"
 
+#include <cmath>
+#include <functional>
+#include <limits>
 #include <string>
 #include <type_traits>
 #include <utility>
@@ -130,14 +133,14 @@ namespace dat
 		return std::numeric_limits<IType>::max();
 	}
 
-	template <typename FType, EnableIf< std::is_same<FType, f16_t> >...>
-	constexpr //inline
-	FType
-	nullValue
-		()
-	{
-		return std::numeric_limits<FType>::quiet_NaN();
-	}
+//	template <typename FType, EnableIf< std::is_same<FType, f16_t> >...>
+//	constexpr //inline
+//	FType
+//	nullValue
+//		()
+//	{
+//		return std::numeric_limits<FType>::quiet_NaN();
+//	}
 
 	template <typename AType, EnableIf< std::is_same<AType, RowCol> >...>
 	constexpr //inline
@@ -216,12 +219,12 @@ namespace dat
 		( std::pair<Type1, Type2> const & apair
 		);
 
-	//! Specialization of above (shouldn't be needed ?)
-	inline
-	bool
-	isValid
-		( f16_t const & value
-		);
+//	//! Specialization of above (shouldn't be needed ?)
+//	inline
+//	bool
+//	isValid
+//		( f16_t const & value
+//		);
 
 	//! Specialization
 	inline

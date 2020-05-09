@@ -32,8 +32,6 @@
 */
 
 
-#include <limits>
-
 
 namespace dat
 {
@@ -90,20 +88,20 @@ isValid
 	return (isValid(apair.first) && isValid(apair.first));
 }
 
-inline
-bool
-isValid
-	( f16_t const & value
-	)
-{
-	bool okay(0 == value); // allow zero
-	if (! okay)
-	{
-		// normal: not anyof(zero, subnormal, infinite, Nan)
-		okay = std::isnormal(value);
-	}
-	return okay;
-}
+// inline
+// bool
+// isValid
+// 	( f16_t const & value
+// 	)
+// {
+// 	bool okay(0 == value); // allow zero
+// 	if (! okay)
+// 	{
+// 		// normal: not anyof(zero, subnormal, infinite, Nan)
+// 		okay = std::isnormal(value);
+// 	}
+// 	return okay;
+// }
 
 inline
 bool

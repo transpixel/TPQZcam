@@ -34,15 +34,15 @@
 */
 
 
-#include "exthalf/half.hpp"
+//#include "exthalf/half.hpp"
 
 #include <array>
 
 
 namespace dat
 {
-	//! Half size float type
-	using f16_t = half_float::half;
+//	//! Half size float type
+//	using f16_t = half_float::half;
 
 	//! A location for 2D entities
 	using Spot = std::array<double, 2u>;
