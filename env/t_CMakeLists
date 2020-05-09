@@ -1,0 +1,20 @@
+#
+
+set(local_PREFIX litetpqz_NM) # keep cmake target names unique
+
+set(${local_PREFIX}_SOURCES
+
+	x.cpp
+
+	)
+
+set(${local_PREFIX}_INCLUDES
+
+	x.h
+
+	x.inl
+
+	)
+
+include(../cmakeLibs.cmake)
+
