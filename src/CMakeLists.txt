@@ -4,6 +4,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(PhotoHawk)
 
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
 add_subdirectory(libcam)
 add_subdirectory(libdat)
 add_subdirectory(libga)

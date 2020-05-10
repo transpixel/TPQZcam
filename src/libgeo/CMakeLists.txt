@@ -12,7 +12,7 @@ set(${local_PREFIX}_SOURCES
 	Plane.cpp
 	ProbRay.cpp
 	Ray.cpp
-	#	si.cpp  ## TODO need to resolve external Eigen dependency
+	si.cpp
 	Triangle.cpp
 	VertGangle.cpp
 	Wedge.cpp
@@ -54,6 +54,4 @@ set(${local_PREFIX}_INCLUDES
 	)
 
 include(../cmakeLibs.cmake)
-
-# target_include_directories(${local_TARGET} PUBLIC /usr/include/eigen3/)
 
