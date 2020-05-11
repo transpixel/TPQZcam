@@ -1,6 +1,7 @@
 #
 
-set(local_PREFIX litetpqz_ga) # keep cmake target names unique
+set(local_NM ga)
+set(local_PREFIX litetpqz_${local_NM})
 
 set(${local_PREFIX}_SOURCES
 

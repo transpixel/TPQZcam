@@ -1,6 +1,7 @@
 #
 
-set(local_PREFIX litetpqz_io) # keep cmake target names unique
+set(local_NM io)
+set(local_PREFIX litetpqz_${local_NM})
 
 set(${local_PREFIX}_SOURCES
 

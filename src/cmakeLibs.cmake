@@ -12,7 +12,7 @@ target_compile_features(${local_TARGET} PRIVATE cxx_std_11)
 
 install(
 	FILES ${${local_PREFIX}_INCLUDES}
-	DESTINATION include/${CMAKE_PROJECT_NAME}
+	DESTINATION include/${CMAKE_PROJECT_NAME}/${local_NM}
 	)
 install(
 	TARGETS ${local_TARGET}

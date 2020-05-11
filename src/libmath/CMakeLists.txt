@@ -1,6 +1,7 @@
 #
 
-set(local_PREFIX litetpqz_math) # keep cmake target names unique
+set(local_NM math)
+set(local_PREFIX litetpqz_${local_NM})
 
 set(${local_PREFIX}_SOURCES
 
