@@ -27,6 +27,10 @@ add_subdirectory(libgeo)
 add_subdirectory(libcam)
 
 
+# Specify documentation generation
+include(cmakeDox.cmake)
+
+
 # Override default install location for testing this package
 # In general default (no command here) will install to /usr/{lib,bin,...}
 # - but here, set package to isolated location for easier/safer testing
