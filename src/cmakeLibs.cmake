@@ -2,23 +2,29 @@
 # cmake commands for creating library targets
 #
 
-set(local_TARGET ${local_PREFIX})
+# # Individual libraries per namespace
+# set(local_LIBTARGET ${local_PREFIX})
+# add_library(${local_LIBTARGET} STATIC)
 
-add_library(${local_TARGET} STATIC ${${local_PREFIX}_SOURCES})
-target_sources(${local_TARGET} PUBLIC ${${local_PREFIX}_INCLUDES})
-target_include_directories(${local_TARGET} PUBLIC ../)
+message("local_NM: " ${local_NM})
+message("local_PREFIX: " ${local_PREFIX})
+message("local_LIBTARGET: " ${local_LIBTARGET})
 
-target_compile_features(${local_TARGET} PRIVATE cxx_std_11)
+target_sources(${local_LIBTARGET} PRIVATE ${${local_PREFIX}_SOURCES})
+target_sources(${local_LIBTARGET} PUBLIC ${${local_PREFIX}_INCLUDES})
+target_include_directories(${local_LIBTARGET} PUBLIC ../)
+
+target_compile_features(${local_LIBTARGET} PRIVATE cxx_std_11)
 
 install(
 	FILES ${${local_PREFIX}_INCLUDES}
-	DESTINATION include/${CMAKE_PROJECT_NAME}/${local_NM}
+	DESTINATION include/${CMAKE_PROJECT_NAME}/lib${local_NM}
 	)
 install(
-	TARGETS ${local_TARGET}
+	TARGETS ${local_LIBTARGET}
 	ARCHIVE
 	DESTINATION lib
 	)
 
-target_include_directories(${local_TARGET} PUBLIC ${EIGEN3_INCLUDE_DIRS})
+target_include_directories(${local_LIBTARGET} PUBLIC ${EIGEN3_INCLUDE_DIRS})
 

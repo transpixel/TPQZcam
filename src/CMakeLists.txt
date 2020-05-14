@@ -1,11 +1,15 @@
 #
 
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.13)
 
 project(LiteTPQZ)
 
 # External packages - {Eigen}
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
+# Project-wide library
+set(local_LIBTARGET "LiteTPQZ")
+add_library(${local_LIBTARGET} STATIC)
 
 # TPQZ basic libraries
 add_subdirectory(libsys)
