@@ -1,5 +1,5 @@
 
-cd vnv/
+cd ../vnv/
 # set -x
 
 AppName=testBuild
