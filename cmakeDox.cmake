@@ -7,20 +7,27 @@ option(BUILD_DOC "Build API documentation" ON)
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
 
+	# check into cmake command
+	# doxygen_add_docs(...)
+
 	# configure doxygen project specifications
-	set(DoxyIn ${CMAKE_CURRENT_SOURCE_DIR}/../doc/Doxyfile.in)
-	set(DoxyOut ${CMAKE_CURRENT_BINARY_DIR}/../doc/Doxyfile)
+	set(DoxyIn ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in)
+	set(DoxyOut ${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile)
 	configure_file(${DoxyIn} ${DoxyOut} @ONLY)
 
 	# command to invoke doxygen build
 	add_custom_target(
-		doc_doxygen ALL
+		docs ALL
 		COMMAND ${DOXYGEN_EXECUTABLE} ${DoxyOut}
 		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 		COMMENT "Generating API documentation"
 		VERBATIM
 		)
 
+	install(
+		DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc/html
+		DESTINATION doc  # <INSTALL_PREFIX>/TPQZcam/doc
+		)
 
 else (DOXYGEN_FOUND)
 

@@ -1,6 +1,6 @@
 
 workDir=/repos/camtpqz
-srcDir=${workDir}/src
+srcDir=${workDir}
 buildDir=${workDir}/tmpBuild
 instDir=${workDir}/tmpLocalInstall
 
