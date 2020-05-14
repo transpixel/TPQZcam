@@ -18,7 +18,7 @@ target_compile_features(${local_LIBTARGET} PRIVATE cxx_std_11)
 
 install(
 	FILES ${${local_PREFIX}_INCLUDES}
-	DESTINATION include/${CMAKE_PROJECT_NAME}/lib${local_NM}
+	DESTINATION include/lib${local_NM}
 	)
 install(
 	TARGETS ${local_LIBTARGET}
