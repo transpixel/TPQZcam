@@ -2,13 +2,13 @@
 
 cmake_minimum_required(VERSION 3.13)
 
-project(LiteTPQZ VERSION 0.1.0)
+project(TPQZcam VERSION 0.1.0)
 
 # External packages - {Eigen}
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 # Project-wide library
-set(local_LIBTARGET "LiteTPQZ")
+set(local_LIBTARGET "TPQZcam")
 add_library(${local_LIBTARGET} STATIC)
 
 # TPQZ basic libraries

@@ -1,7 +1,7 @@
 #
 
 set(local_NM sys)
-set(local_PREFIX litetpqz_${local_NM})
+set(local_PREFIX ${local_LIBTARGET}_${local_NM})
 
 set(${local_PREFIX}_SOURCES
 
