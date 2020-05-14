@@ -1,6 +1,6 @@
 
-vnvDir=/repos/litetpqz/vnv
-instDir=/repos/litetpqz/tmpLocalInstall
+vnvDir=/repos/camtpqz/vnv
+instDir=/repos/camtpqz/tmpLocalInstall
 
 if ! cd ${vnvDir} ; then
 	echo "cd Failure to ${vnvDir}"
@@ -10,9 +10,9 @@ else
 	# set -x
 	if \
 		g++ -o ${AppName} ${AppName}.cpp \
-		-I${instDir}/include/LiteTPQZ \
+		-I${instDir}/include/TPQZcam \
 		-L${instDir}/lib/ \
-		-lLiteTPQZ \
+		-lTPQZcam \
 		;
 	then
 		./${AppName}
