@@ -1,5 +1,5 @@
 
-workDir=/repos/camtpqz
+workDir=/repos/TPQZcam
 srcDir=${workDir}
 buildDir=${workDir}/tmpBuild
 instDir=${workDir}/tmpLocalInstall

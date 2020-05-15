@@ -1,6 +1,7 @@
 
-vnvDir=/repos/camtpqz/vnv
-instDir=/repos/camtpqz/tmpLocalInstall
+workDir=/repos/TPQZcam
+vnvDir=${workDir}/vnv
+instDir=${workDir}/tmpLocalInstall
 
 if ! cd ${vnvDir} ; then
 	echo "cd Failure to ${vnvDir}"
