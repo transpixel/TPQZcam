@@ -8,11 +8,11 @@ if ! cd ${vnvDir} ; then
 else
 
 	AppName=testBuild
-	# set -x
+	set -x
 	if \
 		g++ -o ${AppName} ${AppName}.cpp \
-		-I${instDir}/include/TPQZcam \
-		-L${instDir}/lib/ \
+		-I${instDir}/include/TPQZcam-0.1.0 \
+		-L${instDir}/lib/TPQZcam-0.1.0 \
 		-lTPQZcam \
 		;
 	then
