@@ -15,5 +15,6 @@ else
 
 	cmake --build . -j 16 --clean-first
 	cmake --build . --target install
+	ctest
 fi
 
