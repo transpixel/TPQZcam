@@ -1,18 +1,63 @@
 #
+# === CMake info
+#
 
 cmake_minimum_required(VERSION 3.13)
 
-project(TPQZcam VERSION 0.1.0)
-set(tpqzcam_LIBVERSION ${PROJECT_NAME}-${PROJECT_VERSION})
+project(
+	TPQZcam
+	VERSION 0.1.0
+	LANGUAGES C CXX   # only C++ is used, but "C" for cmake to find pthreads
+	)
+
+#
+# === Upstream CMake configurations
+#
 
 # External packages - {Eigen}
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+
+#
+# === Enable unit testing
+#
+
+include(CTest)
+enable_testing()
+
+
+#
+# === Configure project library
+#
+
+set(tpqzcam_LIBVERSION ${PROJECT_NAME}-${PROJECT_VERSION})
+set(local_LIBTARGET "TPQZcam")
 
 # Project source code
 add_subdirectory(src)
 
 # Specify documentation generation
 add_subdirectory(doc)
+
+
+#
+# === Configure project unit tests
+#
+
+add_subdirectory(tst)
+
+
+#
+# === CMake configuration for downstream builds
+#
+
+
+#
+# === Distribution packages
+#
 
 # Override default install location for testing this package
 # In general default (no command here) will install to /usr/{lib,bin,...}
