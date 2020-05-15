@@ -1,5 +1,4 @@
 
-
 # Build dox as option with default enable
 option(BUILD_DOC "Build API documentation" ON)
 
@@ -11,8 +10,8 @@ if (DOXYGEN_FOUND)
 	# doxygen_add_docs(...)
 
 	# configure doxygen project specifications
-	set(DoxyIn ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in)
-	set(DoxyOut ${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile)
+	set(DoxyIn ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
+	set(DoxyOut ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 	configure_file(${DoxyIn} ${DoxyOut} @ONLY)
 
 	# command to invoke doxygen build
@@ -25,7 +24,7 @@ if (DOXYGEN_FOUND)
 		)
 
 	install(
-		DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc/html
+		DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html
 		DESTINATION doc  # <INSTALL_PREFIX>/TPQZcam/doc
 		)
 

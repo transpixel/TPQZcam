@@ -11,7 +11,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 add_subdirectory(src)
 
 # Specify documentation generation
-include(cmakeDox.cmake)
+add_subdirectory(doc)
 
 # Override default install location for testing this package
 # In general default (no command here) will install to /usr/{lib,bin,...}
