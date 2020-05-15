@@ -18,12 +18,12 @@ target_compile_features(${local_LIBTARGET} PRIVATE cxx_std_11)
 
 install(
 	FILES ${${local_PREFIX}_INCLUDES}
-	DESTINATION include/lib${local_NM}
+	DESTINATION include/${tpqzcam_LIBVERSION}/lib${local_NM}
 	)
 install(
 	TARGETS ${local_LIBTARGET}
 	ARCHIVE
-	DESTINATION lib
+	DESTINATION lib/${tpqzcam_LIBVERSION}
 	)
 
 target_include_directories(${local_LIBTARGET} PUBLIC ${EIGEN3_INCLUDE_DIRS})

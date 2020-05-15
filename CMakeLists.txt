@@ -3,6 +3,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(TPQZcam VERSION 0.1.0)
+set(tpqzcam_LIBVERSION ${PROJECT_NAME}-${PROJECT_VERSION})
 
 # External packages - {Eigen}
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
