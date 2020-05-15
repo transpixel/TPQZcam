@@ -28,9 +28,12 @@ The install tree structure is
 Applications can be compiled and linked with command similar to:
 
  * g++ -o ${AppName} ${AppName}.cpp
-	-I${instDir}/include/TPQZcam
-	-L${instDir}/lib/
+	-I${InstDir}/include/TPQZcam
+	-L${InstDir}/lib/
 	-lTPQZcam
+
+Where "InstDir" is the path to install location (e.g. CMAKE_INSTALL_PREFIX
+above).
 
 ## Hardcoded Command Examples
 
