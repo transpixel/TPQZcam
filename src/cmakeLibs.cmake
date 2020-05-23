@@ -10,7 +10,7 @@ target_sources_local(
 
 target_sources_local(
 	${local_LIBTARGET}
-	PUBLIC
+	PRIVATE
 		${${local_PREFIX}_INCLUDES}
 	)
 

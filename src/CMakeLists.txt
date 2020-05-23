@@ -15,7 +15,12 @@ target_include_directories(${local_LIBTARGET} PUBLIC ${EIGEN3_INCLUDE_DIRS})
 target_link_libraries(${local_LIBTARGET} PUBLIC Eigen3::Eigen)
 
 # includes relative to this src/ directory
-target_include_directories(${local_LIBTARGET} PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(
+	${local_LIBTARGET}
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+        $<INSTALL_INTERFACE:include>
+	)
 
 # TPQZ basic libraries
 add_subdirectory(libsys)
@@ -53,14 +58,12 @@ install(
         $<INSTALL_INTERFACE:include>
 	)
 
-#[[
 install(
 	EXPORT ${EXPORT_TARGETS_NAME}
 	FILE ${EXPORT_FILENAME}
-	NAMESPACE ${PROJECT_NAME}::
+	NAMESPACE TPQZcam::
 	DESTINATION
 		lib/cmake/${PROJECT_NAME}
 	)
-#]]
 
 
