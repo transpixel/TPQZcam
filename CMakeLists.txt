@@ -10,6 +10,13 @@ project(
 	LANGUAGES C CXX   # only C++ is used, but "C" for cmake to find pthreads
 	)
 
+# general configuration / dependencies
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+
+# target_link_libraries(... ${CMAKE_THREAD_LIBS_INIT})
 #
 # === Upstream CMake configurations
 #
@@ -17,7 +24,6 @@ project(
 # External packages - {Eigen}
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
-set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
 
