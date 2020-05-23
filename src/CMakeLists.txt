@@ -47,6 +47,13 @@ add_library(
 	${local_LIBTARGET}
 	)
 
+message("### PROJECT: " ${PROJECT})
+message("### PROJECT_VERSION: " ${PROJECT_VERSION})
+message("### EXPORT_LIB_NAME: " ${EXPORT_LIB_NAME})
+message("### EXPORT_TARGETS_NAME: " ${EXPORT_TARGETS_NAME})
+message("### EXPORT_FILENAME: " ${EXPORT_FILENAME})
+
+
 install(
 	TARGETS ${local_LIBTARGET}
 	EXPORT ${EXPORT_TARGETS_NAME}
@@ -61,9 +68,35 @@ install(
 install(
 	EXPORT ${EXPORT_TARGETS_NAME}
 	FILE ${EXPORT_FILENAME}
-	NAMESPACE TPQZcam::
+	NAMESPACE ${PROJECT_NAME}::
 	DESTINATION
 		lib/cmake/${PROJECT_NAME}
 	)
+
+
+##
+## Creates Config.cmake and ConfigVersion.cmake files (that use install export)
+##
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+	${CMAKE_CURRENT_LIST_DIR}/xConfig.cmake.in
+	${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+	INSTALL_DESTINATION lib/cmake/${PROJECT_NAME}
+	)
+
+write_basic_package_version_file(
+	${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+	VERSION ${PROJECT_VERSION}
+	COMPATIBILITY SameMajorVersion
+)
+
+install(
+	FILES
+		${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+	DESTINATION lib/cmake/${PROJECT_NAME}
+)
 
 
