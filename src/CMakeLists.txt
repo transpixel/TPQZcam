@@ -42,7 +42,6 @@ add_library(
 	${local_LIBTARGET}
 	)
 
-#[[
 install(
 	TARGETS ${local_LIBTARGET}
 	EXPORT ${EXPORT_TARGETS_NAME}
@@ -54,6 +53,7 @@ install(
         $<INSTALL_INTERFACE:include>
 	)
 
+#[[
 install(
 	EXPORT ${EXPORT_TARGETS_NAME}
 	FILE ${EXPORT_FILENAME}
