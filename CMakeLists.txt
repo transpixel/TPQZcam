@@ -2,7 +2,7 @@
 # === CMake info
 #
 
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.10)
 
 project(
 	TPQZcam
@@ -34,7 +34,6 @@ find_package(Threads REQUIRED)
 include(CTest)
 enable_testing()
 
-
 #
 # === Configure project library
 #
@@ -46,7 +45,8 @@ set(local_LIBTARGET "TPQZcam")
 add_subdirectory(src)
 
 # Specify documentation generation
-add_subdirectory(doc)
+message("### Restore documentation")
+## add_subdirectory(doc)
 
 
 #
