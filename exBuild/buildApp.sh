@@ -12,8 +12,8 @@ else
 	if \
 		g++ -o ${AppName} ${AppName}.cpp \
 		-I${instDir}/include/TPQZcam-0.1.0 \
-		-L${instDir}/lib/TPQZcam-0.1.0 \
-		-lTPQZcam \
+		-L${instDir}/lib/ \
+		-lTPQZcam-0.1.0 \
 		;
 	then
 		./${AppName}

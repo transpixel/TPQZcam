@@ -15,6 +15,8 @@ else
 
 	cmake --build . -j 16 --clean-first
 	cmake --build . --target install
+	tree ${instDir}
+
 	ctest
 fi
 
