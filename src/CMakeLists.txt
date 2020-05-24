@@ -19,7 +19,7 @@ target_include_directories(
 	${local_LIBTARGET}
 	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
-        $<INSTALL_INTERFACE:include>
+		$<INSTALL_INTERFACE:include/${local_LIBTARGET}>
 	)
 
 # TPQZ basic libraries
@@ -47,13 +47,19 @@ add_library(
 	${local_LIBTARGET}
 	)
 
+message("### CMAKE_MAJOR_VERSION: " ${CMAKE_MAJOR_VERSION})
+message("### CMAKE_MINOR_VERSION: " ${CMAKE_MINOR_VERSION})
+message("### CMAKE_PATCH_VERSION: " ${CMAKE_PATCH_VERSION})
+message("### CMAKE_TWEAK_VERSION: " ${CMAKE_TWEAK_VERSION})
 message("### PROJECT: " ${PROJECT})
 message("### PROJECT_VERSION: " ${PROJECT_VERSION})
+message("### local_LIBTARGET: " ${local_LIBTARGET})
 message("### EXPORT_LIB_NAME: " ${EXPORT_LIB_NAME})
 message("### EXPORT_TARGETS_NAME: " ${EXPORT_TARGETS_NAME})
 message("### EXPORT_FILENAME: " ${EXPORT_FILENAME})
 
 
+set(local_INCDIR include/${local_LIBTARGET})
 install(
 	TARGETS ${local_LIBTARGET}
 	EXPORT ${EXPORT_TARGETS_NAME}
@@ -61,8 +67,8 @@ install(
 	LIBRARY DESTINATION lib  # /${tpqzcam_LIBVERSION}
 	RUNTIME DESTINATION bin
 	INCLUDES DESTINATION
-	    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include/${PROJECT_NAME}>
-        $<INSTALL_INTERFACE:include>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/${local_INCDIR}>
+		$<INSTALL_INTERFACE:${local_INCDIR}>
 	)
 
 install(
@@ -70,7 +76,7 @@ install(
 	FILE ${EXPORT_FILENAME}
 	NAMESPACE ${PROJECT_NAME}::
 	DESTINATION
-		lib/cmake/${PROJECT_NAME}
+		lib/cmake/${local_LIBTARGET}
 	)
 
 
@@ -83,7 +89,7 @@ include(CMakePackageConfigHelpers)
 configure_package_config_file(
 	${CMAKE_CURRENT_LIST_DIR}/xConfig.cmake.in
 	${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
-	INSTALL_DESTINATION lib/cmake/${PROJECT_NAME}
+	INSTALL_DESTINATION lib/cmake/${local_LIBTARGET}
 	)
 
 write_basic_package_version_file(
@@ -96,7 +102,7 @@ install(
 	FILES
 		${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
 		${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
-	DESTINATION lib/cmake/${PROJECT_NAME}
+		DESTINATION lib/cmake/${local_LIBTARGET}
 )
 
 

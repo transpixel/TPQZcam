@@ -5,5 +5,5 @@
 # Load cmake-script for export targets
 #
 
-include(${CMAKE_PREFIX_PATH}/lib/cmake/@PROJECT_NAME@/@EXPORT_FILENAME@)
+include(${CMAKE_PREFIX_PATH}/lib/cmake/@local_LIBTARGET@/@EXPORT_FILENAME@)
 
