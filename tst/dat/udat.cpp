@@ -98,7 +98,6 @@ dat__test0
 
 	/* -- needs working half::is_floating_point<>
 	dat::f16_t const null_f16(dat::nullValue<dat::f16_t>());
-	*/
 	dat::f16_t const null_f16(std::nanf(""));
 	dat::f16_t const good_f16(-2.125);
 	if (dat::isValid(null_f16))
@@ -109,6 +108,7 @@ dat__test0
 	{
 		oss << "failure of f16 good test" << std::endl;
 	}
+	*/
 
 	// check short-hand values
 	double const nullFlt(dat::nullValue<double>());

@@ -1,18 +1,19 @@
 
-vnvDir=/repos/camtpqz/vnv
-instDir=/repos/camtpqz/tmpLocalInstall
+workDir=/repos/TPQZcam
+vnvDir=${workDir}/vnv
+instDir=${workDir}/tmpLocalInstall
 
 if ! cd ${vnvDir} ; then
 	echo "cd Failure to ${vnvDir}"
 else
 
 	AppName=testBuild
-	# set -x
+	set -x
 	if \
 		g++ -o ${AppName} ${AppName}.cpp \
-		-I${instDir}/include/TPQZcam \
+		-I${instDir}/include/TPQZcam-0.1.0 \
 		-L${instDir}/lib/ \
-		-lTPQZcam \
+		-lTPQZcam-0.1.0 \
 		;
 	then
 		./${AppName}

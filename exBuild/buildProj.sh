@@ -1,5 +1,5 @@
 
-workDir=/repos/camtpqz
+workDir=/repos/TPQZcam
 srcDir=${workDir}
 buildDir=${workDir}/tmpBuild
 instDir=${workDir}/tmpLocalInstall
@@ -15,5 +15,8 @@ else
 
 	cmake --build . -j 16 --clean-first
 	cmake --build . --target install
+	tree ${instDir}
+
+	ctest
 fi
 
