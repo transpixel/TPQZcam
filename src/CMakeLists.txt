@@ -8,7 +8,7 @@ include(cmakeFuncs.cmake)
 # Project-wide library
 add_library(
 	${local_LIBTARGET}
-	""
+	STATIC ""
 	)
 
 target_include_directories(${local_LIBTARGET} PUBLIC ${EIGEN3_INCLUDE_DIRS})
