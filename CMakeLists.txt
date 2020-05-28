@@ -45,16 +45,14 @@ set(local_LIBTARGET "TPQZcam-${PROJECT_VERSION}")
 add_subdirectory(src)
 
 # Specify documentation generation
-message("### Restore documentation")
-## add_subdirectory(doc)
+add_subdirectory(doc)
 
 
 #
 # === Configure project unit tests
 #
 
-message("### Restore unit tests")
-## add_subdirectory(tst)
+add_subdirectory(tst)
 
 
 #
