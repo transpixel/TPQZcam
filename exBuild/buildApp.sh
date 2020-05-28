@@ -1,3 +1,5 @@
+echo "*** Implement for General Case ***"
+exit
 
 workDir=/repos/TPQZcam
 vnvDir=${workDir}/vnv
