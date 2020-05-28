@@ -53,7 +53,8 @@ message("### Restore documentation")
 # === Configure project unit tests
 #
 
-add_subdirectory(tst)
+message("### Restore unit tests")
+## add_subdirectory(tst)
 
 
 #
@@ -68,7 +69,7 @@ add_subdirectory(tst)
 # Override default install location for testing this package
 # In general default (no command here) will install to /usr/{lib,bin,...}
 # - but here, set package to isolated location for easier/safer testing
-set(CPACK_PACKAGING_INSTALL_PREFIX "/tmp/${PROJECT_NAME}")
+set(CPACK_PACKAGING_INSTALL_PREFIX "/tmp/local/${PROJECT_NAME}")
 
 # list of packages to create (e.g. "DEB;RPM;...") if all tools installed
 set(CPACK_GENERATOR "DEB")
