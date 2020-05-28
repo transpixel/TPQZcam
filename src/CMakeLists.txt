@@ -1,41 +1,83 @@
 #
 
-message("### local_LIBTARGET: " ${local_LIBTARGET})
+message("##### Constructing local_LIBTARGET: " ${local_LIBTARGET})
 
-# workaround for path issue (CMP0076 in cmake < 3.12)
-include(cmakeFuncs.cmake)
+set(local_NSs
 
-# Project-wide library
-add_library(
-	${local_LIBTARGET}
-	STATIC ""
+	sys
+	io
+	dat
+
+	math
+	ga
+	la
+	geo
+	prob
+
+	cam
+
 	)
 
-target_include_directories(${local_LIBTARGET} PUBLIC ${EIGEN3_INCLUDE_DIRS})
-target_link_libraries(${local_LIBTARGET} PUBLIC Eigen3::Eigen)
+# Accumulate sources/includes to add to library all at once (for cmake <=3.12)
+set(local_SOURCES)
+set(local_INCLUDES)
+foreach(local_NS ${local_NSs})
 
-# includes relative to this src/ directory
-target_include_directories(
-	${local_LIBTARGET}
-	PUBLIC
+	set(local_NSDIR lib${local_NS})
+
+	message("=== ")
+	message("=== local_NS: " ${local_NS})
+	message("=== local_NSDIR: " ${local_NSDIR})
+
+	# get list of source files (to be compiled into library)
+	# and list of include headers (to be installed in namespace locations)
+	set(local_NS_SOURCES)
+	set(local_NS_INCLUDES)
+	include(${local_NSDIR}/FileList.cmake)
+
+	# accumulate sources relative to current directory
+	foreach(local_NS_SOURCE ${local_NS_SOURCES})
+		#		message("--- local_NS_Source: " ${local_NS_SOURCE})
+		list(APPEND local_SOURCES ${local_NSDIR}/${local_NS_SOURCE})
+	endforeach()
+
+	# accumulate include files relative to current directory
+	foreach(local_NS_INCLUDE ${local_NS_INCLUDES})
+		#		message("... local_NS_Include: " ${local_NS_INCLUDE})
+		list(APPEND local_INCLUDES ${local_NSDIR}/${local_NS_INCLUDE})
+	endforeach()
+
+endforeach()
+
+# message("... local_Sources: " ${local_SOURCES})
+# message("... local_Includes: " ${local_INCLUDES})
+#[[
+foreach(local_INC ${local_INCLUDES})
+	message("... local_INC: " ${local_INC})
+endforeach()
+#]]
+
+
+# Create library (dependent on sources and headers)
+add_library(${local_LIBTARGET}
+	${local_SOURCES}
+	${local_INCLUDES}
+	)
+
+# path to headers for building library
+target_include_directories(${local_LIBTARGET}
+	PRIVATE
+		${CMAKE_CURRENT_LIST_DIR}
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
 		$<INSTALL_INTERFACE:include/${local_LIBTARGET}>
 	)
 
-# TPQZ basic libraries
-add_subdirectory(libsys)
-add_subdirectory(libio)
-add_subdirectory(libdat)
+# target_link_libraries(${local_LIBTARGET} PUBLIC Eigen3::Eigen)
 
-# TPQZ math related libs
-add_subdirectory(libmath)
-add_subdirectory(libprob)
-add_subdirectory(libga)
-add_subdirectory(libla)
-add_subdirectory(libgeo)
 
-# TPQZ photogrammetry
-add_subdirectory(libcam)
+target_include_directories(${local_LIBTARGET} PUBLIC ${EIGEN3_INCLUDE_DIRS})
+target_link_libraries(${local_LIBTARGET} PUBLIC Eigen3::Eigen)
+
 
 # Export info
 set(EXPORT_LIB_NAME ${PROJECT_NAME}::${local_LIBTARGET})
@@ -58,25 +100,34 @@ message("### EXPORT_LIB_NAME: " ${EXPORT_LIB_NAME})
 message("### EXPORT_TARGETS_NAME: " ${EXPORT_TARGETS_NAME})
 message("### EXPORT_FILENAME: " ${EXPORT_FILENAME})
 
+# === GNU standard paths
+include(GNUInstallDirs)  # creates "CMAKE_INSTALL_<dir>"
+
 
 set(local_INCDIR include/${local_LIBTARGET})
 install(
 	TARGETS ${local_LIBTARGET}
 	EXPORT ${EXPORT_TARGETS_NAME}
-	ARCHIVE DESTINATION lib  # /${tpqzcam_LIBVERSION}
-	LIBRARY DESTINATION lib  # /${tpqzcam_LIBVERSION}
-	RUNTIME DESTINATION bin
+	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 	INCLUDES DESTINATION
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/${local_INCDIR}>
 		$<INSTALL_INTERFACE:${local_INCDIR}>
 	)
 
 install(
+	FILES ${local_INCLUDES}
+	DESTINATION include
+	)
+
+
+install(
 	EXPORT ${EXPORT_TARGETS_NAME}
 	FILE ${EXPORT_FILENAME}
 	NAMESPACE ${PROJECT_NAME}::
 	DESTINATION
-		lib/cmake/${local_LIBTARGET}
+		${CMAKE_INSTALL_LIBDIR}/cmake/${local_LIBTARGET}
 	)
 
 
@@ -89,7 +140,8 @@ include(CMakePackageConfigHelpers)
 configure_package_config_file(
 	${CMAKE_CURRENT_LIST_DIR}/xConfig.cmake.in
 	${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
-	INSTALL_DESTINATION lib/cmake/${local_LIBTARGET}
+	INSTALL_DESTINATION
+		${CMAKE_INSTALL_LIBDIR}/cmake/${local_LIBTARGET}
 	)
 
 write_basic_package_version_file(
@@ -102,7 +154,8 @@ install(
 	FILES
 		${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
 		${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
-		DESTINATION lib/cmake/${local_LIBTARGET}
+	DESTINATION
+		${CMAKE_INSTALL_LIBDIR}/cmake/${local_LIBTARGET}
 )
 
 

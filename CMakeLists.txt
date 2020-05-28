@@ -45,8 +45,7 @@ set(local_LIBTARGET "TPQZcam-${PROJECT_VERSION}")
 add_subdirectory(src)
 
 # Specify documentation generation
-message("### Restore documentation")
-## add_subdirectory(doc)
+add_subdirectory(doc)
 
 
 #
@@ -68,7 +67,7 @@ add_subdirectory(tst)
 # Override default install location for testing this package
 # In general default (no command here) will install to /usr/{lib,bin,...}
 # - but here, set package to isolated location for easier/safer testing
-set(CPACK_PACKAGING_INSTALL_PREFIX "/tmp/${PROJECT_NAME}")
+set(CPACK_PACKAGING_INSTALL_PREFIX "/tmp/local/${PROJECT_NAME}")
 
 # list of packages to create (e.g. "DEB;RPM;...") if all tools installed
 set(CPACK_GENERATOR "DEB")

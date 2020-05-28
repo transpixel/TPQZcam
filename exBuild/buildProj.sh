@@ -21,6 +21,7 @@ else
 	cd ${buildDir}
 	cmake \
 		-DCMAKE_INSTALL_PREFIX=${instDir} \
+		-DBUILD_SHARED_LIBS=NO \
 		${srcDir} \
 		;
 
@@ -35,5 +36,7 @@ else
 	tree ${instDir}
 
 	ctest
+
+	cpack
 fi
 
