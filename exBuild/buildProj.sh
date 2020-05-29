@@ -46,7 +46,7 @@ cmake \
 	--target install \
 	;
 
-tree ${instLibDir}
+tree -d ${instLibDir}
 
 echo "\n Running Tests"
 cmake \
