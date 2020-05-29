@@ -47,15 +47,15 @@ foreach(local_NS ${local_NSs})
 		list(APPEND local_INCLUDES ${local_NSDIR}/${local_NS_INCLUDE})
 	endforeach()
 
+	# install include files for this namespace/lib
+	install(
+		FILES ${local_INCLUDES}
+		DESTINATION
+			${CMAKE_INSTALL_INCLUDEDIR}/${local_LIBTARGET}/${local_NSDIR}
+		)
+
 endforeach()
 
-# message("... local_Sources: " ${local_SOURCES})
-# message("... local_Includes: " ${local_INCLUDES})
-#[[
-foreach(local_INC ${local_INCLUDES})
-	message("... local_INC: " ${local_INC})
-endforeach()
-#]]
 
 
 # Create library (dependent on sources and headers)
@@ -112,12 +112,6 @@ install(
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/${local_INCDIR}>
 		$<INSTALL_INTERFACE:${local_INCDIR}>
 	)
-
-install(
-	FILES ${local_INCLUDES}
-	DESTINATION include
-	)
-
 
 install(
 	EXPORT ${EXPORT_TARGETS_NAME}
