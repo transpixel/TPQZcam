@@ -49,6 +49,7 @@ include(GNUInstallDirs)  # creates "CMAKE_INSTALL_<dir>"
 add_subdirectory(src)
 
 # Specify documentation generation
+## message("@@@@ - re-enable document processing")
 add_subdirectory(doc)
 
 
