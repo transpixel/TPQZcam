@@ -100,9 +100,6 @@ message("### EXPORT_LIB_NAME: " ${EXPORT_LIB_NAME})
 message("### EXPORT_TARGETS_NAME: " ${EXPORT_TARGETS_NAME})
 message("### EXPORT_FILENAME: " ${EXPORT_FILENAME})
 
-# === GNU standard paths
-include(GNUInstallDirs)  # creates "CMAKE_INSTALL_<dir>"
-
 
 set(local_INCDIR include/${local_LIBTARGET})
 install(

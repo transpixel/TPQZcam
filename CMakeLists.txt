@@ -41,7 +41,9 @@ enable_testing()
 set(tpqzcam_LIBVERSION ${PROJECT_NAME}-${PROJECT_VERSION})
 set(local_LIBTARGET "TPQZcam-${PROJECT_VERSION}")
 
-include(GNUInstallDirs)
+# === GNU standard paths
+include(GNUInstallDirs)  # creates "CMAKE_INSTALL_<dir>"
+
 
 # Project source code
 add_subdirectory(src)
