@@ -41,12 +41,15 @@ enable_testing()
 set(tpqzcam_LIBVERSION ${PROJECT_NAME}-${PROJECT_VERSION})
 set(local_LIBTARGET "TPQZcam-${PROJECT_VERSION}")
 
-include(GNUInstallDirs)
+# === GNU standard paths
+include(GNUInstallDirs)  # creates "CMAKE_INSTALL_<dir>"
+
 
 # Project source code
 add_subdirectory(src)
 
 # Specify documentation generation
+## message("@@@@ - re-enable document processing")
 add_subdirectory(doc)
 
 
@@ -69,13 +72,30 @@ add_subdirectory(tst)
 # Override default install location for testing this package
 # In general default (no command here) will install to /usr/{lib,bin,...}
 # - but here, set package to isolated location for easier/safer testing
-set(CPACK_PACKAGING_INSTALL_PREFIX "/tmp/local/${PROJECT_NAME}")
+## set (DEB_PACKAGE_ROOT "/tmp/local/${PROJECT_NAME}")
+# - default is "/usr" (e.g. for system packages)
+# - specify explicitly as "/usr/local" as a developer local package
+set (DEB_PACKAGE_ROOT "/usr/local/")
+set(CPACK_PACKAGING_INSTALL_PREFIX "${DEB_PACKAGE_ROOT}")
 
 # list of packages to create (e.g. "DEB;RPM;...") if all tools installed
 set(CPACK_GENERATOR "DEB")
-include(cmakePack.cmake)
+include("${CMAKE_SOURCE_DIR}/cmake/cmakePack.cmake")
 
 # Must be included after the package variables are set
 include(CPack)
 
+message("###")
+message("### CMAKE_INSTALL_LIBDIR: " ${CMAKE_INSTALL_LIBDIR})
+message("### CMAKE_INSTALL_BINDIR: " ${CMAKE_INSTALL_BINDIR})
+message("### CMAKE_INSTALL_INCLUDEDIR: " ${CMAKE_INSTALL_INCLUDEDIR})
+message("### CMAKE_INSTALL_DOCDIR: " ${CMAKE_INSTALL_DOCDIR})
+message("###")
+message("### CMAKE_INSTALL_FULL_LIBDIR: " ${CMAKE_INSTALL_FULL_LIBDIR})
+message("### CMAKE_INSTALL_FULL_BINDIR: " ${CMAKE_INSTALL_FULL_BINDIR})
+message("### CMAKE_INSTALL_FULL_INCLUDEDIR: " ${CMAKE_INSTALL_FULL_INCLUDEDIR})
+message("### CMAKE_INSTALL_FULL_DOCDIR: " ${CMAKE_INSTALL_FULL_DOCDIR})
+message("###")
+message("### DEB_PACKAGE_ROOT: " ${DEB_PACKAGE_ROOT})
+message("###")
 

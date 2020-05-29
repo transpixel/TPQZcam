@@ -47,15 +47,15 @@ foreach(local_NS ${local_NSs})
 		list(APPEND local_INCLUDES ${local_NSDIR}/${local_NS_INCLUDE})
 	endforeach()
 
+	# install include files for this namespace/lib
+	install(
+		FILES ${local_INCLUDES}
+		DESTINATION
+			${CMAKE_INSTALL_INCLUDEDIR}/${local_LIBTARGET}/${local_NSDIR}
+		)
+
 endforeach()
 
-# message("... local_Sources: " ${local_SOURCES})
-# message("... local_Includes: " ${local_INCLUDES})
-#[[
-foreach(local_INC ${local_INCLUDES})
-	message("... local_INC: " ${local_INC})
-endforeach()
-#]]
 
 
 # Create library (dependent on sources and headers)
@@ -100,9 +100,6 @@ message("### EXPORT_LIB_NAME: " ${EXPORT_LIB_NAME})
 message("### EXPORT_TARGETS_NAME: " ${EXPORT_TARGETS_NAME})
 message("### EXPORT_FILENAME: " ${EXPORT_FILENAME})
 
-# === GNU standard paths
-include(GNUInstallDirs)  # creates "CMAKE_INSTALL_<dir>"
-
 
 set(local_INCDIR include/${local_LIBTARGET})
 install(
@@ -115,12 +112,6 @@ install(
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/${local_INCDIR}>
 		$<INSTALL_INTERFACE:${local_INCDIR}>
 	)
-
-install(
-	FILES ${local_INCLUDES}
-	DESTINATION include
-	)
-
 
 install(
 	EXPORT ${EXPORT_TARGETS_NAME}
@@ -138,7 +129,7 @@ install(
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
-	${CMAKE_CURRENT_LIST_DIR}/xConfig.cmake.in
+	${CMAKE_SOURCE_DIR}/cmake/xConfig.cmake.in
 	${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
 	INSTALL_DESTINATION
 		${CMAKE_INSTALL_LIBDIR}/cmake/${local_LIBTARGET}

@@ -1,9 +1,0 @@
-
-@PACKAGE_INIT@
-
-#
-# Load cmake-script for export targets
-#
-
-include(${CMAKE_PREFIX_PATH}/lib/cmake/@local_LIBTARGET@/@EXPORT_FILENAME@)
-
