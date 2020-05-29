@@ -80,7 +80,7 @@ set(CPACK_PACKAGING_INSTALL_PREFIX "${DEB_PACKAGE_ROOT}")
 
 # list of packages to create (e.g. "DEB;RPM;...") if all tools installed
 set(CPACK_GENERATOR "DEB")
-include(cmakePack.cmake)
+include("${CMAKE_SOURCE_DIR}/cmake/cmakePack.cmake")
 
 # Must be included after the package variables are set
 include(CPack)
