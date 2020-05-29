@@ -41,6 +41,8 @@ enable_testing()
 set(tpqzcam_LIBVERSION ${PROJECT_NAME}-${PROJECT_VERSION})
 set(local_LIBTARGET "TPQZcam-${PROJECT_VERSION}")
 
+include(GNUInstallDirs)
+
 # Project source code
 add_subdirectory(src)
 
