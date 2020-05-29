@@ -67,7 +67,7 @@ Factory :: infoString
 			<< "theCapacity:"
 			<< theCapacity.infoString();
 
-		constexpr size_t fw{ 6u };
+		constexpr std::size_t fw{ 6u };
 		oss << std::endl;
 		oss << pre
 			<< "numJobs:"

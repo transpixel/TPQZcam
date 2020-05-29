@@ -36,7 +36,7 @@ namespace dat
 {
 
 inline
-size_t const &
+std::size_t const &
 SubExtents :: high
 	() const
 {
@@ -44,7 +44,7 @@ SubExtents :: high
 }
 
 inline
-size_t const &
+std::size_t const &
 SubExtents :: wide
 	() const
 {
@@ -98,13 +98,13 @@ std::pair
 	>
 SubExtents :: iterFullBegEnd
 	( dat::grid<PixType> const & fullGrid
-	, size_t const & subRow
+	, std::size_t const & subRow
 	) const
 {
 	using InIter = typename dat::grid<PixType>::const_iterator;
-	size_t const & inRow = theUL[0] + subRow;
-	size_t const & inCol = theUL[1];
-	size_t const & numCols = theSize.wide();
+	std::size_t const & inRow = theUL[0] + subRow;
+	std::size_t const & inCol = theUL[1];
+	std::size_t const & numCols = theSize.wide();
 	InIter const itInBeg(fullGrid.beginRow(inRow) + inCol);
 	InIter const itInEnd(itInBeg + numCols);
 	return { itInBeg, itInEnd };

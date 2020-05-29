@@ -55,9 +55,9 @@ namespace
 		std::vector<ga::Vector> uPnts;
 		if (uRay.isValid() && uPart.isValid())
 		{
-			size_t const numSamps{ uPart.size() };
+			std::size_t const numSamps{ uPart.size() };
 			uPnts.reserve(numSamps);
-			for (size_t nn{0u} ; nn < numSamps ; ++nn)
+			for (std::size_t nn{0u} ; nn < numSamps ; ++nn)
 			{
 				// sampling distance along the ray
 				double const mu{ uPart.interpValueFor(double(nn)) };
@@ -114,12 +114,12 @@ ProbRay :: considerPoint
 	if (isValid() && vPnt.isValid())
 	{
 		// evaluate probability at each sample location
-		size_t const numSamps{ numSamples() };
+		std::size_t const numSamps{ numSamples() };
 
 		prob::Gauss const & distroVwU = theDistroAngU;
 		prob::Gauss const distroUwV(vPntSigma);
 
-		for (size_t nn{0u} ; nn < numSamps ; ++nn)
+		for (std::size_t nn{0u} ; nn < numSamps ; ++nn)
 		{
 			geo::Ray const & uRay = theRay;
 
@@ -150,10 +150,10 @@ ProbRay :: considerRay
 	if (isValid() && vRay.isValid())
 	{
 		// evaluate probability at each sample location
-		size_t const numSamps{ numSamples() };
+		std::size_t const numSamps{ numSamples() };
 		prob::Gauss const & distroVwU = theDistroAngU;
 		prob::Gauss const distroUwV(vRaySigma);
-		for (size_t nn{0u} ; nn < numSamps ; ++nn)
+		for (std::size_t nn{0u} ; nn < numSamps ; ++nn)
 		{
 			geo::Ray const & uRay = theRay;
 			ga::Vector const & uPnt = thePntUs[nn];
@@ -211,8 +211,8 @@ ProbRay :: considerCone
 		prob::Gauss const distroUwV(apexSigma, apexAngle);
 
 		// evaluate probability at each sample location
-		size_t const numSamps{ numSamples() };
-		for (size_t nn{0u} ; nn < numSamps ; ++nn)
+		std::size_t const numSamps{ numSamples() };
+		for (std::size_t nn{0u} ; nn < numSamps ; ++nn)
 		{
 			ga::Vector const & uPnt = thePntUs[nn];
 
@@ -240,8 +240,8 @@ ProbRay :: probDensityAt
 	if (isValid() && dat::isValid(distAlong))
 	{
 		double const fndx{ thePart.interpIndexFor(distAlong) };
-		size_t const ndxLo{ static_cast<size_t>(std::floor(fndx)) };
-		size_t const ndxHi{ ndxLo + 1u };
+		std::size_t const ndxLo{ static_cast<std::size_t>(std::floor(fndx)) };
+		std::size_t const ndxHi{ ndxLo + 1u };
 		if ((0u < ndxLo) && (ndxHi < theAccums.size()))
 		{
 			double const frac{ fndx - double(ndxLo) };
@@ -263,7 +263,7 @@ ProbRay :: distProbs
 		// compute sum (for normalization)
 		double const sum
 			{ std::accumulate(theAccums.begin(), theAccums.end(), 0.) };
-		size_t const numSamps{ numSamples() };
+		std::size_t const numSamps{ numSamples() };
 		dps.resize(numSamps);
 		double normCo{ 0. };
 		if (std::numeric_limits<double>::min() < sum)
@@ -271,7 +271,7 @@ ProbRay :: distProbs
 			normCo = 1. / sum;
 
 		}
-		for (size_t nn{0u} ; nn < numSamps ; ++nn)
+		for (std::size_t nn{0u} ; nn < numSamps ; ++nn)
 		{
 			// sampling distance along the ray
 			double const mu{ thePart.interpValueFor(double(nn)) };
@@ -308,11 +308,11 @@ ProbRay :: likelyDistProb
 		Iter const & itMax = itMinMax.second;
 		if (itMax != itMin) // non-const prob samples
 		{
-			size_t const ndxCurr{ size_t(itMax - dps.begin()) };
+			std::size_t const ndxCurr{ std::size_t(itMax - dps.begin()) };
 			if (0u < ndxCurr)
 			{
-				size_t const ndxPrev{ ndxCurr - 1u }; 
-				size_t const ndxNext{ ndxCurr + 1u }; 
+				std::size_t const ndxPrev{ ndxCurr - 1u }; 
+				std::size_t const ndxNext{ ndxCurr + 1u }; 
 				if (ndxNext < dps.size())
 				{
 					// three values spaning the (assumed) peak
@@ -456,7 +456,7 @@ ProbRay :: saveDistProbs
 void
 ProbRay :: accumulateDensity
 	( double const & nextProb
-	, size_t const & ndx
+	, std::size_t const & ndx
 	)
 {
 	if (dat::isValid(nextProb))

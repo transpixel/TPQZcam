@@ -77,7 +77,7 @@ public: // methods
 	//! Access to vertex by index
 	ga::Vector const &
 	operator[]
-		( size_t const & ndx
+		( std::size_t const & ndx
 		) const;
 
 	//! Descriptive information about this instance.

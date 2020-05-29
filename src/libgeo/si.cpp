@@ -72,14 +72,14 @@ SemiAxis :: infoString
 
 SemiAxis
 PointSoln :: kthLargestSemiAxis
-	( size_t const & ndx
+	( std::size_t const & ndx
 	) const
 {
 	SemiAxis axis{};
 	if (ndx < theSemiAxes.size())
 	{
-		size_t const last{ theSemiAxes.size() - 1u };
-		size_t const kthNdx{ last - ndx };
+		std::size_t const last{ theSemiAxes.size() - 1u };
+		std::size_t const kthNdx{ last - ndx };
 		axis = theSemiAxes[kthNdx];
 	}
 	return axis;
@@ -92,7 +92,7 @@ PointSoln :: rmsAxisMagnitude
 	double rms{ dat::nullValue<double>() };
 	double sumSqs{ 0. };
 	double count{ 0. };
-	for (size_t kk{0u} ; kk < 3u ; ++kk)
+	for (std::size_t kk{0u} ; kk < 3u ; ++kk)
 	{
 		double const & mag = theSemiAxes[kk].theMag;
 		if (dat::isValid(mag))
@@ -242,8 +242,8 @@ namespace
 	{
 		std::array<SemiAxis, 3u> invAxes;
 		std::array<SemiAxis, 3u> const fwdAxes{ inverseEllipsoidFrom(svd) };
-		size_t const numAxes{ fwdAxes.size() };
-		for (size_t kk{0u} ; kk < numAxes ; ++kk)
+		std::size_t const numAxes{ fwdAxes.size() };
+		for (std::size_t kk{0u} ; kk < numAxes ; ++kk)
 		{
 			SemiAxis const & fwdAxis = fwdAxes[kk];
 			double const & wSqMag = fwdAxis.theMag;

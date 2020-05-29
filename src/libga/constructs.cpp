@@ -44,12 +44,12 @@ namespace ga
 	namespace
 	{
 		//! index of smallest magnitude 
-		size_t
+		std::size_t
 		ndxSmallestMag
 			( std::array<double, 3u> const & dat
 			)
 		{
-			size_t ndx(0u);
+			std::size_t ndx(0u);
 
 			// quick and easy (for coding) two-pass algorithm
 			std::array<double, 3u> const mags
@@ -63,7 +63,7 @@ namespace ga
 				(std::min_element(mags.begin(), mags.end()));
 
 			// compute offset
-			ndx = static_cast<size_t>(itMin - mags.begin());
+			ndx = static_cast<std::size_t>(itMin - mags.begin());
 
 			return ndx;
 		}
@@ -89,7 +89,7 @@ anyPerpendicularDir
 			 }};
 
 		// compute prependicular from most stable candidate
-		size_t const ndx(ndxSmallestMag(dirdots));
+		std::size_t const ndx(ndxSmallestMag(dirdots));
 		BiVector const plane((vec * dirs[ndx]).theB); // non-unitary
 		Vector const tmpPerp((vec * plane).theV);
 

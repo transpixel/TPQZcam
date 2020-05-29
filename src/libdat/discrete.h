@@ -56,18 +56,18 @@ namespace discrete
 {
 	//! Adjusted to integral boundary of delta
 	inline
-	size_t
+	std::size_t
 	quantizedLo
-		( size_t const & orig
-		, size_t const & delta
+		( std::size_t const & orig
+		, std::size_t const & delta
 		);
 
 	//! Adjusted to integral boundary of delta
 	inline
-	size_t
+	std::size_t
 	quantizedHi
-		( size_t const & orig
-		, size_t const & delta
+		( std::size_t const & orig
+		, std::size_t const & delta
 		);
 
 	//! Quantized row/col value
@@ -75,7 +75,7 @@ namespace discrete
 	dat::RowCol
 	quantized
 		( dat::RowCol const & orig
-		, size_t const & quant
+		, std::size_t const & quant
 		);
 
 	//! Quantized sizes value
@@ -83,7 +83,7 @@ namespace discrete
 	dat::Extents
 	quantized
 		( dat::Extents const & orig
-		, size_t const & quant
+		, std::size_t const & quant
 		);
 }
 

@@ -47,7 +47,7 @@ valueFromNonConst
 {
 
 	DataType median(dat::nullValue<DataType>());
-	size_t const numSamps(std::distance(beg, end));
+	std::size_t const numSamps(std::distance(beg, end));
 	if (1u == numSamps)
 	{
 		// deal with trival case
@@ -87,7 +87,7 @@ valueFromConst
 	)
 {
 	DataType median(dat::nullValue<DataType>());
-	size_t const numSamps(std::distance(beg, end));
+	std::size_t const numSamps(std::distance(beg, end));
 	if (1u == numSamps)
 	{
 		// deal with trival case

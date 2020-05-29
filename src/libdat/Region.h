@@ -52,7 +52,7 @@ namespace dat
 \until ExampleEnd
 */
 
-template <size_t Dim, typename Type>
+template <std::size_t Dim, typename Type>
 class Region
 {
 	std::array<dat::Range<Type>, Dim> theRanges{{}};
@@ -90,7 +90,7 @@ public: // methods
 	inline
 	Range<Type> const &
 	operator[]
-		( size_t const & ndx
+		( std::size_t const & ndx
 		) const;
 
 	//! Magnitude of this region (aka hypervolume)

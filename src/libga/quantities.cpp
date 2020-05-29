@@ -41,11 +41,11 @@
 namespace ga
 {
 	//! title (string) field width
-	static size_t const sTW(15u);
+	static std::size_t const sTW(15u);
 
 	//! value (float) field width -- sign, before, decimal, after
-	static size_t const sVP(6u);
-	static size_t const sVW(1u + 4u + 1u + sVP);
+	static std::size_t const sVP(6u);
+	static std::size_t const sVW(1u + 4u + 1u + sVP);
 
 	//! Configure stream for numeric output
 	void

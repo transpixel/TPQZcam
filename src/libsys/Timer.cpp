@@ -91,7 +91,7 @@ Timer :: total
 	() const
 {
 	double sum(0.);
-	for (size_t nn(0u) ; nn < theIntervals.size() ; ++nn)
+	for (std::size_t nn(0u) ; nn < theIntervals.size() ; ++nn)
 	{
 		Interval const & ival = theIntervals[nn];
 		sum += ival.duration();
@@ -112,7 +112,7 @@ Timer :: infoString
 
 	// include each interval
 	double sum(0.);
-	for (size_t nn(0u) ; nn < theIntervals.size() ; ++nn)
+	for (std::size_t nn(0u) ; nn < theIntervals.size() ; ++nn)
 	{
 		Interval const & ival = theIntervals[nn];
 

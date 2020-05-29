@@ -56,7 +56,7 @@ namespace dat
 struct Jump
 {
 	//! Offset into collection at which jump occurs
-	size_t theNdx{ nullValue<size_t>() };
+	std::size_t theNdx{ nullValue<std::size_t>() };
 
 	//! Min value at the discontinuity
 	double theLo{ nullValue<double>() };
@@ -86,7 +86,7 @@ public: // methods
 	//! Value constructor
 	explicit
 	Jump
-		( size_t const & ndx
+		( std::size_t const & ndx
 		, double const & lo
 		, double const & hi
 		);

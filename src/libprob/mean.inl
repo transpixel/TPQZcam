@@ -50,7 +50,7 @@ arithmetic
 	{
 		DataType const sum
 			(std::accumulate(beg, end, static_cast<DataType>(0)));
-		size_t const numSamps(std::distance(beg, end));
+		std::size_t const numSamps(std::distance(beg, end));
 		mean = (1./static_cast<double>(numSamps)) * sum;
 	}
 	return mean;
@@ -78,7 +78,7 @@ namespace priv
 		if (beg != end)
 		{
 			double sumFwd{ 0u };
-			size_t count{ 0u };
+			std::size_t count{ 0u };
 			bool hitAnyZeros{ false };
 			for (FwdIter iter{beg} ; end != iter ; ++iter)
 			{

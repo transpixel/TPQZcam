@@ -36,7 +36,7 @@ namespace dat
 
 // Operations on std::array data type
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 constexpr
 std::array<Type, Dim>
 nullValue
@@ -83,7 +83,7 @@ isValid
 		);
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 bool
 isValid
@@ -93,7 +93,7 @@ isValid
 	return dat::isValid<Type>(arrayNd[0]);
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 std::array<Type, Dim>
 operator-
@@ -111,7 +111,7 @@ operator-
 	return result;
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 Type
 magSq
@@ -122,7 +122,7 @@ magSq
 		(vals.begin(), vals.end(), vals.begin(), static_cast<Type>(0));
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 Type
 magnitude
@@ -133,7 +133,7 @@ magnitude
 }
 
 template
-	< typename FType, size_t Dim
+	< typename FType, std::size_t Dim
 	, EnableIf< std::is_floating_point<FType> >...
 	>
 inline
@@ -153,7 +153,7 @@ unit
 	return result;
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 std::array<Type, Dim>
 operator+
@@ -173,7 +173,7 @@ operator+
 	return result;
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 std::array<Type, Dim>
 operator-
@@ -193,7 +193,7 @@ operator-
 	return result;
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 std::array<Type, Dim>
 operator*
@@ -214,7 +214,7 @@ operator*
 
 template
 	< typename FType
-	, size_t Dim
+	, std::size_t Dim
 	, EnableIf< std::is_floating_point<FType> >...
 	>
 inline
@@ -234,7 +234,7 @@ reciprocals
 	return result;
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 Type
 dot

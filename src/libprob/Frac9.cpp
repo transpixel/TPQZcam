@@ -66,7 +66,7 @@ namespace
 		if (cdfInv.isValid())
 		{
 			std::array<double, 9u> const fracs(prob::Frac9::fractiles());
-			for (size_t ndx(0u) ; ndx < fracs.size() ; ++ndx)
+			for (std::size_t ndx(0u) ; ndx < fracs.size() ; ++ndx)
 			{
 				values[ndx] = cdfInv(fracs[ndx]);
 			}
@@ -85,7 +85,7 @@ namespace
 
 		if (cdfFwd.isValid())
 		{
-			constexpr size_t lutSize{ 4u * 1024u };
+			constexpr std::size_t lutSize{ 4u * 1024u };
 			prob::CdfInverse const cdfInv
 				(prob::CdfInverse::fromCdfForward(cdfFwd, lutSize));
 

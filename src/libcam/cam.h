@@ -56,10 +56,10 @@ namespace cam
 {
 
 	//! Type to identify (object space) point entities
-	using PntNdx = size_t;
+	using PntNdx = std::size_t;
 
 	//! Type to identify sensor acquisition events (imprint records)
-	using AcqNdx = size_t;
+	using AcqNdx = std::size_t;
 
 	//! Descriptive point name/key
 	using PntName = std::string;

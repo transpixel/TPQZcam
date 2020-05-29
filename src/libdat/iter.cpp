@@ -40,13 +40,13 @@ namespace dat
 namespace iter
 {
 
-size_t
+std::size_t
 activeEndFor
-	( size_t const & sourceSize
-	, size_t const & useSize
+	( std::size_t const & sourceSize
+	, std::size_t const & useSize
 	)
 {
-	size_t lastEnd{ dat::nullValue<size_t>() };
+	std::size_t lastEnd{ dat::nullValue<std::size_t>() };
 	if (useSize <= sourceSize)
 	{
 		lastEnd = sourceSize - useSize + 1u;
@@ -54,21 +54,21 @@ activeEndFor
 	return lastEnd;
 }
 
-size_t
+std::size_t
 activeEndFor
-	( size_t const & sourceSize
-	, size_t const & patchSize
-	, size_t const & numLooks
+	( std::size_t const & sourceSize
+	, std::size_t const & patchSize
+	, std::size_t const & numLooks
 	)
 {
-	size_t end{ dat::nullValue<size_t>() };
-	size_t const & sourceEnd = sourceSize;
+	std::size_t end{ dat::nullValue<std::size_t>() };
+	std::size_t const & sourceEnd = sourceSize;
 	if ((0u < patchSize) && (0u < numLooks))
 	{
-		size_t const patchEnd{ activeEndFor(sourceEnd, patchSize) };
+		std::size_t const patchEnd{ activeEndFor(sourceEnd, patchSize) };
 		if (dat::isValid(patchEnd))
 		{
-			size_t const searchEnd{ activeEndFor(patchEnd, numLooks) };
+			std::size_t const searchEnd{ activeEndFor(patchEnd, numLooks) };
 			if (dat::isValid(searchEnd))
 			{
 				end = searchEnd;

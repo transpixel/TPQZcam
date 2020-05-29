@@ -85,7 +85,7 @@ namespace xref
 	averagePoints
 		( cam::XRefRays const & rayTab
 		, XRefDists const & distTab
-		, size_t const & minNearCount = 2u
+		, std::size_t const & minNearCount = 2u
 			//!< Require at least this many valid rays per point
 		);
 

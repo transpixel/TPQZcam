@@ -47,7 +47,7 @@ namespace prob
 inline
 // explicit
 SampleEntropy :: SampleEntropy
-	( size_t const & count
+	( std::size_t const & count
 	, double const & entropy
 	)
 	: theCount(count)

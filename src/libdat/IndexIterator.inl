@@ -39,7 +39,7 @@ namespace dat
 inline
 IndexIterator :: IndexIterator
 	()
-	: theBegEnd{ dat::nullValue<size_t>(), dat::nullValue<size_t>() }
+	: theBegEnd{ dat::nullValue<std::size_t>(), dat::nullValue<std::size_t>() }
 	, theAt{ theBegEnd.second }
 { }
 
@@ -61,7 +61,7 @@ IndexIterator :: operator bool
 }
 
 inline
-size_t const &
+std::size_t const &
 IndexIterator :: operator*
 	() const
 {
@@ -78,7 +78,7 @@ IndexIterator :: operator++
 		++theAt;
 		if (theAt == theBegEnd.second)
 		{
-			theAt = dat::nullValue<size_t>();
+			theAt = dat::nullValue<std::size_t>();
 		}
 	}
 	return *this;

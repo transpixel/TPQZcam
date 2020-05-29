@@ -136,7 +136,7 @@ public: // methods
 	inline
 	Type
 	operator[]
-		( size_t const & ndx
+		( std::size_t const & ndx
 		) const;
 
 	//! Minimum end point (same as .first) treated as Included

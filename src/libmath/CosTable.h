@@ -95,7 +95,7 @@ public: // methods
 	inline
 	explicit
 	CosTable
-		( size_t const & numElem
+		( std::size_t const & numElem
 		, Type const & nullValue
 		);
 
@@ -111,7 +111,7 @@ public: // methods
 
 	//! Number of elements in LUT
 	inline
-	size_t
+	std::size_t
 	size
 		() const;
 
@@ -119,19 +119,19 @@ public: // methods
 	inline
 	Type const &
 	operator[]
-		( size_t const & ndx
+		( std::size_t const & ndx
 		) const;
 
 	//! Direct write access to table element
 	inline
 	Type &
 	operator[]
-		( size_t const & ndx
+		( std::size_t const & ndx
 		);
 
 	//! index into LUT for table value
 	inline
-	size_t
+	std::size_t
 	indexForCosine
 		( double const & cosValue
 		) const;
@@ -140,7 +140,7 @@ public: // methods
 	inline
 	double
 	cosineForIndex
-		( size_t const & index
+		( std::size_t const & index
 		) const;
 
 	//! Increment of cosine values between table elements

@@ -61,7 +61,7 @@ Utilization :: infoString
 	if (isValid())
 	{
 		static std::string const fmt{ "%2d" };
-		constexpr size_t fw{ 6u };
+		constexpr std::size_t fw{ 6u };
 		oss
 			<< "cnt,max:"
 			<< " " << std::setw(fw) << theCount

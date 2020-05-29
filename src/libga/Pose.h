@@ -145,7 +145,7 @@ public: // methods
 	//! Direction of ndx-th range basis vector expressed in domain frame
 	ga::Vector
 	bodyAxisInRef
-		( size_t const & ndx
+		( std::size_t const & ndx
 		) const;
 
 	//! Numeric components of associated spinor

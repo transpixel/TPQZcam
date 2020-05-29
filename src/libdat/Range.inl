@@ -158,7 +158,7 @@ template <typename Type>
 inline
 Type
 Range<Type> :: operator[]
-	( size_t const & ndx
+	( std::size_t const & ndx
 	) const
 {
 	Type value{ dat::nullValue<Type>() };

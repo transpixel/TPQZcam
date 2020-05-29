@@ -54,7 +54,7 @@ namespace
 	deltaFor
 		( double const & min
 		, double const & max
-		, size_t const & size
+		, std::size_t const & size
 		)
 	{
 		return ((max - min) / static_cast<double>(size));
@@ -63,7 +63,7 @@ namespace
 
 Partition :: Partition
 	()
-	: theNumParts(dat::nullValue<size_t>())
+	: theNumParts(dat::nullValue<std::size_t>())
 	, theMin(dat::nullValue<double>())
 	, theDelta(dat::nullValue<double>())
 {
@@ -73,7 +73,7 @@ Partition :: Partition
 Partition :: Partition
 	( double const & min
 	, double const & delta
-	, size_t const & numParts
+	, std::size_t const & numParts
 	)
 	: theNumParts(numParts)
 	, theMin(min)
@@ -84,7 +84,7 @@ Partition :: Partition
 // explicit
 Partition :: Partition
 	( dat::Range<double> const & range
-	, size_t const & numParts
+	, std::size_t const & numParts
 	)
 	: theNumParts(numParts)
 	, theMin(range.min())
@@ -95,7 +95,7 @@ Partition :: Partition
 // explicit
 Partition :: Partition
 	( std::pair<double, double> const & pair
-	, size_t const & numParts
+	, std::size_t const & numParts
 	)
 	: theNumParts(numParts)
 	, theMin(pair.first)

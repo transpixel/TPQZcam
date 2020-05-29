@@ -67,8 +67,8 @@ namespace cast
 		if (dat::isValid(spot))
 		{
 			rc = dat::RowCol
-				{{ static_cast<size_t>(std::floor(spot[0]))
-				 , static_cast<size_t>(std::floor(spot[1]))
+				{{ static_cast<std::size_t>(std::floor(spot[0]))
+				 , static_cast<std::size_t>(std::floor(spot[1]))
 				}};
 		}
 		return rc;

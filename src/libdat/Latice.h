@@ -56,13 +56,13 @@ namespace dat
 template <typename Type>
 class Latice
 {
-	size_t theHigh;
-	size_t theWide;
-	size_t theDeep;
+	std::size_t theHigh;
+	std::size_t theWide;
+	std::size_t theDeep;
 	std::vector<Type> theData;
 
 	//! cache: layer size
-	size_t theLaySize;
+	std::size_t theLaySize;
 
 public: // typedef
 
@@ -79,9 +79,9 @@ public: // methods
 	//! Construct to specified size
 	explicit
 	Latice
-		( size_t const & high
-		, size_t const & wide
-		, size_t const & deep
+		( std::size_t const & high
+		, std::size_t const & wide
+		, std::size_t const & deep
 		);
 
 	// copy constructor -- compiler provided
@@ -96,7 +96,7 @@ public: // methods
 
 	//! Total number of elements
 	inline
-	size_t
+	std::size_t
 	size
 		() const;
 
@@ -104,18 +104,18 @@ public: // methods
 	inline
 	Type const &
 	operator()
-		( size_t const & row
-		, size_t const & col
-		, size_t const & lay
+		( std::size_t const & row
+		, std::size_t const & col
+		, std::size_t const & lay
 		) const;
 
 	//! Returns direct reference to element
 	inline
 	Type &
 	operator()
-		( size_t const & row
-		, size_t const & col
-		, size_t const & lay
+		( std::size_t const & row
+		, std::size_t const & col
+		, std::size_t const & lay
 		);
 
 	//! use as const_iterator
@@ -153,11 +153,11 @@ private:
 
 	//! Offset into data vector
 	inline
-	size_t
+	std::size_t
 	offsetFor
-		( size_t const & row
-		, size_t const & col
-		, size_t const & lay
+		( std::size_t const & row
+		, std::size_t const & col
+		, std::size_t const & lay
 		) const;
 
 };

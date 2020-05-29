@@ -86,7 +86,7 @@ public: // methods
 	//! Collection of pseudo random samples
 	std::vector<double>
 	samples
-		( size_t const & numSamp
+		( std::size_t const & numSamp
 		) const;
 };
 

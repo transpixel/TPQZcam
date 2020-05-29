@@ -143,7 +143,7 @@ namespace math
 	rms // NOTE: Watch for overflow for "small" types
 		( FwdIter const & beg
 		, FwdIter const & end
-		, size_t const & dofUsed
+		, std::size_t const & dofUsed
 		);
 
 }

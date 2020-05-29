@@ -215,14 +215,14 @@ struct Vector
 	inline
 	double const &
 	operator[]
-		( size_t const & validNdx //!< Assumed to be 0,1,2 !!
+		( std::size_t const & validNdx //!< Assumed to be 0,1,2 !!
 		) const;
 
 	//! Shortcut to theValues[ndx]
 	inline
 	double &
 	operator[]
-		( size_t const & validNdx //!< Assumed to be 0,1,2 !!
+		( std::size_t const & validNdx //!< Assumed to be 0,1,2 !!
 		);
 
 	//! True if this and other are 'same' within tolerance
@@ -313,14 +313,14 @@ struct BiVector
 	inline
 	double const &
 	operator[]
-		( size_t const & validNdx //!< Assumed to be 0,1,2 !!
+		( std::size_t const & validNdx //!< Assumed to be 0,1,2 !!
 		) const;
 
 	//! Shortcut to theValues[ndx]
 	inline
 	double &
 	operator[]
-		( size_t const & validNdx //!< Assumed to be 0,1,2 !!
+		( std::size_t const & validNdx //!< Assumed to be 0,1,2 !!
 		);
 
 	//! True if this and other are 'same' within tolerance

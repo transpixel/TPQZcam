@@ -41,7 +41,7 @@ namespace ga
 
 Vector
 Pose :: bodyAxisInRef
-	( size_t const & ndx
+	( std::size_t const & ndx
 	) const
 {
 	Vector dirInRef{};
