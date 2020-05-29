@@ -1,6 +1,0 @@
-libcam/FileList.cmake
-libga/FileList.cmake
-libgeo/FileList.cmake
-libla/FileList.cmake
-libmath/FileList.cmake
-libprob/FileList.cmake
