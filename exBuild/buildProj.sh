@@ -25,6 +25,7 @@ mkdir ${buildLibDir}
 echo "\n Generating Build System"
 cmake \
 	-DCMAKE_INSTALL_PREFIX=${instLibDir} \
+	-DCMAKE_INSTALL_MESSAGE=NEVER \
 	-DBUILD_SHARED_LIBS=NO \
 	-B${buildLibDir} \
 	-H${srcLibDir} \
