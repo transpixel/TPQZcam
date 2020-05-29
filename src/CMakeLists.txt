@@ -129,7 +129,7 @@ install(
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
-	${CMAKE_CURRENT_LIST_DIR}/xConfig.cmake.in
+	${CMAKE_SOURCE_DIR}/cmake/xConfig.cmake.in
 	${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
 	INSTALL_DESTINATION
 		${CMAKE_INSTALL_LIBDIR}/cmake/${local_LIBTARGET}
