@@ -84,7 +84,6 @@ set(local_NS_INCLUDES
 	RowCol.inl
 	SpotX.inl
 	SubExtents.inl
-	validity.inl
 
 	)
 
