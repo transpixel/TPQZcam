@@ -284,24 +284,20 @@ namespace dat
 	class has_null
 	{
 		// define structures of two different sizes (to test in enum below)
-		using one = char;
-		struct two
-		{
-			char xx[2];
-		};
+		using Yes = char; //!< Initializes data when member function IS present
+		using Not = double; //!< Init data when member function NOT present
 
 		//! Attempt to define function that should fail if no ::null
-		template <typename C> static one test( decltype(&C::null) );
+		template <typename AnyType> static Yes data( decltype(&AnyType::null) );
 		//! Fall back function has return type of two bytes
-		template <typename C> static two test( ... );
+		template <typename AnyType> static Not data( ... );
 
 	public:
 
-		enum
-		{
-			value = (sizeof(test<Type>(0)) == sizeof(char))
-		};
-
+		//! Set bool 'value' depending on which member definition is created
+		// data<Type>(0) will be of type Yes or type Not
+		// in which case the size comparision will be True or False resp.
+		static bool const value = (sizeof(data<Type>(0)) == sizeof(Yes));
 	};
 
 	//! Custom class return Type::null()
