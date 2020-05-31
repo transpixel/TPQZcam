@@ -139,7 +139,7 @@ KeyedValues :: dValue
 {
 	double dval(badDub);
 	std::string const sval(value(key));
-	if (dat::isValid(sval))
+	if (! sval.empty())
 	{
 		dval = io::string::from(sval, badDub);
 	}
