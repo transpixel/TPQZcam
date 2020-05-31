@@ -44,23 +44,31 @@ namespace dat
 // Items related to critical values of data
 
 	//! A reasonably "small" value for general algorithm/code verification.
-	template <typename FType, EnableIf< std::is_floating_point<FType> >...>
+	template <typename Type>
+	inline
 	constexpr
-	FType
+	typename std::enable_if
+		< std::is_floating_point<Type>::value
+		, Type
+		>::type
 	smallValue
 		()
 	{
-		return (256.*std::numeric_limits<FType>::epsilon());
+		return (256. * std::numeric_limits<Type>::epsilon());
 	}
 
-	//! A reasonably "small" value for general algorithm/code verification.
-	template <typename IType, EnableIf< std::is_integral<IType> >...>
+	//! For integral types - assume "small" is zero
+	template <typename Type>
+	inline
 	constexpr
-	IType
+	typename std::enable_if
+		< std::is_integral<Type>::value
+		, Type
+		>::type
 	smallValue
 		()
 	{
-		return static_cast<IType>(0); // integer testing can be exact
+		return static_cast<Type>(0);
 	}
 
 }
