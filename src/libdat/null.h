@@ -34,13 +34,13 @@
 */
 
 
-//#include "libdat/template.h"
-//#include "libdat/types.h"
-
-#include <array>
 #include <cmath>
 #include <limits>
 #include <type_traits>
+
+#include <array>
+#include <string>
+#include <utility>
 
 
 namespace dat
@@ -62,6 +62,8 @@ namespace dat
 
 	//! Null for (YesArithmetic && YesIntegral && YesSigned)
 	template <typename Type>
+	inline
+	constexpr
 	typename std::enable_if
 		< ( // std::is_arithmetic<Type>::value // implied by is_signed
 		  // &&
@@ -79,6 +81,7 @@ namespace dat
 
 	//! Check validity for (YesArithmetic && YesIntegral && YesSigned)
 	template <typename Type>
+	inline
 	typename std::enable_if
 		< ( // std::is_arithmetic<Type>::value // implied by is_signed
 		  // &&
@@ -95,6 +98,17 @@ namespace dat
 		return (nullValue<Type>() != value);
 	}
 
+	// specialization overrides
+
+	inline
+	bool
+	isValid
+		( bool const & // value
+		)
+	{
+		return true; // bool is always valid (no matter if false or not)
+	}
+
 
 	//
 	// Arithmetic Integral Unsigned
@@ -102,6 +116,8 @@ namespace dat
 
 	//! Null for (YesArithmetic && YesIntegral && NotSigned)
 	template <typename Type>
+	inline
+	constexpr
 	typename std::enable_if
 		< ( // std::is_arithmetic<Type>::value // implied by is_unsigned
 		  // &&
@@ -119,6 +135,7 @@ namespace dat
 
 	//! Check validity for (YesArithmetic && YesIntegral && NotSigned)
 	template <typename Type>
+	inline
 	typename std::enable_if
 		< ( //std::is_arithmetic<Type>::value // implied by is_unsigned
 		  //&&
@@ -141,6 +158,8 @@ namespace dat
 
 	//! Null for (YesArithmetic && NotIntegral
 	template <typename Type>
+	inline
+	constexpr
 	typename std::enable_if
 		< ( // std::is_arithmetic<Type>::value // implied by is_iec559
 		  //&&
@@ -158,6 +177,7 @@ namespace dat
 
 	//! Check validity for (YesArithmetic && NotIntegral
 	template <typename Type>
+	inline
 	typename std::enable_if
 		< ( // std::is_arithmetic<Type>::value // implied by is_iec559
 		  // &&
@@ -183,30 +203,31 @@ namespace dat
 	// General std::array types
 	//
 
-	using ArrayIS2_t = std::array<int, 2u>;
-	using ArrayD2_t = std::array<double, 2u>;
-	using ArrayD3_t = std::array<double, 3u>;
+	using ArraySiz2_t = std::array<std::size_t, 2u>;
+	using ArrayDub2_t = std::array<double, 2u>;
+	using ArrayDub3_t = std::array<double, 3u>;
 
-	// <int, 2u>
+	// <std::size_t, 2u>
 
-	//! Null for std::array<int, 2u>
+	//! Null for std::array<std::size_t, 2u>
 	template <typename Type>
+	inline
+	constexpr
 	typename std::enable_if
-		< ( std::is_same<Type, ArrayIS2_t>::value
-		  )
+		< std::is_same<Type, ArraySiz2_t>::value
 		, Type
 		>::type
 	nullValue
 		()
 	{
-		return ArrayIS2_t{ nullValue<ArrayIS2_t::value_type>() };
+		return ArraySiz2_t{ nullValue<ArraySiz2_t::value_type>() };
 	}
 
-	//! Check validity for std::array<int, 2u>
+	//! Check validity for std::array<std::size_t, 2u>
 	template <typename Type>
+	inline
 	typename std::enable_if
-		< ( std::is_same<Type, ArrayIS2_t>::value
-		  )
+		< std::is_same<Type, ArraySiz2_t>::value
 		, bool
 		>::type
 	isValid
@@ -220,21 +241,24 @@ namespace dat
 
 	//! Null for std::array<double, 2u>
 	template <typename Type>
+	inline
+	constexpr
 	typename std::enable_if
-		< ( std::is_same<Type, ArrayD2_t>::value
+		< ( std::is_same<Type, ArrayDub2_t>::value
 		  )
 		, Type
 		>::type
 	nullValue
 		()
 	{
-		return ArrayD2_t{ nullValue<ArrayD2_t::value_type>() };
+		return ArrayDub2_t{ nullValue<ArrayDub2_t::value_type>() };
 	}
 
 	//! Check validity for std::array<double,2u>
 	template <typename Type>
+	inline
 	typename std::enable_if
-		< ( std::is_same<Type, ArrayD2_t>::value
+		< ( std::is_same<Type, ArrayDub2_t>::value
 		  )
 		, bool
 		>::type
@@ -249,21 +273,24 @@ namespace dat
 
 	//! Null for std::array<double, 3u>
 	template <typename Type>
+	inline
+	constexpr
 	typename std::enable_if
-		< ( std::is_same<Type, ArrayD3_t>::value
+		< ( std::is_same<Type, ArrayDub3_t>::value
 		  )
 		, Type
 		>::type
 	nullValue
 		()
 	{
-		return ArrayD3_t{ nullValue<ArrayD3_t::value_type>() };
+		return ArrayDub3_t{ nullValue<ArrayDub3_t::value_type>() };
 	}
 
 	//! Check validity for std::array<double,3u>
 	template <typename Type>
+	inline
 	typename std::enable_if
-		< ( std::is_same<Type, ArrayD3_t>::value
+		< ( std::is_same<Type, ArrayDub3_t>::value
 		  )
 		, bool
 		>::type
@@ -288,9 +315,12 @@ namespace dat
 		using Not = double; //!< Init data when member function NOT present
 
 		//! Attempt to define function that should fail if no ::null
-		template <typename AnyType> static Yes data( decltype(&AnyType::null) );
+		template <typename AnyType>
+		static Yes data( decltype(&AnyType::null) );
+
 		//! Fall back function has return type of two bytes
-		template <typename AnyType> static Not data( ... );
+		template <typename AnyType>
+		static Not data( ... );
 
 	public:
 
@@ -302,6 +332,8 @@ namespace dat
 
 	//! Custom class return Type::null()
 	template <typename Type>
+	inline
+	constexpr
 	typename std::enable_if
 		< ( std::is_class<Type>::value
 		  &&
@@ -315,12 +347,37 @@ namespace dat
 		return Type::null();
 	}
 
+	//! SFINAE test for ::isValid() member function
+	template <typename Type>
+	class has_isValid
+	{
+		// define structures of two different sizes (to test in enum below)
+		using Yes = char; //!< Initializes data when member function IS present
+		using Not = double; //!< Init data when member function NOT present
+
+		//! Attempt to define function that should fail if no ::isValid
+		template <typename AnyType>
+		static Yes data( decltype(&AnyType::isValid) );
+
+		//! Fall back function has return type of two bytes
+		template <typename AnyType>
+		static Not data( ... );
+
+	public:
+
+		//! Set bool 'value' depending on which member definition is created
+		// data<Type>(0) will be of type Yes or type Not
+		// in which case the size comparision will be True or False resp.
+		static bool const value = (sizeof(data<Type>(0)) == sizeof(Yes));
+	};
+
 	//! Custom class isValid() test
 	template <typename Type>
+	inline
 	typename std::enable_if
 		< ( std::is_class<Type>::value
 		  &&
-			has_null<Type>::value
+			has_isValid<Type>::value
 		  )
 		, bool
 		>::type
@@ -328,148 +385,50 @@ namespace dat
 		( Type const & type
 		)
 	{
-		return {};
-	}
-
-
-
-
-
-
-
-
-
-
-
-/*
-	//! Fall-through template - call member function
-	template
-		< typename CType
-		, EnableIf
-			< dat::has::null<CType, CType()> >...
-		>
-	inline
-	CType
-	nullValue
-		()
-	{
-		return CType::null();
+		return type.isValid();
 	}
 
 	//
-	// Data validity
+	// Standard Pair
 	//
 
-	template <typename FType, EnableIf< std::is_floating_point<FType> >...>
-	constexpr //inline
-	FType
-	nullValue
-		()
-	{
-		return std::numeric_limits<FType>::quiet_NaN();
-	}
-
-	template <typename IType, EnableIf< std::is_integral<IType> >...>
-	constexpr //inline
-	IType
-	nullValue
-		()
-	{
-		// what else to do for integral types?
-		return std::numeric_limits<IType>::max();
-	}
-
-//	template <typename FType, EnableIf< std::is_same<FType, f16_t> >...>
-//	constexpr //inline
-//	FType
-//	nullValue
-//		()
-//	{
-//		return std::numeric_limits<FType>::quiet_NaN();
-//	}
-
-	template <typename AType, EnableIf< std::is_same<AType, RowCol> >...>
-	constexpr //inline
-	AType
-	nullValue
-		()
-	{
-		return RowCol
-			{ std::numeric_limits<RowCol::value_type>::max()
-			, std::numeric_limits<RowCol::value_type>::max()
-			};
-	}
-
-	template <typename AType, EnableIf< std::is_same<AType, Spot> >...>
-	constexpr //inline
-	AType
-	nullValue
-		()
-	{
-		return Spot
-			{ std::numeric_limits<Spot::value_type>::quiet_NaN()
-			, std::numeric_limits<Spot::value_type>::quiet_NaN()
-			};
-	}
-
-
-
-	//! Always true - (for compatibliity with other templates)
-	constexpr //inline
-	bool
-	isValid
-		( bool const & // value
-		)
-	{
-		return true;
-	}
-
-	//! True if value is not one of (subnormal, infinite, NaN) zero is okay
-	template <typename FType, EnableIf< std::is_floating_point<FType> >...>
-	inline
-	bool
-	isValid
-		( FType const & value
-		);
-
-	//! True if value is not one of (max possible)
-	template <typename IType, EnableIf< std::is_integral<IType> >...>
-	inline
-	bool
-	isValid
-		( IType const & value
-		);
-
-	//! True if both members are valid
 	template <typename Type1, typename Type2>
 	inline
 	bool
 	isValid
-		( std::pair<Type1, Type2> const & apair
-		);
+		( std::pair<Type1, Type2> const & pair
+		)
+	{
+		bool const okay1{ isValid(pair.first) };
+		bool const okay2{ isValid(pair.second) };
+		return (okay1 && okay2);
+	}
 
-	//! Specialization
+	//! Pair specialization with string as first element
+	template <typename Type2>
+	inline
+	bool
+	isValid
+		( std::pair<std::string, Type2> const & pair
+		)
+	{
+		bool const okay1{ (! pair.first.empty()) };
+		bool const okay2{ isValid(pair.second) };
+		return (okay1 && okay2);
+	}
+
+	//
+	// Special interpretations
+	//
+
 	inline
 	bool
 	isValid
 		( std::string const & value
-		);
-
-	//! Fall-through template - call member function
-	template
-		< typename CType
-		, EnableIf
-			< dat::has::isValid<CType, bool()> >...
-		>
-	inline
-	bool
-	isValid
-		( CType const & arg
 		)
 	{
-		return arg.isValid();
+		return (! value.empty());
 	}
-*/
 
 }
 

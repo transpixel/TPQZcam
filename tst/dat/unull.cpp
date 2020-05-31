@@ -33,8 +33,6 @@
 
 #include "libdat/null.h"
 
-//#include "libdat/info.h"
-//#include "libdat/validity.h"
 #include "libio/stream.h"
 
 #include <array>
@@ -227,31 +225,31 @@ dat_null_test3
 {
 	std::ostringstream oss;
 
-	using ArrayIS2 = std::array<int, 2u>;
-	using ArrayID2 = std::array<double, 2u>;
-	using ArrayD3 = std::array<double, 3u>;
+	using ArraySiz2 = std::array<std::size_t, 2u>;
+	using ArrayDub2 = std::array<double, 2u>;
+	using ArrayDub3 = std::array<double, 3u>;
 
-	{ // ArrayIS2
-		ArrayIS2 const gotNull{ dat::nullValue<ArrayIS2>() };
+	{ // ArraySiz2
+		ArraySiz2 const gotNull{ dat::nullValue<ArraySiz2>() };
 		if (dat::isValid(gotNull))
 		{
-			oss << "Failure of ArrayIS2 validity test" << std::endl;
+			oss << "Failure of ArraySiz2 validity test" << std::endl;
 			oss << "got nullValue[0]: " << gotNull[0] << std::endl;
 		}
 	}
-	{ // ArrayID2
-		ArrayID2 const gotNull{ dat::nullValue<ArrayID2>() };
+	{ // ArrayDub2
+		ArrayDub2 const gotNull{ dat::nullValue<ArrayDub2>() };
 		if (dat::isValid(gotNull))
 		{
-			oss << "Failure of ArrayID2 validity test" << std::endl;
+			oss << "Failure of ArrayDub2 validity test" << std::endl;
 			oss << "got nullValue[0]: " << gotNull[0] << std::endl;
 		}
 	}
-	{ // ArrayD3
-		ArrayD3 const gotNull{ dat::nullValue<ArrayD3>() };
+	{ // ArrayDub3
+		ArrayDub3 const gotNull{ dat::nullValue<ArrayDub3>() };
 		if (dat::isValid(gotNull))
 		{
-			oss << "Failure of ArrayD3 validity test" << std::endl;
+			oss << "Failure of ArrayDub3 validity test" << std::endl;
 			oss << "got nullValue[0]: " << gotNull[0] << std::endl;
 		}
 	}
@@ -299,6 +297,68 @@ dat_null_test4
 	return oss.str();
 }
 
+//! Check for pair of values
+std::string
+dat_null_test5
+	()
+{
+	std::ostringstream oss;
+
+	using IDPair = std::pair<int, double>;
+	{ // IDPair
+		IDPair const gotNull{ dat::nullValue<int>(), dat::nullValue<double>() };
+		if (dat::isValid(gotNull))
+		{
+			oss << "Failure of IDPair validity test" << std::endl;
+		}
+	}
+
+	// Example of keyvalue pairing
+	using KeyVal = std::pair<std::string, Custom>;
+	{ // KeyVal
+		KeyVal const gotNull{ std::string{}, dat::nullValue<Custom>() };
+		if (dat::isValid(gotNull))
+		{
+			oss << "Failure of KeyVal validity test" << std::endl;
+		}
+	}
+
+	return oss.str();
+}
+
+//! Check for particularly useful valid cases
+std::string
+dat_null_test6
+	()
+{
+	std::ostringstream oss;
+
+	if (! dat::isValid(true))
+	{
+		oss << "Failure of valid 'true' test" << std::endl;
+	}
+	if (! dat::isValid(false))
+	{
+		oss << "Failure of valid 'false' test" << std::endl;
+	}
+
+	if (! dat::isValid(char{0}))
+	{
+		oss << "Failure of valid char{0} test" << std::endl;
+	}
+	if (! dat::isValid(double{0.}))
+	{
+		oss << "Failure of valid double{0} test" << std::endl;
+	}
+
+	if (! dat::isValid(std::numeric_limits<double>::infinity()))
+	{
+		oss << "Failure of valid double{infinity} test" << std::endl;
+	}
+
+
+	return oss.str();
+}
 
 
 }
@@ -318,6 +378,8 @@ main
 	oss << dat_null_test2();
 	oss << dat_null_test3();
 	oss << dat_null_test4();
+	oss << dat_null_test5();
+	oss << dat_null_test6();
 
 	// check/report results
 	std::string const errMessages(oss.str());
