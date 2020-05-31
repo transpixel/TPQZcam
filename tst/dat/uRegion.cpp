@@ -33,6 +33,7 @@
 
 #include "libdat/Area.h"
 #include "libdat/Region.h"
+#include "libdat/Spot.h"
 
 #include "libdat/compare.h"
 #include "libdat/info.h"
