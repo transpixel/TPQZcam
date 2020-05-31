@@ -256,8 +256,29 @@ dat_null_test3
 		}
 	}
 
-oss << "Failure: implement std::array test!" << std::endl;
 	return oss.str();
+}
+
+namespace
+{
+	struct Custom
+	{
+		static
+		Custom
+		null
+			()
+		{
+			return {};
+		}
+
+		bool
+		isValid
+			() const
+		{
+			return {};
+		}
+
+	};
 }
 
 //! Check for custom class member implementation
@@ -267,7 +288,14 @@ dat_null_test4
 {
 	std::ostringstream oss;
 
-oss << "Failure: implement classmember test!" << std::endl;
+	{ // Custom
+		Custom const gotNull{ dat::nullValue<Custom>() };
+		if (dat::isValid(gotNull))
+		{
+			oss << "Failure of Custom validity test" << std::endl;
+		}
+	}
+
 	return oss.str();
 }
 

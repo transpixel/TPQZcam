@@ -275,7 +275,65 @@ namespace dat
 	}
 
 
+	//
+	// Custom Type with ::null() member function
+	//
 
+	//! SFINAE test for ::null() member function
+	template <typename Type>
+	class has_null
+	{
+		// define structures of two different sizes (to test in enum below)
+		using one = char;
+		struct two
+		{
+			char xx[2];
+		};
+
+		//! Attempt to define function that should fail if no ::null
+		template <typename C> static one test( decltype(&C::null) );
+		//! Fall back function has return type of two bytes
+		template <typename C> static two test( ... );
+
+	public:
+
+		enum
+		{
+			value = (sizeof(test<Type>(0)) == sizeof(char))
+		};
+
+	};
+
+	//! Custom class return Type::null()
+	template <typename Type>
+	typename std::enable_if
+		< ( std::is_class<Type>::value
+		  &&
+			has_null<Type>::value
+		  )
+		, Type
+		>::type
+	nullValue
+		()
+	{
+		return Type::null();
+	}
+
+	//! Custom class isValid() test
+	template <typename Type>
+	typename std::enable_if
+		< ( std::is_class<Type>::value
+		  &&
+			has_null<Type>::value
+		  )
+		, bool
+		>::type
+	isValid
+		( Type const & type
+		)
+	{
+		return {};
+	}
 
 
 
