@@ -105,7 +105,7 @@ ProbRay :: from
 }
 
 inline
-size_t
+std::size_t
 ProbRay :: numSamples
 	() const
 {
@@ -118,8 +118,8 @@ ProbRay :: initAccumulator
 	( InitFunc const & func
 	)
 {
-	size_t const numSamp{ numSamples() };
-	for (size_t ndx{0u} ; ndx < numSamp ; ++ndx)
+	std::size_t const numSamp{ numSamples() };
+	for (std::size_t ndx{0u} ; ndx < numSamp ; ++ndx)
 	{
 		double const mu{ thePart.interpValueFor(double(ndx)) };
 		theAccums[ndx] = func(mu);

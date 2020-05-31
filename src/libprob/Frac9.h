@@ -110,7 +110,7 @@ public: // methods
 	inline
 	double const &
 	operator[]
-		( size_t const & ndx
+		( std::size_t const & ndx
 		) const;
 
 	//! Convenience

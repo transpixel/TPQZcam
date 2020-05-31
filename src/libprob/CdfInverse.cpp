@@ -48,13 +48,13 @@ namespace
 	std::vector<double>
 	probabilitiesFor
 		( std::function<double(double const & frac)> const & probFunc
-		, size_t const & lutSize
+		, std::size_t const & lutSize
 		)
 	{
 		std::vector<double> probs;
 		probs.resize(lutSize);
 		double const fracPerNdx(1. / static_cast<double>(lutSize));
-		for (size_t nn(0u) ; nn < lutSize ; ++nn)
+		for (std::size_t nn(0u) ; nn < lutSize ; ++nn)
 		{
 			double const frac(fracPerNdx * static_cast<double>(nn));
 			double const prob = probFunc(frac);
@@ -72,7 +72,7 @@ namespace prob
 CdfInverse
 CdfInverse :: fromCdfForward
 	( CdfForward const & cdfFwd
-	, size_t const & lutSize
+	, std::size_t const & lutSize
 	)
 {
 	return CdfInverse
@@ -88,14 +88,14 @@ CdfInverse
 CdfInverse :: generateFor
 	( std::function<double(double const & frac)> const & probFunc
 	, dat::Range<double> const & dataRange
-	, size_t const & lutSize
+	, std::size_t const & lutSize
 	)
 {
 	CdfInverse cdfInv;
 
 	// evaluate probFunc at each range value
-	size_t const mult(8u); // sample more densely to support inversion
-	size_t const pdfSize(mult * lutSize);
+	std::size_t const mult(8u); // sample more densely to support inversion
+	std::size_t const pdfSize(mult * lutSize);
 	std::vector<double> const probs(probabilitiesFor(probFunc, pdfSize));
 
 	// create forward CDF
@@ -142,8 +142,9 @@ CdfInverse :: probDataPairs
 	assert(probDelta <= 1.);
 
 	// adjust to equal increments - and compute sizes
-	size_t const count(static_cast<size_t>(std::ceil(1. / probDelta)));
-	size_t const nBetween(count - 1u);
+	std::size_t const count
+		{ static_cast<std::size_t>(std::ceil(1. / probDelta)) };
+	std::size_t const nBetween(count - 1u);
 	fracValDataValPairs.reserve(nBetween + 2u);
 
 	// be sure start pair is included
@@ -154,7 +155,7 @@ CdfInverse :: probDataPairs
 	{
 		// fill table
 		double const useDelta(1. / static_cast<double>(nBetween));
-		for (size_t nn(1u) ; nn < nBetween ; ++nn)
+		for (std::size_t nn(1u) ; nn < nBetween ; ++nn)
 		{
 			double const fracVal(static_cast<double>(nn) * useDelta);
 			double const dataVal(operator()(fracVal));

@@ -339,10 +339,10 @@ angleExFraction
 }
 
 inline
-size_t
+std::size_t
 indexForValidAngle
 	( double const & angle
-	, size_t const & dataSize
+	, std::size_t const & dataSize
 	, double const & angleAt0
 	)
 {
@@ -355,18 +355,18 @@ indexForValidAngle
 	double const fndx(std::floor(delta / anglePerIndex));
 
 	// compute index
-	return (static_cast<size_t>(fndx) % dataSize);
+	return (static_cast<std::size_t>(fndx) % dataSize);
 }
 
 inline
-size_t
+std::size_t
 indexForAngle
 	( double const & anyAngle
-	, size_t const & dataSize
+	, std::size_t const & dataSize
 	, double const & angleAt0
 	)
 {
-	size_t index(dat::nullValue<size_t>());
+	std::size_t index(dat::nullValue<std::size_t>());
 	// check input values
 	if (1u < dataSize)
 	{
@@ -382,8 +382,8 @@ indexForAngle
 inline
 double
 angleForIndexValid
-	( size_t const & index
-	, size_t const & dataSize
+	( std::size_t const & index
+	, std::size_t const & dataSize
 	, double const & angleAt0
 	)
 {
@@ -396,8 +396,8 @@ angleForIndexValid
 inline
 double
 angleForIndex
-	( size_t const & index
-	, size_t const & dataSize
+	( std::size_t const & index
+	, std::size_t const & dataSize
 	, double const & angleAt0
 	)
 {

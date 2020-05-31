@@ -53,18 +53,18 @@ namespace dat
 namespace iter
 {
 	//! Last index for which useSize will fit into sourceSize
-	size_t
+	std::size_t
 	activeEndFor
-		( size_t const & sourceSize
-		, size_t const & useSize
+		( std::size_t const & sourceSize
+		, std::size_t const & useSize
 		);
 
 	//! Last possible begin iter for sourceSize allowing for patch/search sizes
-	size_t
+	std::size_t
 	activeEndFor
-		( size_t const & sourceSize
-		, size_t const & patchSize
-		, size_t const & numLooks
+		( std::size_t const & sourceSize
+		, std::size_t const & patchSize
+		, std::size_t const & numLooks
 		);
 
 	//! Iterator pairs that partition totalSize into numGroups
@@ -74,7 +74,7 @@ namespace iter
 	groups
 		( Iter const & beg
 		, Iter const & end
-		, size_t const & numGroups
+		, std::size_t const & numGroups
 		);
 }
 

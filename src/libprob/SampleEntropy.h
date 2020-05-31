@@ -55,7 +55,7 @@ class SampleEntropy
 {
 public:
 
-	size_t theCount;
+	std::size_t theCount;
 	double theEntropy;
 
 	//! Construct a null instance
@@ -67,7 +67,7 @@ public:
 	inline
 	explicit
 	SampleEntropy
-		( size_t const & count
+		( std::size_t const & count
 		, double const & entropy
 		);
 

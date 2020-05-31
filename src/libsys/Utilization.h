@@ -45,8 +45,8 @@ namespace sys
 class Utilization
 {
 	std::mutex theMutex{};
-	size_t const theMaxCount{};
-	size_t theCount{};
+	std::size_t const theMaxCount{};
+	std::size_t theCount{};
 	bool theIsValid{ false };
 
 private: // disable
@@ -61,7 +61,7 @@ public: // methods
 	inline
 	explicit
 	Utilization
-		( size_t const & maxCount
+		( std::size_t const & maxCount
 		);
 
 	//! Check if instance is valid

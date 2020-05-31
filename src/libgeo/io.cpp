@@ -48,7 +48,7 @@ namespace io
 std::vector<ga::Vector>
 loadFromCSV
 	( std::istream & istrm
-	, size_t const & expectSize
+	, std::size_t const & expectSize
 	)
 {
 	std::vector<ga::Vector> pnts;
@@ -85,8 +85,8 @@ saveToCSV
 {
 	bool okay{ false };
 	constexpr char fmt[] = {"%.15e,%.15e,%.15e\n"}; // -7.123456789012345e-123
-	constexpr size_t fieldSize{ 3u + 15u + 5u };
-	constexpr size_t bufSize{ 3u*fieldSize + 1u + 1u};
+	constexpr std::size_t fieldSize{ 3u + 15u + 5u };
+	constexpr std::size_t bufSize{ 3u*fieldSize + 1u + 1u};
 	char buffer[bufSize];
 	for (ga::Vector const & pnt : pnts)
 	{

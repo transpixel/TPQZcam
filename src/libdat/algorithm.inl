@@ -37,17 +37,17 @@ namespace dat
 //======================================================================
 
 template <typename FwdIter>
-std::pair<size_t, size_t>
+std::pair<std::size_t, std::size_t>
 indexBounds
 	( double const & findVal
 	, FwdIter const & beg
 	, FwdIter const & end
 	)
 {
-	static size_t const badNdx(dat::nullValue<size_t>());
-	std::pair<size_t, size_t> ndxLoHi(badNdx, badNdx);
-	size_t & ndxLo = ndxLoHi.first;
-	size_t & ndxHi = ndxLoHi.second;
+	static std::size_t const badNdx(dat::nullValue<std::size_t>());
+	std::pair<std::size_t, std::size_t> ndxLoHi(badNdx, badNdx);
+	std::size_t & ndxLo = ndxLoHi.first;
+	std::size_t & ndxHi = ndxLoHi.second;
 
 	// check for empty case
 	if (end != beg)

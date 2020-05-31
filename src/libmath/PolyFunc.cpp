@@ -90,10 +90,10 @@ PolyFunc :: operator()
 		if (theRangeX.contains(xarg))
 		{
 			// find indices which span the argument value -- O(ln(N))
-			std::pair<size_t, size_t> const ndxLoHi
+			std::pair<std::size_t, std::size_t> const ndxLoHi
 				(dat::indexBounds(xarg, theValuesX.begin(), theValuesX.end()));
-			size_t const & ndxLo = ndxLoHi.first;
-			size_t const & ndxHi = ndxLoHi.second;
+			std::size_t const & ndxLo = ndxLoHi.first;
+			std::size_t const & ndxHi = ndxLoHi.second;
 			std::pair<double, double> const xRange
 				(theValuesX[ndxLo], theValuesX[ndxHi]);
 			std::pair<double, double> const yRange

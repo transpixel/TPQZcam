@@ -51,9 +51,9 @@ namespace io
 struct LinePrefixer
 {
 	std::string const thePreText{};
-	size_t const theNumPerLine{ 25u };
-	size_t theFieldCount{ 0u };
-	size_t theValueWide{ 4u };
+	std::size_t const theNumPerLine{ 25u };
+	std::size_t theFieldCount{ 0u };
+	std::size_t theValueWide{ 4u };
 
 	//! value ctor
 	explicit
@@ -64,7 +64,7 @@ struct LinePrefixer
 	//! Generate start of line text
 	std::string
 	nextFieldString
-		( size_t const & value
+		( std::size_t const & value
 		);
 
 }; // LinePrefixer

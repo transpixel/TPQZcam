@@ -102,8 +102,8 @@ viaRidder
 
 		// search for root
 		double currRoot{ dat::nullValue<double>() };
-		constexpr size_t maxIter{ 60u };
-		for (size_t itTry{0u} ; (itTry < maxIter) && keepLooking ; ++itTry)
+		constexpr std::size_t maxIter{ 60u };
+		for (std::size_t itTry{0u} ; (itTry < maxIter) && keepLooking ; ++itTry)
 		{
 			// evaluate update formula - at midpoint
 			double const x3{ .5 * (x1 + x2) };

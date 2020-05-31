@@ -64,14 +64,14 @@ points :: onVertices
 
 std::vector<ga::Vector>
 points :: onEdge
-	( size_t const & numBetween
+	( std::size_t const & numBetween
 	)
 {
 	std::vector<ga::Vector> pnts;
 	pnts.reserve(numBetween);
 	ga::Vector const dir(ga::e1);
 	double const delta(1. / static_cast<double>(numBetween + 1u));
-	for (size_t nn(0u) ; nn < numBetween ; ++nn)
+	for (std::size_t nn(0u) ; nn < numBetween ; ++nn)
 	{
 		double const dist(double(nn+1u)*delta);
 		pnts.push_back(dist*dir);
@@ -87,7 +87,7 @@ points :: onTriad
 	std::vector<ga::Vector> pnts;
 	if (! pnts1d.empty())
 	{
-		size_t const numPnts(pnts1d.size());
+		std::size_t const numPnts(pnts1d.size());
 		pnts.reserve(3u * numPnts);
 
 		using namespace ga;
@@ -100,9 +100,9 @@ points :: onTriad
 			}};
 
 		// transform input points to triad locations
-		for (size_t kk(0u) ; kk < 3u ; ++kk)
+		for (std::size_t kk(0u) ; kk < 3u ; ++kk)
 		{
-			for (size_t nn(0u) ; nn < numPnts ; ++nn)
+			for (std::size_t nn(0u) ; nn < numPnts ; ++nn)
 			{
 				Vector const & p1 = pnts1d[nn];
 				Vector const pnta((p1 * planeSpinors[kk]).theV);
@@ -120,7 +120,7 @@ points :: onSkeleton
 	)
 {
 	std::vector<ga::Vector> pnts;
-	size_t const numTri(triad.size());
+	std::size_t const numTri(triad.size());
 	if (0u < numTri)
 	{
 		pnts.reserve(4u * numTri);
@@ -136,9 +136,9 @@ points :: onSkeleton
 			}};
 
 		// transform each point into all four corner frames
-		for (size_t kk(0u) ; kk < 4u ; ++kk)
+		for (std::size_t kk(0u) ; kk < 4u ; ++kk)
 		{
-			for (size_t nn(0u) ; nn < numTri ; ++nn)
+			for (std::size_t nn(0u) ; nn < numTri ; ++nn)
 			{
 				Vector const & pntIn = triad[nn];
 				pnts.push_back(xforms[kk](pntIn));
@@ -151,7 +151,7 @@ points :: onSkeleton
 
 std::vector<ga::Vector>
 points :: onFrame
-	( size_t const & numBetween
+	( std::size_t const & numBetween
 	)
 {
 	std::vector<ga::Vector> pnts;
@@ -186,7 +186,7 @@ center
 
 std::vector<ga::Vector>
 centralDirections
-	( size_t const & numBetween
+	( std::size_t const & numBetween
 	)
 {
 	std::vector<ga::Vector> dirs;

@@ -39,7 +39,7 @@ namespace
 {
 	dat::Range<double>
 	symmetricRange
-		( size_t const & fullSpan
+		( std::size_t const & fullSpan
 		)
 	{
 		return dat::Range<double>
@@ -94,7 +94,7 @@ Camera :: cornerDirections
 		, dat::Spot{ rowRange.max(), colRange.max() }
 		, dat::Spot{ rowRange.max(), colRange.min() }
 		};
-	for (size_t nn{0} ; nn < corners.size() ; ++nn)
+	for (std::size_t nn{0} ; nn < corners.size() ; ++nn)
 	{
 		dirs[nn] = theOptics.directionOf(corners[nn]);
 	}

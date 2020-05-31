@@ -48,12 +48,13 @@ Jump :: fromData
 {
 	std::vector<Jump> jumps;
 
-	size_t const numIn(static_cast<size_t>(std::distance(dataBeg, dataEnd)));
+	std::size_t const numIn
+		{ static_cast<std::size_t>(std::distance(dataBeg, dataEnd)) };
 	jumps.reserve(numIn);
 	if (dataEnd != dataBeg)
 	{
 		FwdIter iter(dataBeg);
-		size_t ndx(0u);
+		std::size_t ndx(0u);
 		DataType prevVal(*iter++);
 		while (dataEnd != iter)
 		{

@@ -48,7 +48,7 @@ namespace pdf
 
 std::array<double, 256u>
 fromHist
-	( std::array<size_t, 256u> const & hist
+	( std::array<std::size_t, 256u> const & hist
 	)
 {
 	std::array<double, 256> pdf;
@@ -79,10 +79,10 @@ std::array<double, 256u>
 pdfClipped
 	( std::array<double, 256u> const & inPdf
 	, double * const & ptFractionKept
-	, std::pair<size_t, size_t> const & keepIndexBegEnd
+	, std::pair<std::size_t, std::size_t> const & keepIndexBegEnd
 	)
 {
-	static constexpr size_t Dim(256u);
+	static constexpr std::size_t Dim(256u);
 	std::array<double, Dim> outPdf;
 
 	// leave unset values at zero prob
@@ -92,9 +92,11 @@ pdfClipped
 	if (keepIndexBegEnd.first < keepIndexBegEnd.second)
 	{
 		// compute offsets to begin/end of "keepers"
-		static constexpr std::pair<size_t, size_t> ndxBegEnd(0u, Dim);
-		size_t const ndxBeg(dat::clamped(keepIndexBegEnd.first, ndxBegEnd));
-		size_t const ndxEnd(dat::clamped(keepIndexBegEnd.second, ndxBegEnd));
+		static constexpr std::pair<std::size_t, std::size_t> ndxBegEnd(0u, Dim);
+		std::size_t const ndxBeg
+			{ dat::clamped(keepIndexBegEnd.first, ndxBegEnd) };
+		std::size_t const ndxEnd
+			{ dat::clamped(keepIndexBegEnd.second, ndxBegEnd) };
 
 		// discard values outside the range
 		std::copy

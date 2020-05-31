@@ -50,7 +50,7 @@ namespace histo
 	//! Histogram from a buffer of uint8_t values
 	template <typename FwdIter>
 	inline
-	std::array<size_t, 256u>
+	std::array<std::size_t, 256u>
 	countsForUint8
 		( FwdIter const & begin //!< *iter should be a uint8_t
 		, FwdIter const & end
@@ -58,22 +58,22 @@ namespace histo
 
 	//! First bin in hist with non-zero element
 	inline
-	size_t
+	std::size_t
 	minBinNotZero
-		( std::array<size_t, 256u> const & hist
+		( std::array<std::size_t, 256u> const & hist
 		);
 
 	//! Last element in bin with non-zero element
 	inline
-	size_t
+	std::size_t
 	maxBinNotZero
-		( std::array<size_t, 256u> const & hist
+		( std::array<std::size_t, 256u> const & hist
 		);
 
 	//! Histogram from samples: bin layout defined by partition
 	template <typename FwdIter>
 	inline
-	std::vector<size_t>
+	std::vector<std::size_t>
 	countsFromSamps
 		( FwdIter const & sampBeg //!< *iter should be castable to double
 		, FwdIter const & sampEnd
@@ -83,7 +83,7 @@ namespace histo
 	//! Shortcut access to above
 	template <typename Collection>
 	inline
-	std::vector<size_t>
+	std::vector<std::size_t>
 	countsFromSamps
 		( Collection const & samps //!< *iter should be castable to double
 		, math::Partition const & part

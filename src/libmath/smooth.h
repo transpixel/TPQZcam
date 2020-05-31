@@ -57,7 +57,7 @@ namespace smooth
 	std::vector<Type> // TODO generisize
 	triangleWrapped
 		( std::vector<Type> const & data
-		, size_t const & halfSize //!< Filter window *half* size
+		, std::size_t const & halfSize //!< Filter window *half* size
 		);
 }
 

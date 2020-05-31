@@ -49,7 +49,7 @@ template <typename Type, typename Compare>
 inline
 // explicit
 BestOf<Type, Compare> :: BestOf
-	( size_t const & numBest
+	( std::size_t const & numBest
 	)
 	: theNumBest{ numBest }
 	, theItems{}
@@ -67,7 +67,7 @@ BestOf<Type, Compare> :: isValid
 
 template <typename Type, typename Compare>
 inline
-size_t
+std::size_t
 BestOf<Type, Compare> :: capacity
 	() const
 {
@@ -76,7 +76,7 @@ BestOf<Type, Compare> :: capacity
 
 template <typename Type, typename Compare>
 inline
-size_t
+std::size_t
 BestOf<Type, Compare> :: size
 	() const
 {

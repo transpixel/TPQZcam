@@ -63,7 +63,7 @@ namespace cube
 		//! Points along a single edge (x-axis) withOUT vertices
 		std::vector<ga::Vector>
 		onEdge
-			( size_t const & numBetween //!< number per edge *SANS* vertices
+			( std::size_t const & numBetween //!< no. per edge *SANS* vertices
 			);
 
 		//! Points along 3 orthogonal (xyz-)axes formed by rotating inputs
@@ -81,7 +81,7 @@ namespace cube
 		//! Points distributed on framework of cube (skeleton + vertices)
 		std::vector<ga::Vector>
 		onFrame
-			( size_t const & numBetween //!< number per side *SANS* vertices
+			( std::size_t const & numBetween //!< no. per side *SANS* vertices
 			);
 	}
 
@@ -93,7 +93,7 @@ namespace cube
 	//! Directions, from cube CENTER to points on cube framework
 	std::vector<ga::Vector>
 	centralDirections
-		( size_t const & numBetween //!< Number *between* (excluding) corners
+		( std::size_t const & numBetween //!< no. *between* (excluding) corners
 		);
 
 	// Face ordering: (-z, +x, +y, -x, -y, +z)
@@ -105,7 +105,7 @@ namespace cube
 
 	//! Index of face (-z, +x, +y, -x, -y, +z) to which dir is most normal
 	inline
-	size_t
+	std::size_t
 	faceIndex
 		( ga::Vector const & dir
 		);

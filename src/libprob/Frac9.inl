@@ -46,7 +46,7 @@ prob::Frac9 :: isValid
 inline
 double const &
 prob::Frac9 :: operator[]
-	( size_t const & ndx
+	( std::size_t const & ndx
 	) const
 {
 	// 0 (1 2 3) 4 (5 6 7) 8

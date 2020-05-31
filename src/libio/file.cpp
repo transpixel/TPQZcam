@@ -61,15 +61,15 @@ fullPathForPosix
 	return fpath;
 }
 
-size_t
+std::size_t
 nthPosFromEnd
 	( std::string const str
-	, size_t const & nth
+	, std::size_t const & nth
 	, char const & sep
 	)
 {
-	size_t hits(0u);
-	size_t pos = str.rfind(sep);
+	std::size_t hits(0u);
+	std::size_t pos = str.rfind(sep);
 	while (0u < pos)
 	{
 		++hits;
@@ -90,13 +90,13 @@ nthPosFromEnd
 std::string
 elidedPath
 	( std::string const & anyPath
-	, size_t const & numParts
+	, std::size_t const & numParts
 	, char const & sep
 	)
 {
 	std::string epath;
 	std::string const fpath(fullPathForPosix(anyPath));
-	size_t const pos(nthPosFromEnd(fpath, numParts, sep));
+	std::size_t const pos(nthPosFromEnd(fpath, numParts, sep));
 	if (0u < pos)
 	{
 		// replace start with ellipsis

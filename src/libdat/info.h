@@ -106,7 +106,7 @@ namespace dat
 	putTitle
 		( std::ostream & strm
 		, std::string const & title
-		, size_t const & fieldWide = 15u
+		, std::size_t const & fieldWide = 15u
 		);
 
 	//! Basic formatting for a double
@@ -116,8 +116,8 @@ namespace dat
 	infoString
 		( FType const & value
 		, std::string const & title = std::string()
-		, size_t const & fieldsWide = 8u
-		, size_t const & fieldsPrecision = 3u
+		, std::size_t const & fieldsWide = 8u
+		, std::size_t const & fieldsPrecision = 3u
 		);
 
 	//! Integer types
@@ -127,7 +127,7 @@ namespace dat
 	infoString
 		( IType const & arg
 		, std::string const & title = std::string()
-		, size_t const & fieldsWide = 8u
+		, std::size_t const & fieldsWide = 8u
 		);
 
 	//! Basic (alpha) formating for bool
@@ -136,7 +136,7 @@ namespace dat
 	infoString
 		( bool const & value
 		, std::string const & title = std::string()
-		, size_t const & fieldsWide = 6u
+		, std::size_t const & fieldsWide = 6u
 		);
 
 	//! Generic pointer formatting
@@ -145,7 +145,7 @@ namespace dat
 	infoString
 		( void * const & ptValue
 		, std::string const & title = std::string()
-		, size_t const & fieldsWide = 16u
+		, std::size_t const & fieldsWide = 16u
 		);
 
 	//! Trivial string formating
@@ -154,7 +154,7 @@ namespace dat
 	infoString
 		( std::string const & value
 		, std::string const & title = std::string()
-		, size_t const & fieldsWide = 6u
+		, std::size_t const & fieldsWide = 6u
 		);
 
 	//! Specialization for complex string formating
@@ -164,8 +164,8 @@ namespace dat
 	infoString
 		( std::complex<FType> const & value
 		, std::string const & title = std::string()
-		, size_t const & fieldsWide = 8u
-		, size_t const & fieldsPrecision = 3u
+		, std::size_t const & fieldsWide = 8u
+		, std::size_t const & fieldsPrecision = 3u
 		);
 
 	//! Generic collection
@@ -176,21 +176,21 @@ namespace dat
 		( FwdIter const & beg
 		, FwdIter const & end
 		, std::string const & title = std::string()
-		, size_t const & nafter = 6u //!< number digits after decimal
-		, size_t const & nbefore = 3u //!< number digits in front of decimal
-		, size_t const & fieldsPerLine = 10u
+		, std::size_t const & nafter = 6u //!< number digits after decimal
+		, std::size_t const & nbefore = 3u //!< no. digits in front of decimal
+		, std::size_t const & fieldsPerLine = 10u
 		);
 
 	//! Descriptive information about arg
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	std::string
 	infoString
 		( std::array<Type, Dim> const & arg
 		, std::string const & title = std::string()
-		, size_t const & nafter = 6u //!< number digits after decimal
-		, size_t const & nbefore = 3u //!< number digits in front of decimal
-		, size_t const & fieldsPerLine = 10u
+		, std::size_t const & nafter = 6u //!< number digits after decimal
+		, std::size_t const & nbefore = 3u //!< no. digits in front of decimal
+		, std::size_t const & fieldsPerLine = 10u
 		);
 
 	//! Fall-through template - call member function
@@ -212,7 +212,7 @@ namespace dat
 	infoString
 		( std::pair<Type1, Type2> const & value
 		, std::string const & title = std::string()
-		, size_t const & fieldsWide = 8u
+		, std::size_t const & fieldsWide = 8u
 		);
 
 }

@@ -37,39 +37,39 @@ namespace discrete
 {
 
 inline
-size_t
+std::size_t
 quantizedLo
-	( size_t const & orig
-	, size_t const & delta
+	( std::size_t const & orig
+	, std::size_t const & delta
 	)
 {
-	size_t quant{ dat::nullValue<size_t>() };
+	std::size_t quant{ dat::nullValue<std::size_t>() };
 	if (0u < delta)
 	{
-		size_t const numFull(orig / delta);
+		std::size_t const numFull(orig / delta);
 		quant =  numFull * delta;
 	}
 	return quant;
 }
 
 inline
-size_t
+std::size_t
 quantizedHi
-	( size_t const & orig
-	, size_t const & delta
+	( std::size_t const & orig
+	, std::size_t const & delta
 	)
 {
-	size_t quant{ dat::nullValue<size_t>() };
+	std::size_t quant{ dat::nullValue<std::size_t>() };
 	if (0u < delta)
 	{
-		size_t const numLeft{ orig % delta };
+		std::size_t const numLeft{ orig % delta };
 		if (0u == numLeft)
 		{
 			quant = orig;
 		}
 		else
 		{
-			size_t const numFull{ orig / delta };
+			std::size_t const numFull{ orig / delta };
 			quant = (numFull + 1u) * delta;
 		}
 	}
@@ -80,7 +80,7 @@ inline
 dat::RowCol
 quantized
 	( dat::RowCol const & orig
-	, size_t const & quant
+	, std::size_t const & quant
 	)
 {
 	return
@@ -93,7 +93,7 @@ inline
 dat::Extents
 quantized
 	( dat::Extents const & orig
-	, size_t const & quant
+	, std::size_t const & quant
 	)
 {
 	return dat::Extents

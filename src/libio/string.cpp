@@ -51,7 +51,7 @@ replaced
 	)
 {
 	std::string nextString;
-	size_t const ndx(origString.find(prevSubString));
+	std::size_t const ndx(origString.find(prevSubString));
 	if (ndx != std::string::npos)
 	{
 		nextString = origString;
@@ -67,7 +67,7 @@ before
 	)
 {
 	std::string start;
-	size_t const ndx(orig.find(endString));
+	std::size_t const ndx(orig.find(endString));
 	start = orig.substr(0, ndx);
 	return start;
 }
@@ -78,7 +78,7 @@ upper
 	)
 {
 	std::string str;
-	for (size_t nn(0u) ; nn < orig.size() ; ++nn)
+	for (std::size_t nn(0u) ; nn < orig.size() ; ++nn)
 	{
 		str += std::toupper(orig[nn]);
 	}

@@ -60,10 +60,10 @@ namespace layout
 	namespace centered
 	{
 		//! Indices distributed nominally uniformly and centered in [0,max)
-		std::vector<size_t>
+		std::vector<std::size_t>
 		indices
-			( size_t const & max
-			, size_t const & numValues
+			( std::size_t const & max
+			, std::size_t const & numValues
 			);
 
 		//! applies indices() for each or row and column
@@ -80,8 +80,8 @@ namespace layout
 		//! Values uniformly distributed over range [0,max)
 		std::vector<double>
 		values
-			( size_t const & max
-			, size_t const & numValues
+			( std::size_t const & max
+			, std::size_t const & numValues
 			);
 
 		//! Applies values() to cover area area with hwSize rows and cols
@@ -92,10 +92,10 @@ namespace layout
 			);
 
 		//! Indices distributed nominally uniformly and centered in [0,max)
-		std::vector<size_t>
+		std::vector<std::size_t>
 		indices
-			( size_t const & max
-			, size_t const & numValues
+			( std::size_t const & max
+			, std::size_t const & numValues
 			);
 
 		//! Applies indices() for each or row and column

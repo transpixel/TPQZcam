@@ -76,7 +76,7 @@ class Factory
 {
 	Capacity theCapacity;
 	std::vector<std::shared_ptr<JobBase> > const & theJobs;
-	size_t theJobNdx;
+	std::size_t theJobNdx;
 	std::vector<std::thread> theThreads;
 
 private: // disable
@@ -92,7 +92,7 @@ public: // methods
 	explicit
 	Factory
 		( std::vector<std::shared_ptr<JobBase> > const & jobs
-		, size_t const & maxConcurrent = std::thread::hardware_concurrency()
+		, std::size_t const & maxConcurrent = std::thread::hardware_concurrency()
 		);
 
 	//! Check if instance is valid

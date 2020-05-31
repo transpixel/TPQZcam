@@ -38,7 +38,7 @@ namespace sys
 inline
 // explicit
 Utilization :: Utilization
-	( size_t const & maxCount
+	( std::size_t const & maxCount
 	)
 	: theMutex{}
 	, theMaxCount{ maxCount }

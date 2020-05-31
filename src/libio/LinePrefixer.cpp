@@ -50,11 +50,11 @@ LinePrefixer :: LinePrefixer
 
 std::string
 LinePrefixer :: nextFieldString
-	( size_t const & value
+	( std::size_t const & value
 	)
 {
 	std::ostringstream oss;
-	size_t const preWide{ thePreText.size() };
+	std::size_t const preWide{ thePreText.size() };
 
 	// check for new line condition
 	if (0u == (theFieldCount % theNumPerLine))

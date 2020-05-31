@@ -101,7 +101,7 @@ namespace dat
 		);
 
 	//! Test arrays
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	bool
 	inline
 	nearlyEquals
@@ -149,7 +149,7 @@ namespace dat
 		, Type const & itemB
 		);
 
-	template <typename DatType, size_t Dim>
+	template <typename DatType, std::size_t Dim>
 	inline
 	bool
 	areSame

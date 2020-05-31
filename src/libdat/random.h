@@ -59,19 +59,19 @@ namespace random
 	//
 
 	//! Generate random sampling (w/o replacement) of values [0,sourceSize)
-	template <size_t Dim, typename RandGen>
+	template <std::size_t Dim, typename RandGen>
 	void
 	index_sample
-		( std::array<size_t, Dim> * const & ptSampNdxs
-		, size_t const & sourceSizeN
+		( std::array<std::size_t, Dim> * const & ptSampNdxs
+		, std::size_t const & sourceSizeN
 		, RandGen & rgen //!< Random generator e.g. std::19937_64 or any
 		);
 
 	//! Generate random sampling (w/o replacement) of values [0,sourceSize)
-	template <size_t Dim, typename RandGen>
-	std::array<size_t, Dim>
+	template <std::size_t Dim, typename RandGen>
+	std::array<std::size_t, Dim>
 	index_sample
-		( size_t const & sourceSizeN
+		( std::size_t const & sourceSizeN
 		, RandGen & rgen //!< Random generator e.g. std::19937_64 or any
 		);
 

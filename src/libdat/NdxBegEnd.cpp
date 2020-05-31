@@ -47,8 +47,8 @@ namespace dat
 
 // explicit
 NdxBegEnd :: NdxBegEnd
-	( size_t const & ndxBeg
-	, size_t const & ndxEnd
+	( std::size_t const & ndxBeg
+	, std::size_t const & ndxEnd
 	)
 	: theNdxBeg{ ndxBeg }
 	, theNdxEnd{ ndxEnd }
@@ -57,7 +57,7 @@ NdxBegEnd :: NdxBegEnd
 
 // explicit
 NdxBegEnd :: NdxBegEnd
-	( std::pair<size_t, size_t> const & bePair
+	( std::pair<std::size_t, std::size_t> const & bePair
 	)
 	: theNdxBeg{ bePair.first }
 	, theNdxEnd{ bePair.second }
@@ -75,25 +75,25 @@ NdxBegEnd :: isValid
 		);
 }
 
-size_t const &
+std::size_t const &
 NdxBegEnd :: begin
 	() const
 {
 	return theNdxBeg;
 }
 
-size_t const &
+std::size_t const &
 NdxBegEnd :: end
 	() const
 {
 	return theNdxEnd;
 }
 
-size_t
+std::size_t
 NdxBegEnd :: size
 	() const
 {
-	size_t num{ dat::nullValue<size_t>() };
+	std::size_t num{ dat::nullValue<std::size_t>() };
 	if (isValid())
 	{
 		num = end() - begin();
@@ -103,18 +103,18 @@ NdxBegEnd :: size
 
 NdxBegEnd
 NdxBegEnd :: centeredSubOfSize
-	( size_t const & subSize
+	( std::size_t const & subSize
 	) const
 {
 	NdxBegEnd sub{};
 	if (isValid())
 	{
-		size_t const fullSize{ size() };
+		std::size_t const fullSize{ size() };
 		assert(subSize <= fullSize);
-		size_t const numResid{ fullSize - subSize };
-		size_t const numEdge{ numResid / 2u }; // mod2 division
-		size_t const subBeg{ theNdxBeg + numEdge };
-		size_t const subEnd{ subBeg + subSize };
+		std::size_t const numResid{ fullSize - subSize };
+		std::size_t const numEdge{ numResid / 2u }; // mod2 division
+		std::size_t const subBeg{ theNdxBeg + numEdge };
+		std::size_t const subEnd{ subBeg + subSize };
 		sub = NdxBegEnd(subBeg, subEnd);
 	}
 	return sub;
@@ -122,8 +122,8 @@ NdxBegEnd :: centeredSubOfSize
 
 NdxBegEnd
 NdxBegEnd :: croppedCenterSize
-	( size_t const & subCenter
-	, size_t const & subSize
+	( std::size_t const & subCenter
+	, std::size_t const & subSize
 	) const
 {
 	NdxBegEnd subBE{};
@@ -147,7 +147,7 @@ NdxBegEnd :: croppedCenterSize
 		if (lBeg < lEnd) // else an empty interval
 		{
 			// cast back to unsigned indices
-			subBE = NdxBegEnd{ size_t(lBeg), size_t(lEnd) };
+			subBE = NdxBegEnd{ std::size_t(lBeg), std::size_t(lEnd) };
 		}
 	}
 	return subBE;
@@ -156,7 +156,7 @@ NdxBegEnd :: croppedCenterSize
 bool
 NdxBegEnd :: nearlyEquals
 	( NdxBegEnd const & other
-	, size_t const & tol
+	, std::size_t const & tol
 	) const
 {
 	bool same{ false };
@@ -168,11 +168,11 @@ NdxBegEnd :: nearlyEquals
 		long const lEndB{ long(other.theNdxEnd) };
 		long const lBegDel{ lBegA - lBegB };
 		long const lEndDel{ lEndA - lEndB };
-		size_t const difBeg{ size_t(std::abs(lBegDel)) };
-		size_t const difEnd{ size_t(std::abs(lEndDel)) };
+		std::size_t const difBeg{ std::size_t(std::abs(lBegDel)) };
+		std::size_t const difEnd{ std::size_t(std::abs(lEndDel)) };
 		same =
-			(  dat::nearlyEquals(difBeg, size_t{0u}, tol)
-			&& dat::nearlyEquals(difEnd, size_t{0u}, tol)
+			(  dat::nearlyEquals(difBeg, std::size_t{0u}, tol)
+			&& dat::nearlyEquals(difEnd, std::size_t{0u}, tol)
 			);
 	}
 	return same;

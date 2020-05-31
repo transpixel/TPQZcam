@@ -40,11 +40,11 @@ namespace prob
 namespace io
 {
 	//! Save array to data file
-	template <size_t Dim>
+	template <std::size_t Dim>
 	inline
 	void
 	saveToFile
-		( std::array<size_t, Dim> const & hist
+		( std::array<std::size_t, Dim> const & hist
 		, std::string const & fpath
 		);
 }

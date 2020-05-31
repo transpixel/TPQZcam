@@ -48,7 +48,7 @@ namespace dat
 // Operations on std::array data type
 
 	//! An array with first element nullValue
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	constexpr
 	std::array<Type, Dim>
 	nullValue
@@ -78,7 +78,7 @@ namespace dat
 		);
 
 	//! True if array contains valid data
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	bool
 	isValid
@@ -86,7 +86,7 @@ namespace dat
 		);
 
 	//! Uniary negation
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	std::array<Type, Dim>
 	operator-
@@ -94,7 +94,7 @@ namespace dat
 		);
 
 	//! Sum-of-squares of elements
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	Type
 	magSq
@@ -102,7 +102,7 @@ namespace dat
 		);
 
 	//! sqrt (of magSq)
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	Type
 	magnitude
@@ -111,7 +111,7 @@ namespace dat
 
 	//! Direction of vec (or null)
 	template
-		< typename FType, size_t Dim
+		< typename FType, std::size_t Dim
 		, EnableIf< std::is_floating_point<FType> >...
 		>
 	inline
@@ -121,7 +121,7 @@ namespace dat
 		);
 
 	//! Array addition
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	std::array<Type, Dim>
 	operator+
@@ -130,7 +130,7 @@ namespace dat
 		);
 
 	//! Array subtraction
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	std::array<Type, Dim>
 	operator-
@@ -139,7 +139,7 @@ namespace dat
 		);
 
 	//! Array scalar multiply
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	std::array<Type, Dim>
 	operator*
@@ -150,7 +150,7 @@ namespace dat
 	//! Return reciprocals of members
 	template
 		< typename FType
-		, size_t Dim
+		, std::size_t Dim
 		, EnableIf< std::is_floating_point<FType> >...
 		>
 	inline
@@ -160,7 +160,7 @@ namespace dat
 		);
 
 	//! Inner product between two arrays (via std::inner_product)
-	template <typename Type, size_t Dim>
+	template <typename Type, std::size_t Dim>
 	inline
 	Type
 	dot

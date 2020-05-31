@@ -58,7 +58,7 @@ Probability and statistics operations useful for basic image processing.
 namespace prob
 {
 	//! Basic histogram - for 8-bit image intensity
-	typedef std::array<size_t, 256u> Hist;
+	typedef std::array<std::size_t, 256u> Hist;
 
 	//! Basic cumulative mass function - for 8-bit image intensity
 	typedef std::array<double, 256u> CDF;

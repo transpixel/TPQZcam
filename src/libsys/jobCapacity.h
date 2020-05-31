@@ -61,7 +61,7 @@ public: // methods
 	inline
 	explicit
 	Capacity
-		( size_t const & maxCount
+		( std::size_t const & maxCount
 		);
 
 	//! Check if instance is valid

@@ -38,9 +38,9 @@ namespace dat
 template <typename Type>
 // explicit
 Latice<Type> :: Latice
-	( size_t const & high
-	, size_t const & wide
-	, size_t const & deep
+	( std::size_t const & high
+	, std::size_t const & wide
+	, std::size_t const & deep
 	)
 	: theHigh{ high }
 	, theWide{ wide }
@@ -65,7 +65,7 @@ Latice<Type> :: isValid
 
 template <typename Type>
 inline
-size_t
+std::size_t
 Latice<Type> :: size
 	() const
 {
@@ -76,9 +76,9 @@ template <typename Type>
 inline
 Type const &
 Latice<Type> :: operator()
-	( size_t const & row
-	, size_t const & col
-	, size_t const & lay
+	( std::size_t const & row
+	, std::size_t const & col
+	, std::size_t const & lay
 	) const
 {
 	return theData[offsetFor(row, col, lay)];
@@ -88,9 +88,9 @@ template <typename Type>
 inline
 Type &
 Latice<Type> :: operator()
-	( size_t const & row
-	, size_t const & col
-	, size_t const & lay
+	( std::size_t const & row
+	, std::size_t const & col
+	, std::size_t const & lay
 	)
 {
 	return theData[offsetFor(row, col, lay)];
@@ -162,11 +162,11 @@ Latice<Type> :: infoString
 
 template <typename Type>
 inline
-size_t
+std::size_t
 Latice<Type> :: offsetFor
-	( size_t const & row
-	, size_t const & col
-	, size_t const & lay
+	( std::size_t const & row
+	, std::size_t const & col
+	, std::size_t const & lay
 	) const
 {
 	return ((lay*theLaySize) + row*theWide + col);

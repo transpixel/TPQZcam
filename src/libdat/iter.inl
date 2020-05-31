@@ -45,19 +45,19 @@ namespace iter
 	{
 		//! Sizes for maximally uniform partition of numTotal
 		inline
-		std::vector<size_t>
+		std::vector<std::size_t>
 		groupSizes
-			( size_t const numTotal
-			, size_t const numGroups
+			( std::size_t const numTotal
+			, std::size_t const numGroups
 			)
 		{
-			std::vector<size_t> gSizes(numGroups);
+			std::vector<std::size_t> gSizes(numGroups);
 
 			assert(0u < numTotal);
 			assert(0u < numGroups);
 
 			// fill to min size
-			size_t sumOfGroups{ 0u };
+			std::size_t sumOfGroups{ 0u };
 			if (numTotal < numGroups)
 			{
 				// will be some empty groups - fill residuals below
@@ -66,13 +66,13 @@ namespace iter
 			else // if (numGroups <= numTotal)
 			{
 				// fill each group to same size - add residuals below
-				size_t const minPerGroup{ numTotal / numGroups };
+				std::size_t const minPerGroup{ numTotal / numGroups };
 				std::fill(gSizes.begin(), gSizes.end(), minPerGroup);
 				sumOfGroups += minPerGroup * numGroups;
 			}
 
 			// distribute residual amount over groups from first to last
-			for (size_t nn{0u} ; (sumOfGroups < numTotal); ++nn)
+			for (std::size_t nn{0u} ; (sumOfGroups < numTotal); ++nn)
 			{
 				++(gSizes[nn]);
 				++sumOfGroups;
@@ -88,22 +88,22 @@ std::vector<std::pair<Iter, Iter> >
 groups
 	( Iter const & beg
 	, Iter const & end
-	, size_t const & numGroups
+	, std::size_t const & numGroups
 	)
 {
 	std::vector<std::pair<Iter, Iter> > pairs;
 
-	size_t const totalSize{ static_cast<size_t>(std::distance(beg, end)) };
+	std::size_t const totalSize{ static_cast<std::size_t>(std::distance(beg, end)) };
 	if (0u < totalSize)
 	{
 		if (0u < numGroups)
 		{
-			std::vector<size_t> const deltas(groupSizes(totalSize, numGroups));
+			std::vector<std::size_t> const deltas(groupSizes(totalSize, numGroups));
 
 			Iter it0{ beg };
-			for (size_t nn{0u} ; nn < deltas.size() ; ++nn)
+			for (std::size_t nn{0u} ; nn < deltas.size() ; ++nn)
 			{
-				size_t const delta = deltas[nn];
+				std::size_t const delta = deltas[nn];
 				if (0u < delta) // skip empty groups (e.g. for overages)
 				{
 					Iter it1{ it0 };

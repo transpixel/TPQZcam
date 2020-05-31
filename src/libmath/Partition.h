@@ -53,7 +53,7 @@ namespace math
 
 class Partition
 {
-	size_t theNumParts;
+	std::size_t theNumParts;
 	double theMin;
 	double theDelta;
 
@@ -67,7 +67,7 @@ public: // static methods
 	spanning
 		( FwdIter const & beg
 		, FwdIter const & end
-		, size_t const & numParts
+		, std::size_t const & numParts
 		, double const & endEpsilon = dat::smallValue<double>()
 			//! Bump range end-point this much past largest data value
 		);
@@ -83,21 +83,21 @@ public: // methods
 	Partition
 		( double const & min
 		, double const & delta
-		, size_t const & numParts
+		, std::size_t const & numParts
 		);
 
 	//! Convenience ctor - using indirect values
 	explicit
 	Partition
 		( dat::Range<double> const & range
-		, size_t const & numParts
+		, std::size_t const & numParts
 		);
 
 	//! Convenience ctor - using indirect values
 	explicit
 	Partition
 		( std::pair<double, double> const & pair
-		, size_t const & numParts
+		, std::size_t const & numParts
 		);
 
 	// copy constructor -- compiler provided
@@ -112,7 +112,7 @@ public: // methods
 
 	//! Number of intervals in this partition
 	inline
-	size_t
+	std::size_t
 	size
 		() const;
 
@@ -138,12 +138,12 @@ public: // methods
 	inline
 	dat::Range<double>
 	rangeForBin
-		( size_t const & ndx
+		( std::size_t const & ndx
 		) const;
 
 	//! Index into partition associated with value
 	inline
-	size_t
+	std::size_t
 	binIndexFor
 		( double const & value
 		) const;

@@ -121,16 +121,16 @@ namespace priv
 	infoMatrix
 		( FwdIter const & beg
 		, std::string const & title
-		, size_t const & numCol = 1u
+		, std::size_t const & numCol = 1u
 		)
 	{
 		std::ostringstream oss;
 		FwdIter iter{beg};
 		oss << title;
-		for (size_t row{0u} ; row < 3u ; ++row)
+		for (std::size_t row{0u} ; row < 3u ; ++row)
 		{
 			oss << "\n";
-			for (size_t col{0u} ; col < numCol ; ++col)
+			for (std::size_t col{0u} ; col < numCol ; ++col)
 			{
 				oss << dat::infoString(*iter);
 				++iter;

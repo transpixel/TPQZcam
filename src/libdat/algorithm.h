@@ -48,7 +48,7 @@ namespace dat
 
 	//! Indices such that (data[first] <= findVal < data[second])
 	template <typename FwdIter>
-	std::pair<size_t, size_t>
+	std::pair<std::size_t, std::size_t>
 	indexBounds
 		( double const & findVal
 		, FwdIter const & beg

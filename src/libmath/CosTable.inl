@@ -59,7 +59,7 @@ CosTable<Type> :: CosTable
 	, thePart(closedDomain(), theTable.size())
 	, theNull{ nullValue }
 {
-	assert(0u == static_cast<size_t>(thePart.interpIndexFor(-1.)));
+	assert(0u == static_cast<std::size_t>(thePart.interpIndexFor(-1.)));
 	assert(thePart.interpIndexFor( 1.) < theTable.size());
 }
 
@@ -67,7 +67,7 @@ template <typename Type>
 inline
 // explicit
 CosTable<Type> :: CosTable
-	( size_t const & numElem
+	( std::size_t const & numElem
 	, Type const & nullValue
 	)
 	: theTable(numElem, nullValue)
@@ -87,7 +87,7 @@ CosTable<Type> :: isValid
 
 template <typename Type>
 inline
-size_t
+std::size_t
 CosTable<Type> :: size
 	() const
 {
@@ -98,7 +98,7 @@ template <typename Type>
 inline
 Type const &
 CosTable<Type> :: operator[]
-	( size_t const & ndx
+	( std::size_t const & ndx
 	) const
 {
 	if (ndx < theTable.size())
@@ -115,7 +115,7 @@ template <typename Type>
 inline
 Type &
 CosTable<Type> :: operator[]
-	( size_t const & ndx
+	( std::size_t const & ndx
 	)
 {
 	if (dat::isValid(ndx) && (ndx < theTable.size()))
@@ -130,18 +130,18 @@ CosTable<Type> :: operator[]
 
 template <typename Type>
 inline
-size_t
+std::size_t
 CosTable<Type> :: indexForCosine
 	( double const & cosValue
 	) const
 {
-	size_t ndx(dat::nullValue<size_t>());
+	std::size_t ndx(dat::nullValue<std::size_t>());
 	if (isValid())
 	{
 		double const fndx(thePart.interpIndexFor(cosValue));
 		if (dat::isValid(fndx))
 		{
-			ndx = static_cast<size_t>(fndx);
+			ndx = static_cast<std::size_t>(fndx);
 		}
 	}
 	return ndx;
@@ -151,7 +151,7 @@ template <typename Type>
 inline
 double
 CosTable<Type> :: cosineForIndex
-	( size_t const & index
+	( std::size_t const & index
 	) const
 {
 	return thePart.interpValueFor(static_cast<double>(index));
@@ -184,7 +184,7 @@ CosTable<Type> :: operator()
 	Type value(theNull);
 	if (isValid())
 	{
-		size_t const ndx(indexForCosine(cosValue));
+		std::size_t const ndx(indexForCosine(cosValue));
 		if (ndx < theTable.size())
 		{
 			value = theTable[ndx];
@@ -204,7 +204,7 @@ CosTable<Type> :: assignValueAt
 {
 	assert(-1. <= cosValue);
 	assert(cosValue <= 1.);
-	size_t const ndx(indexForCosine(cosValue));
+	std::size_t const ndx(indexForCosine(cosValue));
 	assert(dat::isValid(ndx));
 	assert(ndx < theTable.size());
 	theTable[ndx] = tabValue;

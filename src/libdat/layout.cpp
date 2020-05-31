@@ -48,7 +48,7 @@ namespace
 	//! Generate values with spacing dx starting at x0
 	std::vector<double>
 	valuesForDelta
-		( size_t const & numValues
+		( std::size_t const & numValues
 		, double const & dx
 		, double const & x0
 		)
@@ -57,7 +57,7 @@ namespace
 		if (dat::isValid(dx))
 		{
 			values.reserve(numValues);
-			for (size_t nn{0u} ; nn < numValues ; ++nn)
+			for (std::size_t nn{0u} ; nn < numValues ; ++nn)
 			{
 				double const xx{ x0 + double(nn)*dx };
 				values.emplace_back(xx);
@@ -67,21 +67,21 @@ namespace
 	}
 
 	//! Generate (truncted integer) indices with spacing dx starting at x0
-	std::vector<size_t>
+	std::vector<std::size_t>
 	indicesForDelta
-		( size_t const & numValues
+		( std::size_t const & numValues
 		, double const & dx
 		, double const & x0
 		)
 	{
-		std::vector<size_t> indices;
+		std::vector<std::size_t> indices;
 		if (dat::isValid(dx))
 		{
 			indices.reserve(numValues);
-			for (size_t nn{0u} ; nn < numValues ; ++nn)
+			for (std::size_t nn{0u} ; nn < numValues ; ++nn)
 			{
 				double const xx{ x0 + double(nn)*dx };
-				size_t const ndx{ static_cast<size_t>(std::floor(xx)) };
+				std::size_t const ndx{ static_cast<std::size_t>(std::floor(xx)) };
 				indices.emplace_back(ndx);
 			}
 		}
@@ -112,8 +112,8 @@ namespace
 	//! Form outer combination of row and column values
 	std::vector<dat::RowCol>
 	rowcolsFrom
-		( std::vector<size_t> const & rows
-		, std::vector<size_t> const & cols
+		( std::vector<std::size_t> const & rows
+		, std::vector<std::size_t> const & cols
 		)
 	{
 		return arraysFrom<dat::RowCol>(rows, cols);
@@ -132,8 +132,8 @@ namespace
 	//! spacing for centered values
 	double
 	centeredDelta
-		( size_t const & max
-		, size_t const & numValues
+		( std::size_t const & max
+		, std::size_t const & numValues
 		)
 	{
 		double result{ dat::nullValue<double>() };
@@ -162,7 +162,7 @@ namespace
 	double
 	expandedDelta
 		( double const & max
-		, size_t const & numValues
+		, std::size_t const & numValues
 		)
 	{
 		double result{ dat::nullValue<double>() };
@@ -203,10 +203,10 @@ namespace layout
 namespace centered
 {
 
-	std::vector<size_t>
+	std::vector<std::size_t>
 	indices
-		( size_t const & max
-		, size_t const & numValues
+		( std::size_t const & max
+		, std::size_t const & numValues
 		)
 	{
 		double const dx{ centeredDelta(max, numValues) };
@@ -221,8 +221,8 @@ namespace centered
 		)
 	{
 		// get indices in each direction
-		std::vector<size_t> const rows(indices(domain[0], hwSize[0]));
-		std::vector<size_t> const cols(indices(domain[1], hwSize[1]));
+		std::vector<std::size_t> const rows(indices(domain[0], hwSize[0]));
+		std::vector<std::size_t> const cols(indices(domain[1], hwSize[1]));
 		// return combinations
 		return rowcolsFrom(rows, cols);
 	}
@@ -252,8 +252,8 @@ namespace expanded
 {
 	std::vector<double>
 	values
-		( size_t const & max
-		, size_t const & numValues
+		( std::size_t const & max
+		, std::size_t const & numValues
 		)
 	{
 		double const dx{ expandedDelta(max, numValues) };
@@ -278,13 +278,13 @@ namespace expanded
 		return spotsFrom(xxs, yys);
 	}
 
-	std::vector<size_t>
+	std::vector<std::size_t>
 	indices
-		( size_t const & max
-		, size_t const & numValues
+		( std::size_t const & max
+		, std::size_t const & numValues
 		)
 	{
-		std::vector<size_t> indices;
+		std::vector<std::size_t> indices;
 		if (double(numValues) <= max)
 		{
 			double const dx{ expandedDelta(max, numValues) };
@@ -301,8 +301,8 @@ namespace expanded
 		)
 	{
 		// get indices in each direction
-		std::vector<size_t> const rows(indices(domain[0], hwSize[0]));
-		std::vector<size_t> const cols(indices(domain[1], hwSize[1]));
+		std::vector<std::size_t> const rows(indices(domain[0], hwSize[0]));
+		std::vector<std::size_t> const cols(indices(domain[1], hwSize[1]));
 		// return combinations
 		return rowcolsFrom(rows, cols);
 	}

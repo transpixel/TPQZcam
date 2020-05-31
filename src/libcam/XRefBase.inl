@@ -129,8 +129,8 @@ template <typename DatType>
 inline
 // explicit
 XRefBase<DatType> :: XRefBase
-	( size_t const & numPnts
-	, size_t const & numAcqs
+	( std::size_t const & numPnts
+	, std::size_t const & numAcqs
 	)
 	: theItemGrid(numPnts, numAcqs, dat::nullValue<DatType>())
 {
@@ -215,7 +215,7 @@ XRefBase<DatType> :: endTable
 
 template <typename DatType>
 inline
-size_t
+std::size_t
 XRefBase<DatType> :: pntCapacity
 	() const
 {
@@ -224,7 +224,7 @@ XRefBase<DatType> :: pntCapacity
 
 template <typename DatType>
 inline
-size_t
+std::size_t
 XRefBase<DatType> :: acqCapacity
 	() const
 {
@@ -269,7 +269,7 @@ XRefBase<DatType> :: operator()
 
 template <typename DatType>
 inline
-size_t
+std::size_t
 XRefBase<DatType> :: numAcqsFor
 	( PntNdx const & pntndx
 	) const
@@ -279,7 +279,7 @@ XRefBase<DatType> :: numAcqsFor
 
 template <typename DatType>
 inline
-size_t
+std::size_t
 XRefBase<DatType> :: numPntsFor
 	( AcqNdx const & acqndx
 	) const
@@ -296,7 +296,7 @@ XRefBase<DatType> :: pntIndicesFor
 {
 	std::vector<PntNdx> ndxs;
 	ndxs.reserve(pntCapacity());
-	for (size_t nn{0u} ; nn < theItemGrid.high() ; ++nn)
+	for (std::size_t nn{0u} ; nn < theItemGrid.high() ; ++nn)
 	{
 		PntNdx const & pntndx = nn;
 		DatType const & item = theItemGrid(pntndx, acqndx);
@@ -334,7 +334,7 @@ template <typename DatType>
 inline
 std::vector<typename XRefBase<DatType>::AcqOverlap>
 XRefBase<DatType> :: acqPairsWithOverlap
-	( size_t const & minCommonPoints
+	( std::size_t const & minCommonPoints
 	) const
 {
 	std::vector<AcqOverlap> acqInfos;
@@ -342,9 +342,9 @@ XRefBase<DatType> :: acqPairsWithOverlap
 	// find acquisitions with at least the minimum number of points
 	using PntIndices = std::vector<PntNdx>;
 	std::vector<std::pair<AcqNdx, PntIndices> > okayAcqPntNdxs;
-	size_t const numAcqs{ acqCapacity() };
+	std::size_t const numAcqs{ acqCapacity() };
 	okayAcqPntNdxs.reserve(numAcqs);
-	for (size_t acqNdx{0u} ; acqNdx < numAcqs ; ++acqNdx)
+	for (std::size_t acqNdx{0u} ; acqNdx < numAcqs ; ++acqNdx)
 	{
 		std::vector<PntNdx> const pntNdxs{ pntIndicesFor(acqNdx) };
 		if (minCommonPoints < pntNdxs.size())
@@ -354,14 +354,14 @@ XRefBase<DatType> :: acqPairsWithOverlap
 	}
 
 	// search all okayAcquisitions for pairs with enough points in common
-	size_t const numOkay{ okayAcqPntNdxs.size() };
-	for (size_t n1{0u} ; n1 < numOkay ; ++n1)
+	std::size_t const numOkay{ okayAcqPntNdxs.size() };
+	for (std::size_t n1{0u} ; n1 < numOkay ; ++n1)
 	{
 		// access point measurements for first okay acquisition
 		AcqNdx const & acq1 = okayAcqPntNdxs[n1].first;
 		PntIndices const & p1s = okayAcqPntNdxs[n1].second;
 
-		for (size_t n2{n1+1} ; n2 < numOkay ; ++n2)
+		for (std::size_t n2{n1+1} ; n2 < numOkay ; ++n2)
 		{
 			// access point measurements for second okay acquisition
 			AcqNdx const & acq2 = okayAcqPntNdxs[n2].first;
@@ -397,7 +397,7 @@ XRefBase<DatType> :: acqIndicesFor
 {
 	std::vector<AcqNdx> ndxs;
 	ndxs.reserve(acqCapacity());
-	for (size_t nn{0u} ; nn < theItemGrid.wide() ; ++nn)
+	for (std::size_t nn{0u} ; nn < theItemGrid.wide() ; ++nn)
 	{
 		AcqNdx const & acqndx = nn;
 		DatType const & item = theItemGrid(pntndx, acqndx);
@@ -417,9 +417,9 @@ XRefBase<DatType> :: validItemsForPnt
 	) const
 {
 	std::vector<DatType> items;
-	size_t const numAcqs{ theItemGrid.wide() };
+	std::size_t const numAcqs{ theItemGrid.wide() };
 	items.reserve(numAcqs);
-	for (size_t acqNdx{0u} ; acqNdx < numAcqs ; ++acqNdx)
+	for (std::size_t acqNdx{0u} ; acqNdx < numAcqs ; ++acqNdx)
 	{
 		DatType const & item = theItemGrid(pntndx, acqNdx);
 		if (dat::isValid(item))
@@ -438,9 +438,9 @@ XRefBase<DatType> :: validItemsForAcq
 	) const
 {
 	std::vector<DatType> items;
-	size_t const numPnts{ theItemGrid.high() };
+	std::size_t const numPnts{ theItemGrid.high() };
 	items.reserve(numPnts);
-	for (size_t pntNdx{0u} ; pntNdx < numPnts ; ++pntNdx)
+	for (std::size_t pntNdx{0u} ; pntNdx < numPnts ; ++pntNdx)
 	{
 		DatType const & item = theItemGrid(pntNdx, acqndx);
 		if (dat::isValid(item))
@@ -496,11 +496,11 @@ XRefBase<DatType> :: infoStringPntMajor
 	{
 		oss << infoString(title);
 	}
-	size_t const numPnts{ pntCapacity() };
-	for (size_t pntNdx{0u} ; pntNdx < numPnts ; ++pntNdx)
+	std::size_t const numPnts{ pntCapacity() };
+	for (std::size_t pntNdx{0u} ; pntNdx < numPnts ; ++pntNdx)
 	{
 		std::vector<cam::AcqNdx> const acqNdxs{ acqIndicesFor(pntNdx) };
-		size_t const numAcqs{ acqNdxs.size() };
+		std::size_t const numAcqs{ acqNdxs.size() };
 		oss << std::endl;
 		oss
 			<< "PntNdx,numAcqs:"
@@ -537,11 +537,11 @@ XRefBase<DatType> :: infoStringAcqMajor
 	{
 		oss << infoString(title);
 	}
-	size_t const numAcqs{ acqCapacity() };
-	for (size_t acqNdx{0u} ; acqNdx < numAcqs ; ++acqNdx)
+	std::size_t const numAcqs{ acqCapacity() };
+	for (std::size_t acqNdx{0u} ; acqNdx < numAcqs ; ++acqNdx)
 	{
 		std::vector<cam::PntNdx> const pntNdxs{ pntIndicesFor(acqNdx) };
-		size_t const numPnts{ pntNdxs.size() };
+		std::size_t const numPnts{ pntNdxs.size() };
 		oss << std::endl;
 		oss
 			<< "AcqNdx,numPnts:"

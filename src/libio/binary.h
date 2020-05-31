@@ -71,7 +71,7 @@ namespace binary
 	bool
 	save
 		( Type * const & ptData
-		, size_t const & numItems
+		, std::size_t const & numItems
 		, std::string const & fpath
 		);
 

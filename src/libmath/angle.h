@@ -151,19 +151,19 @@ namespace math
 
 	//! Index into table accouting for angle phase wrap-around
 	inline
-	size_t
+	std::size_t
 	indexForValidAngle
 		( double const & angle //!< must be principal value
-		, size_t const & dataSize //!< must be: (0 < ...)
+		, std::size_t const & dataSize //!< must be: (0 < ...)
 		, double const & angleAt0 = -math::pi
 		);
 
 	//! Index into table accouting for angle phase wrap-around
 	inline
-	size_t
+	std::size_t
 	indexForAngle
 		( double const & anyAngle
-		, size_t const & dataSize
+		, std::size_t const & dataSize
 		, double const & angleAt0 = -math::pi
 		);
 
@@ -171,8 +171,8 @@ namespace math
 	inline
 	double
 	angleForIndexValid
-		( size_t const & index //!< must be in range
-		, size_t const & dataSize //!< more than one
+		( std::size_t const & index //!< must be in range
+		, std::size_t const & dataSize //!< more than one
 		, double const & angleAt0 = -math::pi
 		);
 
@@ -180,8 +180,8 @@ namespace math
 	inline
 	double
 	angleForIndex
-		( size_t const & index
-		, size_t const & dataSize
+		( std::size_t const & index
+		, std::size_t const & dataSize
 		, double const & angleAt0 = -math::pi
 		);
 }

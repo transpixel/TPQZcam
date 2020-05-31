@@ -76,16 +76,16 @@ KeyedValues :: fromFile
 
 				// get key from before the delimiter
 				static char const delim(' ');
-				size_t const ndx1(data.find(delim));
+				std::size_t const ndx1(data.find(delim));
 				assert(ndx1 != std::string::npos);
 				assert(ndx1 < data.size());
 				Key const key(data.substr(0, ndx1));
 
 				// skip the space delimiter
-				size_t const ndx2(ndx1 + 1u);
+				std::size_t const ndx2(ndx1 + 1u);
 
 				// get value from after the delimiter
-				size_t const endcount(data.size() - ndx2);
+				std::size_t const endcount(data.size() - ndx2);
 				Value const value(data.substr(ndx2, endcount));
 
 				// check that both key and value are non-trivial
@@ -139,7 +139,7 @@ KeyedValues :: dValue
 {
 	double dval(badDub);
 	std::string const sval(value(key));
-	if (dat::isValid(sval))
+	if (! sval.empty())
 	{
 		dval = io::string::from(sval, badDub);
 	}

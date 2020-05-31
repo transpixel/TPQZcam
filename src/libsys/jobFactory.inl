@@ -72,7 +72,7 @@ inline
 // explicit
 Factory :: Factory
 	( std::vector<std::shared_ptr<JobBase> > const & jobs
-	, size_t const & maxConcurrent
+	, std::size_t const & maxConcurrent
 	)
 	: theCapacity(maxConcurrent)
 	, theJobs(jobs)

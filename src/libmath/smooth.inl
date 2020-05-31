@@ -49,20 +49,20 @@ namespace priv
 	//! Weight values for a triangle shaped window
 	std::vector<double>
 	triangleWeights
-		( size_t const & halfSize
+		( std::size_t const & halfSize
 		)
 	{
 		std::vector<double> weights(1u + 2u*halfSize);
 
 		// configure for interpolation
-		size_t const & ndxMax(weights.size() - 1u);
+		std::size_t const & ndxMax(weights.size() - 1u);
 		std::pair<double, double> const ndxRange
 			{ 0., static_cast<double>(halfSize + 1u) };
 		static std::pair<double, double> const wRange(0., 1.);
 
 		// fill weights with relative values
 		weights[halfSize] = 1.;
-		for (size_t kk(0u) ; kk < halfSize ; ++kk)
+		for (std::size_t kk(0u) ; kk < halfSize ; ++kk)
 		{
 			double const weight
 				(interp::linear(ndxRange, static_cast<double>(kk+1u), wRange));
@@ -90,23 +90,23 @@ inline
 std::vector<Type>
 triangleWrapped
 	( std::vector<Type> const & data
-	, size_t const & halfSize
+	, std::size_t const & halfSize
 	)
 {
 	std::vector<Type> result(data.size(), static_cast<Type>(0));
 
-	size_t const dSize(data.size());
+	std::size_t const dSize(data.size());
 	std::vector<double> const weights(priv::triangleWeights(halfSize));
-	size_t const wSize(weights.size());
+	std::size_t const wSize(weights.size());
 
 	// convolve data with window
-	size_t const outDelta(halfSize);
-	for (size_t datNdx(0u) ; datNdx < dSize ; ++datNdx)
+	std::size_t const outDelta(halfSize);
+	for (std::size_t datNdx(0u) ; datNdx < dSize ; ++datNdx)
 	{
-		for (size_t winNdx(0u) ; winNdx < wSize ; ++winNdx)
+		for (std::size_t winNdx(0u) ; winNdx < wSize ; ++winNdx)
 		{
-			size_t const srcNdx((datNdx + winNdx) % dSize);
-			size_t const outNdx((datNdx + outDelta) % dSize);
+			std::size_t const srcNdx((datNdx + winNdx) % dSize);
+			std::size_t const outNdx((datNdx + outDelta) % dSize);
 			result[outNdx] += weights[winNdx] * data[srcNdx];
 		}
 	}

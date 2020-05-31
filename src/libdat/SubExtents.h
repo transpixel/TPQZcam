@@ -79,7 +79,7 @@ public: // methods
 	SubExtents
 	quantized
 		( SubExtents const & orig
-		, size_t const & delta
+		, std::size_t const & delta
 		);
 
 public: // methods
@@ -113,13 +113,13 @@ public: // methods
 
 	//! Forward theSize.high()
 	inline
-	size_t const &
+	std::size_t const &
 	high
 		() const;
 
 	//! Forward theSize.wide()
 	inline
-	size_t const &
+	std::size_t const &
 	wide
 		() const;
 
@@ -181,7 +181,7 @@ public: // methods
 		>
 	iterFullBegEnd
 		( dat::grid<PixType> const & fullGrid
-		, size_t const & subRow
+		, std::size_t const & subRow
 		) const;
 
 	//! True if this and other are the same

@@ -97,7 +97,7 @@ SubExtents :: croppedCenterSize
 SubExtents
 SubExtents :: quantized
 	( SubExtents const & orig
-	, size_t const & delta
+	, std::size_t const & delta
 	)
 {
 	SubExtents result;

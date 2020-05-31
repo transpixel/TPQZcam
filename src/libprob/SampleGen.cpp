@@ -60,7 +60,7 @@ SampleGen :: isValid
 
 std::vector<double>
 SampleGen :: samples
-	( size_t const & numSamp
+	( std::size_t const & numSamp
 	) const
 {
 	std::vector<double> samps(numSamp);

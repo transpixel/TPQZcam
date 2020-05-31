@@ -54,9 +54,9 @@ namespace priv
 		, FwdIter const & end
 		)
 	{
-		size_t const numElem
-			{ static_cast<size_t>(std::distance(beg, end)) };
-		size_t const gotElemSize
+		std::size_t const numElem
+			{ static_cast<std::size_t>(std::distance(beg, end)) };
+		std::size_t const gotElemSize
 			{ sizeof(typename std::iterator_traits<FwdIter>::value_type) };
 		std::streamsize const numBytes
 			{ static_cast<std::streamsize>(gotElemSize * numElem) };

@@ -48,7 +48,7 @@ namespace dat
 	using Spot = std::array<double, 2u>;
 
 	//! Index into a 2D collection
-	using RowCol = std::array<size_t, 2u>;
+	using RowCol = std::array<std::size_t, 2u>;
 
 }
 

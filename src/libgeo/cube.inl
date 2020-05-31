@@ -39,12 +39,12 @@ namespace cube
 //======================================================================
 
 inline
-size_t
+std::size_t
 faceIndex
 	( ga::Vector const & dir
 	)
 {
-	size_t ndx{ dat::nullValue<size_t>() };
+	std::size_t ndx{ dat::nullValue<std::size_t>() };
 
 	double const & xx = dir[0];
 	double const & yy = dir[1];

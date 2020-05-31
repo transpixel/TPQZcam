@@ -40,8 +40,8 @@
 template < typename Type >
 inline
 dat::grid<Type> :: grid
-	( size_t const & high
-	, size_t const & wide
+	( std::size_t const & high
+	, std::size_t const & wide
 	)
 	: theHigh{ high }
 	, theWide{ wide }
@@ -66,13 +66,13 @@ dat::grid<Type> :: grid
 template < typename Type >
 inline
 dat::grid<Type> :: grid
-	( size_t const & high
-	, size_t const & wide
+	( std::size_t const & high
+	, std::size_t const & wide
 	, Type const & fillValue
 	)
 	: grid(high, wide)
 {
-	size_t const size(theHigh * theWide);
+	std::size_t const size(theHigh * theWide);
 	std::fill(theData, theData + size, fillValue);
 }
 
@@ -167,7 +167,7 @@ dat::grid<Type> :: hwSize
 
 template < typename Type >
 inline
-size_t const &
+std::size_t const &
 dat::grid<Type> :: high
 	() const
 {
@@ -176,7 +176,7 @@ dat::grid<Type> :: high
 
 template < typename Type >
 inline
-size_t const &
+std::size_t const &
 dat::grid<Type> :: wide
 	() const
 {
@@ -185,7 +185,7 @@ dat::grid<Type> :: wide
 
 template < typename Type >
 inline
-size_t
+std::size_t
 dat::grid<Type> :: size
 	() const
 {
@@ -194,7 +194,7 @@ dat::grid<Type> :: size
 
 template < typename Type >
 inline
-size_t
+std::size_t
 dat::grid<Type> :: byteSize
 	() const
 {
@@ -208,8 +208,8 @@ template < typename Type >
 inline
 Type const &
 dat::grid<Type> :: operator()
-	( size_t const & row
-	, size_t const & col
+	( std::size_t const & row
+	, std::size_t const & col
 	) const
 {
 	return *(theData + row * theWide + col);
@@ -222,8 +222,8 @@ template < typename Type >
 inline
 Type &
 dat::grid<Type> :: operator()
-	( size_t const & row
-	, size_t const & col
+	( std::size_t const & row
+	, std::size_t const & col
 	)
 {
 	return *(theData + row * theWide + col);
@@ -344,7 +344,7 @@ template < typename Type >
 inline
 typename dat::grid<Type>::const_iterator
 dat::grid<Type> :: beginRow
-	( size_t const & row
+	( std::size_t const & row
 	) const
 {
 	return theData + (row * theWide);
@@ -357,7 +357,7 @@ template < typename Type >
 inline
 typename dat::grid<Type>::const_iterator
 dat::grid<Type> :: endRow
-	( size_t const & row
+	( std::size_t const & row
 	) const
 {
 	return beginRow(row + 1);
@@ -370,7 +370,7 @@ template < typename Type >
 inline
 typename dat::grid<Type>::iterator
 dat::grid<Type> :: beginRow
-	( size_t const & row
+	( std::size_t const & row
 	)
 {
 	return theData + (row * theWide);
@@ -383,7 +383,7 @@ template < typename Type >
 inline
 typename dat::grid<Type>::iterator
 dat::grid<Type> :: endRow
-	( size_t const & row
+	( std::size_t const & row
 	)
 {
 	return beginRow(row + 1);
@@ -396,8 +396,8 @@ template < typename Type >
 inline
 typename dat::grid<Type>::const_iterator
 dat::grid<Type> :: iterAt
-	( size_t const & row
-	, size_t const & col
+	( std::size_t const & row
+	, std::size_t const & col
 	) const
 {
 	return theData + (row * theWide + col);
@@ -410,8 +410,8 @@ template < typename Type >
 inline
 typename dat::grid<Type>::iterator
 dat::grid<Type> :: iterAt
-	( size_t const & row
-	, size_t const & col
+	( std::size_t const & row
+	, std::size_t const & col
 	)
 {
 	return theData + (row * theWide + col);
@@ -427,7 +427,7 @@ dat::grid<Type> :: rowColFor
 	( typename dat::grid<Type>::const_iterator const & iter
 	) const
 {
-	size_t const dist(std::distance(begin(), iter));
+	std::size_t const dist(std::distance(begin(), iter));
 	return {{ dist / wide(), dist % wide() }};
 }
 
@@ -479,10 +479,10 @@ dat::grid<Type> :: infoStringContents
 	if (isValid())
 	{
 		Type const * iter(begin());
-		for (size_t row(0); row < theHigh; ++row)
+		for (std::size_t row(0); row < theHigh; ++row)
 		{
 			oss << std::endl;
-			for (size_t col(0); col < theWide; ++col)
+			for (std::size_t col(0); col < theWide; ++col)
 			{
 				oss << ' ' << ::io::sprintf(fmt, *iter++);
 			}
@@ -536,12 +536,12 @@ template < typename Type >
 inline
 void
 dat::grid<Type> :: resize
-	( size_t const & high
-	, size_t const & wide
+	( std::size_t const & high
+	, std::size_t const & wide
 	)
 {
-	size_t const sizeold(theHigh * theWide);
-	size_t const sizenew(high * wide);
+	std::size_t const sizeold(theHigh * theWide);
+	std::size_t const sizenew(high * wide);
 	if (sizeold != sizenew)
 	{
 		if (nullptr != theData) // deallocate old
@@ -570,21 +570,21 @@ dat::grid<Type> :: resize
 
 template < typename Type >
 inline
-size_t
+std::size_t
 dat::grid<Type> :: validCountInRow
-	( size_t const & rowNdx
+	( std::size_t const & rowNdx
 	) const
 {
-	size_t num{ dat::nullValue<size_t>() };
+	std::size_t num{ dat::nullValue<std::size_t>() };
 	if (isValid())
 	{
 		/*
 		dat::IsValid<Type> const validator{};
-		num = (size_t)std::count_if
+		num = (std::size_t)std::count_if
 			(beginRow(rowNdx), endRow(rowNdx), validator);
 		*/
 		num = 0u;
-		for (size_t col{0u} ; col < wide() ; ++col)
+		for (std::size_t col{0u} ; col < wide() ; ++col)
 		{
 			Type const & elem = (*this)(rowNdx, col);
 			if (dat::isValid(elem))
@@ -598,16 +598,16 @@ dat::grid<Type> :: validCountInRow
 
 template < typename Type >
 inline
-size_t
+std::size_t
 dat::grid<Type> :: validCountInCol
-	( size_t const & colNdx
+	( std::size_t const & colNdx
 	) const
 {
-	size_t num{ dat::nullValue<size_t>() };
+	std::size_t num{ dat::nullValue<std::size_t>() };
 	if (isValid())
 	{
 		num = 0u;
-		for (size_t row{0u} ; row < high() ; ++row)
+		for (std::size_t row{0u} ; row < high() ; ++row)
 		{
 			Type const & elem = (*this)(row, colNdx);
 			if (dat::isValid(elem))

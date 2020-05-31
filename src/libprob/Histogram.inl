@@ -95,7 +95,7 @@ Histogram :: incorporateSample
 	}
 	else
 	{
-		size_t const binNdx(thePart.binIndexFor(sample));
+		std::size_t const binNdx(thePart.binIndexFor(sample));
 		assert(binNdx < theCounts.size());
 		++( theCounts[binNdx] );
 	}
