@@ -42,6 +42,7 @@ set(local_NS_INCLUDES
 	limits.h
 	MinMax.h
 	NdxBegEnd.h
+	null.h
 	Offset2D.h
 	ops.h
 	QuantumFrac.h
