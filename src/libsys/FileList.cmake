@@ -10,6 +10,7 @@ set(local_NS_SOURCES
 
 set(local_NS_INCLUDES
 
+	GhostTown.h
 	JobBase.h
 	jobCapacity.h
 	jobFactory.h
@@ -20,6 +21,7 @@ set(local_NS_INCLUDES
 	Timer.h
 	Utilization.h
 
+	GhostTown.inl
 	jobCapacity.inl
 	jobFactory.inl
 	jobNotification.inl

@@ -46,9 +46,13 @@ inline
 Runner :: Runner
 	( std::shared_ptr<JobBase> const & aJob
 	, Capacity * const & capacity
+	, std::size_t const & jobNdx
+	, GhostTown * const & ghosts
 	)
 	: theJob(aJob)
 	, theCapacity{ capacity }
+	, theJobNdx{ jobNdx }
+	, theGhosts{ ghosts }
 {}
 
 inline
@@ -61,6 +65,12 @@ Runner :: operator()
 
 	// restore resource availability
 	theCapacity->release(); // consumed in factory before job thread creation
+
+	// indicate job is complete, but (if in thread) still needs joining
+	if (theGhosts)
+	{
+		theGhosts->createGhost(theJobNdx);
+	}
 }
 
 
@@ -78,6 +88,7 @@ Factory :: Factory
 	, theJobs(jobs)
 	, theJobNdx{ 0u }
 	, theThreads{}
+	, theGhosts{}
 {
 	theThreads.reserve(theJobs.size());
 	assert(0u < maxConcurrent);
@@ -94,6 +105,9 @@ Factory :: processAll
 		// keep resources at full capacity
 		while (theCapacity.hasVacancy() && haveNewJobs())
 		{
+			// merge jobs that are completed but threads not yet joined
+			joinFinishedJobs();
+
 			// denote use of resources
 			theCapacity.consume(); // released in Runner() after job end
 
@@ -112,11 +126,31 @@ Factory :: processAll
 
 	// ensure all threads are completed
 	// - should be no waiting here, since capacity is no longer in use
+	// - but still need to join residual (completed)job threads
 	for (std::thread & thread : theThreads)
 	{
 		if (thread.joinable())
 		{
 			thread.join();
+		}
+	}
+}
+
+inline
+void
+Factory :: joinFinishedJobs
+	()
+{
+	//! Ids (indices) for jobs that are released() but not yet joined
+	std::set<std::size_t> const jobNdxs{ theGhosts.allGhosts() };
+	for (std::size_t const & jobNdx : jobNdxs)
+	{
+		assert(jobNdx < theThreads.size());
+		std::thread & thread = theThreads[jobNdx];
+		if (thread.joinable())
+		{
+			thread.join();
+			theGhosts.removeGhost(jobNdx);
 		}
 	}
 }
@@ -129,13 +163,14 @@ Factory :: startNextJob
 	// get the next job
 	assert(theJobNdx < theJobs.size());
 	std::shared_ptr<JobBase> const & nextJob = theJobs[theJobNdx];
-	++theJobNdx;
 
 	assert(nextJob);
 
 	// run job (in a thread)
-	Runner run(nextJob, &theCapacity);
+	Runner run(nextJob, &theCapacity, theJobNdx, &theGhosts);
 	theThreads.emplace_back(std::thread(run));
+
+	++theJobNdx;
 }
 
 inline
