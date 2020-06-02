@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(
 	TPQZcam
-	VERSION 0.1.0
+	VERSION 0.1.1
 	LANGUAGES C CXX   # only C++ is used, but "C" for cmake to find pthreads
 	)
 
