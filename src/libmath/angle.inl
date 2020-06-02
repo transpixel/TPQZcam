@@ -347,7 +347,12 @@ indexForValidAngle
 	)
 {
 	// express relative to start angle
-	double const delta(angle - angleAt0);
+	double delta(angle - angleAt0);
+	if (delta < 0.)
+	{
+		delta += math::twoPi;
+		assert(! (delta < 0.));
+	}
 
 	// quantize to index step-size
 	assert(1u < dataSize);
@@ -371,10 +376,10 @@ indexForAngle
 	if (1u < dataSize)
 	{
 		// convert to principal range
-		double const angle(math::principalAngle(anyAngle));
+		double const paAny(principalAngle(anyAngle));
 		// lookup index
-		double const pa0(principalAngle(angleAt0));
-		index = indexForValidAngle(angle, dataSize, pa0);
+		double const paRef(principalAngle(angleAt0));
+		index = indexForValidAngle(paAny, dataSize, paRef);
 	}
 	return index;
 }
