@@ -103,8 +103,8 @@ namespace si
 	//! Data container for a 3D point and uncertainty
 	struct PointSoln
 	{
-		ga::Vector const theLoc;
-		std::array<SemiAxis, 3u> const theSemiAxes;
+		ga::Vector theLoc;
+		std::array<SemiAxis, 3u> theSemiAxes;
 
 		//! Descriptive information about this instance
 		std::string
