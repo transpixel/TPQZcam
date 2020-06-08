@@ -4,9 +4,12 @@
 
 cmake_minimum_required(VERSION 3.10)
 
+set(TPQZcamVersion "0.1.2")
+set(EigenVersion "3.3")
+
 project(
 	TPQZcam
-	VERSION 0.1.1
+	VERSION ${TPQZcamVersion}
 	LANGUAGES C CXX   # only C++ is used, but "C" for cmake to find pthreads
 	)
 
@@ -22,7 +25,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 #
 
 # External packages - {Eigen}
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+find_package(Eigen3 ${EigenVersion} REQUIRED NO_MODULE)
 
 find_package(Threads REQUIRED)
 
