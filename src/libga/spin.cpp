@@ -143,7 +143,7 @@ argAngleFrom
 			BiVector const bvDir{ (1./saMag) * spin.theB };
 			if (bvDir.isValid())
 			{
-				double const amag(std::atan2(saMag, caVal));
+				double const amag(math::atan2(saMag, caVal));
 				angle = amag * bvDir;
 			}
 		}
