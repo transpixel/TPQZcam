@@ -19,6 +19,37 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# If any compile flags definitions - add here
+add_definitions()
+
+
+set(BUILD_FLAGS_FOR_CLANG
+	""
+	)
+set(BUILD_FLAGS_FOR_GCC
+	#
+	# Disable
+	#	https://gcc.gnu.org/bugzilla/show_bug.cgi?id=77728
+	#	https://gcc.gnu.org/gcc-7/changes.html (ref "On ARM...")
+	-Wno-psabi
+	#
+	-Wc++11-compat
+	-pthread
+	-fomit-frame-pointer
+	-Wextra
+	-Wuninitialized
+	-Winit-self
+	-fno-operator-names
+	-fstrict-enums
+	#
+	-pedantic-errors
+	-fno-nonansi-builtins
+	-Wall
+	)
+set(BUILD_FLAGS_FOR_VISUAL
+	""
+	)
+
 
 # target_link_libraries(... ${CMAKE_THREAD_LIBS_INIT})
 #

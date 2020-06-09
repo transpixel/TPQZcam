@@ -6,6 +6,13 @@ foreach(oneUnitTest ${allUnitTests})
 	# message("oneUnitTest: " ${oneUnitTest})
 	# message("unitTestTarget: " ${unitTestTarget})
 	add_executable(${unitTestTarget} ${oneUnitTest}.cpp)
+	target_compile_options(
+		${unitTestTarget}
+		PRIVATE
+			$<$<CXX_COMPILER_ID:Clang>:${BUILD_FLAGS_FOR_CLANG}>
+			$<$<CXX_COMPILER_ID:GNU>:${BUILD_FLAGS_FOR_GCC}>
+			$<$<CXX_COMPILER_ID:MSVC>:${BUILD_FLAGS_FOR_VISUAL}>
+		)
 
 	target_include_directories(
 		${unitTestTarget}

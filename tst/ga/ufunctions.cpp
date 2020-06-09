@@ -343,10 +343,14 @@ ga_functions_test2
 		BiVector const bArg{ bMag * bDir };
 
 		G2 const expArg{ sArg, bArg };
-		G2 const popper{ ga::expG2(expArg) };
+
 
 		// should be invalid w/o plane direction to resolve ambiguity
 		{
+			// numeric computation can introduce some noise...
+			// G2 const popper{ ga::expG2(expArg) };
+			// ... so set the values directly
+			G2 const popper{ 0., ga::bZero };
 			G2 const gotLog{ ga::logG2(popper) };
 			if (gotLog.isValid())
 			{
@@ -357,6 +361,7 @@ ga_functions_test2
 
 		// bivector part is pi in recovery under pi rotation
 		{
+			G2 const popper{ ga::expG2(expArg) };
 			G2 const expLog{ sArg, math::pi*bDir };
 			G2 const gotLog{ ga::logG2(popper, bDir) };
 			if (! gotLog.nearlyEquals(expLog))

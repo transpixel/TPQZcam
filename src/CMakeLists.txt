@@ -63,6 +63,13 @@ add_library(${local_LIBTARGET}
 	${local_SOURCES}
 	${local_INCLUDES}
 	)
+target_compile_options(
+	${local_LIBTARGET}
+	PRIVATE
+		$<$<CXX_COMPILER_ID:Clang>:${BUILD_FLAGS_FOR_CLANG}>
+		$<$<CXX_COMPILER_ID:GNU>:${BUILD_FLAGS_FOR_GCC}>
+		$<$<CXX_COMPILER_ID:MSVC>:${BUILD_FLAGS_FOR_VISUAL}>
+	)
 
 # path to headers for building library
 target_include_directories(${local_LIBTARGET}

@@ -54,16 +54,16 @@ dat__test0
 
 	// test general null values
 	uint8_t const null_u8(dat::nullValue<uint8_t>());
-	long int const null_li(dat::nullValue<long int>());
+	long long const null_ll(dat::nullValue<long long>());
 	float const null_ff(dat::nullValue<float>());
 	double const null_dd(dat::nullValue<double>());
 	if (dat::isValid(null_u8))
 	{
 		oss << "failure of u8 null test" << std::endl;
 	}
-	if (dat::isValid(null_li))
+	if (dat::isValid(null_ll))
 	{
-		oss << "failure of long int null test" << std::endl;
+		oss << "failure of long long null test" << std::endl;
 	}
 	if (dat::isValid(null_ff))
 	{
@@ -76,16 +76,16 @@ dat__test0
 
 	// test general good values
 	uint8_t const good_u8(7u);
-	long int const good_li(-1 * 0xF0F0F0F0f0f0f0f0);
+	long long const good_ll(-1 * 0xF0F0F0F0f0f0f0f0);
 	float const good_ff(-1.234f);
 	double const good_dd(3.456);
 	if (! dat::isValid(good_u8))
 	{
 		oss << "failure of u8 good test" << std::endl;
 	}
-	if (! dat::isValid(good_li))
+	if (! dat::isValid(good_ll))
 	{
-		oss << "failure of long int good test" << std::endl;
+		oss << "failure of long long good test" << std::endl;
 	}
 	if (! dat::isValid(good_ff))
 	{

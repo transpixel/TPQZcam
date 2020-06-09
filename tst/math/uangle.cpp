@@ -656,14 +656,14 @@ main
 	std::ostringstream oss;
 
 	// run tests
-//	oss << math_angle_test0();
-//	oss << math_angle_test1();
-//	oss << math_angle_test2();
-//	oss << math_angle_test3a();
+	oss << math_angle_test0();
+	oss << math_angle_test1();
+	oss << math_angle_test2();
+	oss << math_angle_test3a();
 	oss << math_angle_test3b();
-//	oss << math_angle_test3c();
-//	oss << math_angle_test4();
-//	oss << math_angle_test5();
+	oss << math_angle_test3c();
+	oss << math_angle_test4();
+	oss << math_angle_test5();
 
 	// check/report results
 	std::string const errMessages(oss.str());

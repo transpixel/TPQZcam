@@ -203,14 +203,19 @@ geo_intersect_test2
 		ga::Vector const & gotPnt1 = gotPnts.first;
 		ga::Vector const & gotPnt2 = gotPnts.second;
 		ga::Vector const & expPnt = somePnt;
-		if ( (! gotPnt1.nearlyEquals(expPnt))
-		  || (! gotPnt2.nearlyEquals(expPnt))
+		constexpr double tol{ 16. * math::eps };
+		if ( (! gotPnt1.nearlyEquals(expPnt, tol))
+		  || (! gotPnt2.nearlyEquals(expPnt, tol))
 		   )
 		{
+			ga::Vector const & difPnt1{ gotPnt1 - expPnt };
+			ga::Vector const & difPnt2{ gotPnt2 - expPnt };
 			oss << "Failure of general intersection test" << std::endl;
 			oss << dat::infoString(expPnt, "expPnt") << std::endl;
 			oss << dat::infoString(gotPnt1, "gotPnt1") << std::endl;
 			oss << dat::infoString(gotPnt2, "gotPnt2") << std::endl;
+			oss << difPnt1.infoStringFmt("difPnt1", "%12.5e") << std::endl;
+			oss << difPnt2.infoStringFmt("difPnt2", "%12.5e") << std::endl;
 			/*
 			oss << dat::infoString(rayA.theStart, "rayA.theStart") << '\n';
 			oss << dat::infoString(rayA.theDir, "rayA.theDir") << '\n';
