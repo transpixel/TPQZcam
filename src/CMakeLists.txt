@@ -80,11 +80,11 @@ target_link_libraries(${local_LIBTARGET} PUBLIC Eigen3::Eigen)
 
 
 # Export info
-set(EXPORT_LIB_NAME ${PROJECT_NAME}::${local_LIBTARGET})
+set(EXPORT_ALIAS_NAME ${PROJECT_NAME}::${local_LIBTARGET})
 set(EXPORT_TARGETS_NAME ${PROJECT_NAME}Targets)
 set(EXPORT_FILENAME ${EXPORT_TARGETS_NAME}.cmake)
 add_library(
-	${EXPORT_LIB_NAME}
+	${EXPORT_ALIAS_NAME}
 	ALIAS
 	${local_LIBTARGET}
 	)
@@ -96,7 +96,6 @@ message("### CMAKE_TWEAK_VERSION: " ${CMAKE_TWEAK_VERSION})
 message("### PROJECT: " ${PROJECT})
 message("### PROJECT_VERSION: " ${PROJECT_VERSION})
 message("### local_LIBTARGET: " ${local_LIBTARGET})
-message("### EXPORT_LIB_NAME: " ${EXPORT_LIB_NAME})
 message("### EXPORT_TARGETS_NAME: " ${EXPORT_TARGETS_NAME})
 message("### EXPORT_FILENAME: " ${EXPORT_FILENAME})
 
