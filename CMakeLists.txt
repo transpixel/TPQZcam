@@ -4,7 +4,7 @@
 
 cmake_minimum_required(VERSION 3.10)
 
-set(TPQZcamVersion "0.1.3")
+set(TPQZcamVersion "0.1.4")
 # using
 set(EigenVersion "3.3")
 
