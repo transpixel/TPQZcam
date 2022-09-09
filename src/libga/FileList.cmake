@@ -1,9 +1,5 @@
-#
 
-set(local_NM ga)
-set(local_PREFIX ${local_LIBTARGET}_${local_NM})
-
-set(${local_PREFIX}_SOURCES
+set(local_NS_SOURCES
 
 	Aligner.cpp
 	Conform.cpp
@@ -18,7 +14,7 @@ set(${local_PREFIX}_SOURCES
 
 	)
 
-set(${local_PREFIX}_INCLUDES
+set(local_NS_INCLUDES
 
 	Aligner.h
 	comparisons.h
@@ -50,6 +46,4 @@ set(${local_PREFIX}_INCLUDES
 	Rigid.inl
 
 	)
-
-include(../cmakeLibs.cmake)
 

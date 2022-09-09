@@ -55,7 +55,7 @@ namespace dat
 template <typename Type, typename Compare = std::greater<Type> >
 class BestOf
 {
-	size_t theNumBest{ dat::nullValue<size_t>() };
+	std::size_t theNumBest{ dat::nullValue<std::size_t>() };
 	std::multiset<Type, Compare > theItems;
 	Compare theCompFunc;
 
@@ -69,7 +69,7 @@ public: // methods
 	inline
 	explicit
 	BestOf
-		( size_t const & numBest
+		( std::size_t const & numBest
 		);
 
 	//! True if instance is valid
@@ -80,13 +80,13 @@ public: // methods
 
 	//! The number of objects currently being tracked
 	inline
-	size_t
+	std::size_t
 	capacity
 		() const;
 
 	//! The number of objects currently being tracked
 	inline
-	size_t
+	std::size_t
 	size
 		() const;
 

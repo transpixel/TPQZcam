@@ -89,8 +89,8 @@ public: // methods
 	inline
 	explicit
 	grid
-		( size_t const & high
-		, size_t const & wide
+		( std::size_t const & high
+		, std::size_t const & wide
 		);
 
 	//! Construct with geometry (NOTE: uninitialized values)
@@ -106,8 +106,8 @@ public: // methods
 	inline
 	explicit
 	grid
-		( size_t const & high
-		, size_t const & wide
+		( std::size_t const & high
+		, std::size_t const & wide
 		, Type const & fillValue
 		);
 
@@ -160,25 +160,25 @@ public: // methods
 
 	//! Height of buffer
 	inline
-	size_t const &
+	std::size_t const &
 	high
 		() const;
 
 	//! Width of buffer
 	inline
-	size_t const &
+	std::size_t const &
 	wide
 		() const;
 
 	//! Size of buffer (wide * high)
 	inline
-	size_t
+	std::size_t
 	size
 		() const;
 
 	//! bytes in buffer
 	inline
-	size_t
+	std::size_t
 	byteSize
 		() const;
 
@@ -186,16 +186,16 @@ public: // methods
 	inline
 	Type const &
 	operator()
-		( size_t const & row
-		, size_t const & col
+		( std::size_t const & row
+		, std::size_t const & col
 		) const;
 
 	//! Returns pointer to row (non const)
 	inline
 	Type &
 	operator()
-		( size_t const & row
-		, size_t const & col
+		( std::size_t const & row
+		, std::size_t const & col
 		);
 
 	//! Returns reference to element
@@ -264,44 +264,44 @@ public: // methods
 	inline
 	const_iterator
 	beginRow
-		( size_t const & row
+		( std::size_t const & row
 		) const;
 
 	//! const row access, use as const iterator
 	inline
 	const_iterator
 	endRow
-		( size_t const & row
+		( std::size_t const & row
 		) const;
 
 	//! row access, use as iterator
 	inline
 	iterator
 	beginRow
-		( size_t const & row
+		( std::size_t const & row
 		);
 
 	//! row access, use as iterator
 	inline
 	iterator
 	endRow
-		( size_t const & row
+		( std::size_t const & row
 		);
 
 	//! iterator at given row, ocl
 	inline
 	const_iterator
 	iterAt
-		( size_t const & row
-		, size_t const & col
+		( std::size_t const & row
+		, std::size_t const & col
 		) const;
 
 	//! iterator at given row, ocl
 	inline
 	iterator
 	iterAt
-		( size_t const & row
-		, size_t const & col
+		( std::size_t const & row
+		, std::size_t const & col
 		);
 
 	//! row/col from iterator
@@ -342,31 +342,31 @@ public: // methods
 
 	//! Number of valid column entires in specified row
 	inline
-	size_t
+	std::size_t
 	validCountInRow
-		( size_t const & rowNdx
+		( std::size_t const & rowNdx
 		) const;
 
 	//! Number of valid rows entires in specified column
 	inline
-	size_t
+	std::size_t
 	validCountInCol
-		( size_t const & colNdx
+		( std::size_t const & colNdx
 		) const;
 
 
 private:
 
-	size_t theHigh{ 0u }; //!< Height of buffer
-	size_t theWide{ 0u }; //!< Width of buffer
+	std::size_t theHigh{ 0u }; //!< Height of buffer
+	std::size_t theWide{ 0u }; //!< Width of buffer
 	Type * theData{ nullptr }; //!< data buffer pointer
 
 	//! destructive resize
 	inline
 	void
 	resize
-		( size_t const & high
-		, size_t const & wide
+		( std::size_t const & high
+		, std::size_t const & wide
 		);
 
 };

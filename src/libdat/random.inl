@@ -40,25 +40,25 @@ namespace random
 namespace
 {
 	//! Update sorted array and usecount with new values
-	template <size_t Dim>
+	template <std::size_t Dim>
 	void
 	insertIntoSorted // TODO could cleanup and make (more)public
-		( std::array<size_t, Dim> & values
-		, size_t & inUseSize
-		, size_t const & addValue
+		( std::array<std::size_t, Dim> & values
+		, std::size_t & inUseSize
+		, std::size_t const & addValue
 		)
 	{
 		// Could use STL, but here combine find and move operations
-		size_t const prevUseSize{ inUseSize };
+		std::size_t const prevUseSize{ inUseSize };
 		if (0u < prevUseSize) // check if bubbling needed
 		{
-			size_t lastNdx{ prevUseSize - 1 };
+			std::size_t lastNdx{ prevUseSize - 1 };
 
 			// run backward through existing values
 			while (0u <= lastNdx)
 			{
 				// start current value end of output
-				size_t const currValue = values[lastNdx];
+				std::size_t const currValue = values[lastNdx];
 				if (currValue < addValue) // add at tail
 				{
 					// add current value after previous values
@@ -94,28 +94,28 @@ namespace
 
 }
 
-template <size_t Dim, typename RandGen>
+template <std::size_t Dim, typename RandGen>
 void
 index_sample
-	( std::array<size_t, Dim> * const & ptSampNdxs
-	, size_t const & sourceSizeN
+	( std::array<std::size_t, Dim> * const & ptSampNdxs
+	, std::size_t const & sourceSizeN
 	, RandGen & rgen
 	)
 {
-	std::array<size_t, Dim> & sampNdxs = *ptSampNdxs;
-	size_t sampUseCount{ 0u };
-	constexpr size_t ndxMin{ 0u }; // assume standard offsets
+	std::array<std::size_t, Dim> & sampNdxs = *ptSampNdxs;
+	std::size_t sampUseCount{ 0u };
+	constexpr std::size_t ndxMin{ 0u }; // assume standard offsets
 
 	// for sane cases
 	if (Dim < sourceSizeN)
 	{
 		// perform Dim random selections
-		for (size_t nn{0u} ; nn < Dim ; ++nn)
+		for (std::size_t nn{0u} ; nn < Dim ; ++nn)
 		{
 			// determine an offset into *UN*selected indices
-			size_t const ndxMax{ sourceSizeN - 1u - nn};
-			std::uniform_int_distribution<size_t> rdistro(ndxMin, ndxMax);
-			size_t candNdx{ rdistro(rgen) };
+			std::size_t const ndxMax{ sourceSizeN - 1u - nn};
+			std::uniform_int_distribution<std::size_t> rdistro(ndxMin, ndxMax);
+			std::size_t candNdx{ rdistro(rgen) };
 
 			// check for initialization state
 			if (0u == sampUseCount)
@@ -125,10 +125,10 @@ index_sample
 			else
 			{
 				// start by assuming candidate index is useful
-				for (size_t nn{0u} ; nn < sampUseCount ; ++nn)
+				for (std::size_t nn{0u} ; nn < sampUseCount ; ++nn)
 				{
 					// check for collision with existing index
-					size_t const & hitNdx = sampNdxs[nn];
+					std::size_t const & hitNdx = sampNdxs[nn];
 					if (candNdx < hitNdx) // candidate is free slot
 					{
 						// candidate is before next colision so use it
@@ -153,20 +153,20 @@ index_sample
 	}
 	else
 	{
-		static size_t const badNdx(dat::nullValue<size_t>());
+		static std::size_t const badNdx(dat::nullValue<std::size_t>());
 		std::fill(sampNdxs.begin(), sampNdxs.end(), badNdx);
 	}
 	return;
 }
 
-template <size_t Dim, typename RandGen>
-std::array<size_t, Dim>
+template <std::size_t Dim, typename RandGen>
+std::array<std::size_t, Dim>
 index_sample
-	( size_t const & sourceSizeN
+	( std::size_t const & sourceSizeN
 	, RandGen & rgen //!< Random generator e.g. std::19937_64
 	)
 {
-	std::array<size_t, Dim> sampNdxs{ dat::nullValue<size_t>() };
+	std::array<std::size_t, Dim> sampNdxs{ dat::nullValue<std::size_t>() };
 	index_sample(& sampNdxs, sourceSizeN, rgen);
 	return sampNdxs;
 }

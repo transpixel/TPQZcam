@@ -1,9 +1,5 @@
-#
 
-set(local_NM cam)
-set(local_PREFIX ${local_LIBTARGET}_${local_NM})
-
-set(${local_PREFIX}_SOURCES
+set(local_NS_SOURCES
 
 	Camera.cpp
 	fit.cpp
@@ -16,7 +12,7 @@ set(${local_PREFIX}_SOURCES
 
 	)
 
-set(${local_PREFIX}_INCLUDES
+set(local_NS_INCLUDES
 
 	Camera.h
 	cam.h
@@ -41,6 +37,4 @@ set(${local_PREFIX}_INCLUDES
 	XRefBase.inl
 
 	)
-
-include(../cmakeLibs.cmake)
 

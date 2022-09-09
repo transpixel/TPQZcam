@@ -108,10 +108,11 @@ likelyPrimePoints
 	// interpolation produces a small fraction of this
 	constexpr double numSampsPerMeter{ 100. }; // e.g. cm level sampling
 	double const numMeters{ distRange.magnitude() };
-	size_t const numSamps{ size_t(numSampsPerMeter * numMeters + 1.) };
+	std::size_t const numSamps
+		{ std::size_t(numSampsPerMeter * numMeters + 1.) };
 
 	// allocate space / init to null
-	size_t const numPnts{ rayTab.pntCapacity() };
+	std::size_t const numPnts{ rayTab.pntCapacity() };
 	pnts.resize(numPnts, ga::Vector{});
 
 	assert(numPnts == primeAcqNdxs.size());
@@ -120,7 +121,7 @@ likelyPrimePoints
 	for (cam::PntNdx pntNdx{0u} ; pntNdx < numPnts ; ++pntNdx)
 	{
 		// select primary ray of interest
-		size_t const primeAcqNdx{ primeAcqNdxs[pntNdx] };
+		std::size_t const primeAcqNdx{ primeAcqNdxs[pntNdx] };
 
 		// get rays for this point
 		std::vector<geo::Ray> const rays
@@ -184,10 +185,10 @@ likelyComboPoints
 	// interpolation produces a small fraction of this
 	constexpr double numSampsPerMeter{ 100. }; // e.g. cm level sampling
 	double const numMeters{ distRange.magnitude() };
-	size_t const numSamps{ size_t(numSampsPerMeter * numMeters + 1.) };
+	std::size_t const numSamps{ std::size_t(numSampsPerMeter * numMeters + 1.) };
 
 	// allocate space / init to null
-	size_t const numPnts{ rayTab.pntCapacity() };
+	std::size_t const numPnts{ rayTab.pntCapacity() };
 	pnts.resize(numPnts, ga::Vector{});
 
 #if defined(UseRayRay)
@@ -264,8 +265,8 @@ distanceTable
 	, double const & rejMagMaxTol
 	)
 {
-	size_t const numPnts{ rayTab.pntCapacity() };
-	size_t const numAcqs{ rayTab.acqCapacity() };
+	std::size_t const numPnts{ rayTab.pntCapacity() };
+	std::size_t const numAcqs{ rayTab.acqCapacity() };
 	cam::XRefDists distTab(numPnts, numAcqs);
 
 	// ensure consistency of input data
@@ -300,20 +301,20 @@ std::vector<ga::Vector>
 averagePoints
 	( cam::XRefRays const & rayTab
 	, XRefDists const & distTab
-	, size_t const & minNearCount
+	, std::size_t const & minNearCount
 	)
 {
 	std::vector<ga::Vector> avePnts;
 
 	// ensure consistent input data
-	size_t const distPntCap{ distTab.pntCapacity() };
-	size_t const distAcqCap{ distTab.acqCapacity() };
+	std::size_t const distPntCap{ distTab.pntCapacity() };
+	std::size_t const distAcqCap{ distTab.acqCapacity() };
 	assert(distPntCap == rayTab.pntCapacity());
 	assert(distAcqCap == rayTab.acqCapacity());
 
 	// allocate space
-	size_t const & numPnts = distPntCap;
-	size_t const & numAcqs = distAcqCap;
+	std::size_t const & numPnts = distPntCap;
+	std::size_t const & numAcqs = distAcqCap;
 	avePnts.resize(numPnts, ga::Vector{}); // set default to null
 	std::vector<ga::Vector> eachPnts(numPnts);
 

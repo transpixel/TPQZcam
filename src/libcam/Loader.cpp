@@ -93,16 +93,16 @@ Loader :: Loader
 namespace
 {
 	std::pair
-		< std::map<std::string, size_t>
+		< std::map<std::string, std::size_t>
 		, std::vector<std::string>
 		>
 	aNameNdxMap
 		( std::set<std::string> const & names
 		)
 	{
-		std::map<std::string, size_t> nameNdxMap;
+		std::map<std::string, std::size_t> nameNdxMap;
 		std::vector<std::string> nameByNdx(names.size());
-		size_t ndx{ 0u };
+		std::size_t ndx{ 0u };
 		for (std::string const & name : names)
 		{
 			nameNdxMap[name] = ndx;
@@ -149,7 +149,7 @@ Loader :: spotTable
 {
 	XRefSpots spotTab(thePntNames.size(), theMeaGroups.size());
 
-	size_t const numAcqs{ theMeaGroups.size() };
+	std::size_t const numAcqs{ theMeaGroups.size() };
 	for (AcqNdx acqNdx{0u} ; acqNdx < numAcqs ; ++acqNdx)
 	{
 		MeaGroupOneAcq const & meaGroup = theMeaGroups[acqNdx];

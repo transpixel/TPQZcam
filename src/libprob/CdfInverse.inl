@@ -46,32 +46,32 @@ std::vector<double>
 CdfInverse :: ndxLocsForUniformDelta
 	( FwdIter const & cdfFwdBeg
 	, FwdIter const & cdfFwdEnd
-	, size_t const & lutSize
+	, std::size_t const & lutSize
 	)
 {
 	std::vector<double> ndxLocs;
 
 	// check inputs
 	assert(1u < lutSize);
-	size_t const cdfSize(std::distance(cdfFwdBeg, cdfFwdEnd));
+	std::size_t const cdfSize(std::distance(cdfFwdBeg, cdfFwdEnd));
 	assert(CdfForward::isValidCdf(cdfFwdBeg, cdfFwdEnd));
 
 	// establish size values
-	size_t const lastNdx(cdfSize - 1u);
+	std::size_t const lastNdx(cdfSize - 1u);
 	double const delta(1. / static_cast<double>(lutSize - 1u));
 
 	// compute return values at uniform delta spacing
 	ndxLocs.reserve(lutSize);
-	for (size_t nn(0u) ; nn < lutSize ; ++nn)
+	for (std::size_t nn(0u) ; nn < lutSize ; ++nn)
 	{
 		// compute sample value
 		double const value(static_cast<double>(nn) * delta);
 
 		// get bounding indices (specially adjusted for end effects)
-		std::pair<size_t, size_t> const ndxLoHi
+		std::pair<std::size_t, std::size_t> const ndxLoHi
 			(dat::indexBounds(value, cdfFwdBeg, cdfFwdEnd));
-		size_t const & ndxLo = ndxLoHi.first;
-		size_t const & ndxHi = ndxLoHi.second;
+		std::size_t const & ndxLo = ndxLoHi.first;
+		std::size_t const & ndxHi = ndxLoHi.second;
 
 		// compute fractional index into containing interval
 		double fndx(0);
@@ -99,7 +99,7 @@ CdfInverse :: fromFrequencies
 	( FwdIter const & freqBeg
 	, FwdIter const & freqEnd
 	, dat::Range<double> const & dataRange
-	, size_t const & lutSize
+	, std::size_t const & lutSize
 	)
 {
 	CdfInverse cdfInv;
@@ -118,7 +118,7 @@ CdfInverse :: CdfInverse
 	( FwdIter const & cdfFwdBeg
 	, FwdIter const & cdfFwdEnd
 	, dat::Range<double> const & dataRange
-	, size_t const & lutSize
+	, std::size_t const & lutSize
 	)
 	: theDataIndices(ndxLocsForUniformDelta(cdfFwdBeg, cdfFwdEnd, lutSize))
 	, theFracPart(dat::Range<double>(0., 1.), (theDataIndices.size()-1u))

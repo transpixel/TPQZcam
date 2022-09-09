@@ -140,8 +140,8 @@ public: // methods
 	inline
 	explicit
 	XRefBase
-		( size_t const & numPnts
-		, size_t const & numAcqs
+		( std::size_t const & numPnts
+		, std::size_t const & numAcqs
 		);
 
 	//! Construct from valid values within grid
@@ -195,13 +195,13 @@ public: // methods
 
 	//! Capacity for number of points stored
 	inline
-	size_t
+	std::size_t
 	pntCapacity
 		() const;
 
 	//! Capacity for number of points stored
 	inline
-	size_t
+	std::size_t
 	acqCapacity
 		() const;
 
@@ -231,14 +231,14 @@ public: // methods
 
 	//! Number of acquisitions in which this point has a valid measurement
 	inline
-	size_t
+	std::size_t
 	numAcqsFor
 		( PntNdx const & pntndx
 		) const;
 
 	//! Number of valid point measurements in this acquisition
 	inline
-	size_t
+	std::size_t
 	numPntsFor
 		( AcqNdx const & acqndx
 		) const;
@@ -284,7 +284,7 @@ public: // methods
 	inline
 	std::vector<AcqOverlap>
 	acqPairsWithOverlap
-		( size_t const & minCommonPoints
+		( std::size_t const & minCommonPoints
 		) const;
 
 	//! Indices for acquisitions in which this point has a valid measurement

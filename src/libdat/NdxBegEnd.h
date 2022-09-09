@@ -53,8 +53,8 @@ namespace dat
 
 struct NdxBegEnd
 {
-	size_t theNdxBeg{ dat::nullValue<size_t>() };
-	size_t theNdxEnd{ dat::nullValue<size_t>() };
+	std::size_t theNdxBeg{ dat::nullValue<std::size_t>() };
+	std::size_t theNdxEnd{ dat::nullValue<std::size_t>() };
 
 public: // methods
 
@@ -65,14 +65,14 @@ public: // methods
 	//! Value construction
 	explicit
 	NdxBegEnd
-		( size_t const & ndxBeg
-		, size_t const & ndxEnd
+		( std::size_t const & ndxBeg
+		, std::size_t const & ndxEnd
 		);
 
 	//! Value construction
 	explicit
 	NdxBegEnd
-		( std::pair<size_t, size_t> const & bePair
+		( std::pair<std::size_t, std::size_t> const & bePair
 		);
 
 	//! Check if instance is valid
@@ -81,38 +81,38 @@ public: // methods
 		() const;
 
 	//! First included index.
-	size_t const &
+	std::size_t const &
 	begin
 		() const;
 
 	//! One-past last included index
-	size_t const &
+	std::size_t const &
 	end
 		() const;
 
 	//! Number of included indices
-	size_t
+	std::size_t
 	size
 		() const;
 
 	//! Sub interval of size, centered modulo-2 (exact if size() is odd)
 	NdxBegEnd
 	centeredSubOfSize
-		( size_t const & subSize
+		( std::size_t const & subSize
 		) const;
 
 	//! Sub interval centered (mod2) on midNdx with size - cropped to fit this
 	NdxBegEnd
 	croppedCenterSize
-		( size_t const & subCenter
-		, size_t const & subSize
+		( std::size_t const & subCenter
+		, std::size_t const & subSize
 		) const;
 
 	//! True if ends are equal to those of other within tolerance
 	bool
 	nearlyEquals
 		( NdxBegEnd const & other
-		, size_t const & tol = { 0u }
+		, std::size_t const & tol = { 0u }
 		) const;
 
 	//! Descriptive information about this instance.

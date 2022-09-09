@@ -22,6 +22,7 @@ set(allUnitTests
 	ulayout
 	uMinMax
 	uNdxBegEnd
+	unull
 	uOffset2D
 	uops
 	uquantum

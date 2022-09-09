@@ -82,8 +82,8 @@ nearlyEquals
 	, Type const & tol
 	)
 {
-	size_t const num1(std::distance(beg1, end1));
-	size_t const num2(std::distance(beg2, end2));
+	std::size_t const num1(std::distance(beg1, end1));
+	std::size_t const num2(std::distance(beg2, end2));
 
 	bool same(num1 == num2);
 	if (same)
@@ -114,8 +114,8 @@ nearlyEqualsCompound
 	, TolType const & tol = smallValue<TolType>()
 	)
 {
-	size_t const num1(std::distance(beg1, end1));
-	size_t const num2(std::distance(beg2, end2));
+	std::size_t const num1(std::distance(beg1, end1));
+	std::size_t const num2(std::distance(beg2, end2));
 
 	bool same(num1 == num2);
 	if (same)
@@ -153,8 +153,8 @@ nearlyEquals
 	FwdIter const end1{ d1.end() };
 	FwdIter const beg2{ d2.begin() };
 	FwdIter const end2{ d2.end() };
-	size_t const num1(std::distance(beg1, end1));
-	size_t const num2(std::distance(beg2, end2));
+	std::size_t const num1(std::distance(beg1, end1));
+	std::size_t const num2(std::distance(beg2, end2));
 
 	bool same(num1 == num2);
 	if (same)
@@ -173,7 +173,7 @@ nearlyEquals
 	return same;
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 bool
 nearlyEquals
@@ -263,7 +263,7 @@ areSame
 	return areSame<Type, Type>(itemA, itemB);
 }
 
-template <typename DatType, size_t Dim>
+template <typename DatType, std::size_t Dim>
 inline
 bool
 areSame

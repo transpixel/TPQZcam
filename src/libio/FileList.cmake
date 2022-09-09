@@ -1,9 +1,5 @@
-#
 
-set(local_NM io)
-set(local_PREFIX ${local_LIBTARGET}_${local_NM})
-
-set(${local_PREFIX}_SOURCES
+set(local_NS_SOURCES
 
 	binary.cpp
 	file.cpp
@@ -14,7 +10,7 @@ set(${local_PREFIX}_SOURCES
 
 	)
 
-set(${local_PREFIX}_INCLUDES
+set(local_NS_INCLUDES
 
 	binary.h
 	file.h
@@ -33,6 +29,4 @@ set(${local_PREFIX}_INCLUDES
 	utf8.inl
 
 	)
-
-include(../cmakeLibs.cmake)
 

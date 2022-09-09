@@ -102,7 +102,7 @@ dat_discrete_test1
 {
 	std::ostringstream oss;
 
-	constexpr size_t bad{ dat::nullValue<size_t>() };
+	constexpr size_t bad{ dat::nullValue<std::size_t>() };
 
 	// general case
 	checkLoHi(oss, 10u,  3u,  9u, 12u);

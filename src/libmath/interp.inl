@@ -129,8 +129,8 @@ linear
 				// determine bracketing indices
 				double fndx(0.);
 				double const frac(modf(subIndex, &fndx));
-				size_t const loNdx(static_cast<size_t>(fndx));
-				size_t const hiNdx(loNdx + 1u);
+				std::size_t const loNdx(static_cast<std::size_t>(fndx));
+				std::size_t const hiNdx(loNdx + 1u);
 
 				// interpolate within brackets
 				std::pair<double, double> const valueRange

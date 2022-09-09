@@ -34,6 +34,7 @@
 */
 
 
+#include "libsys/GhostTown.h"
 #include "libsys/JobBase.h"
 #include "libsys/jobCapacity.h"
 #include "libsys/Utilization.h"
@@ -53,6 +54,8 @@ class Runner
 {
 	std::shared_ptr<JobBase> const theJob;
 	Capacity * const theCapacity;
+	std::size_t const theJobNdx;
+	GhostTown * const theGhosts;
 
 public: // methods
 
@@ -62,6 +65,8 @@ public: // methods
 	Runner
 		( std::shared_ptr<JobBase> const & aJob
 		, Capacity * const & capacity
+		, std::size_t const & jobNdx = 0u
+		, GhostTown * const & ghostTown = nullptr
 		);
 
 	//! Execute job inside grab/free capacity bookends
@@ -76,8 +81,10 @@ class Factory
 {
 	Capacity theCapacity;
 	std::vector<std::shared_ptr<JobBase> > const & theJobs;
-	size_t theJobNdx;
+	std::size_t theJobNdx;
 	std::vector<std::thread> theThreads;
+	//! JobNdxs for jobs that are completed, but in unjoined threads
+	GhostTown theGhosts;
 
 private: // disable
 
@@ -92,7 +99,7 @@ public: // methods
 	explicit
 	Factory
 		( std::vector<std::shared_ptr<JobBase> > const & jobs
-		, size_t const & maxConcurrent = std::thread::hardware_concurrency()
+		, std::size_t const & maxConcurrent = std::thread::hardware_concurrency()
 		);
 
 	//! Check if instance is valid
@@ -113,6 +120,13 @@ public: // methods
 		) const;
 
 private:
+
+	//! Join threads for jobs that have completed (capacity released)
+	inline
+	void
+	joinFinishedJobs
+		();
+
 
 	//! Setup and launch next job in line
 	inline

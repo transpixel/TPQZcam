@@ -103,8 +103,8 @@ namespace si
 	//! Data container for a 3D point and uncertainty
 	struct PointSoln
 	{
-		ga::Vector const theLoc;
-		std::array<SemiAxis, 3u> const theSemiAxes;
+		ga::Vector theLoc;
+		std::array<SemiAxis, 3u> theSemiAxes;
 
 		//! Descriptive information about this instance
 		std::string
@@ -115,7 +115,7 @@ namespace si
 		//! Vector semi-axis (from theLoc, to ndx-th tip on stdEllipsoid)
 		SemiAxis
 		kthLargestSemiAxis
-			( size_t const & ndx  //!< 0,1,2: smallest to largest
+			( std::size_t const & ndx  //!< 0,1,2: smallest to largest
 			) const;
 
 		//! Root-Mean-Square of axes magnitudes (only valid values included)
@@ -154,8 +154,8 @@ namespace si
 	{
 		Dyadic theNormCo{};
 		RhsVec theNormRhs{};
-		size_t theNumRays{ 0u };
-		size_t theNumPlanes{ 0u };
+		std::size_t theNumRays{ 0u };
+		std::size_t theNumPlanes{ 0u };
 
 	private: // methods
 

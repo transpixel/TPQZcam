@@ -63,8 +63,8 @@ class SampleStats
 public: // data
 
 	math::Partition theDataPart;
-	size_t theCount{0u};
-	std::vector<size_t> const theHist{};
+	std::size_t theCount{0u};
+	std::vector<std::size_t> const theHist{};
 	std::vector<double> const thePdf{};
 	SampleEntropy theEntropy;
 	prob::CdfForward theCdfFwd;

@@ -48,7 +48,7 @@ namespace dat
 //! Simple container for 2D area dimensions (high & wide)
 class Extents
 {
-	std::array<size_t, 2u> theArea;
+	std::array<std::size_t, 2u> theArea;
 
 public: // methods
 
@@ -62,8 +62,8 @@ public: // methods
 	inline
 	explicit
 	Extents
-		( size_t const & high
-		, size_t const & wide
+		( std::size_t const & high
+		, std::size_t const & wide
 		);
 
 	// copy constructor -- compiler provided
@@ -84,27 +84,27 @@ public: // methods
 
 	//! Height
 	inline
-	size_t const &
+	std::size_t const &
 	high
 		() const;
 
 	//! Width
 	inline
-	size_t const &
+	std::size_t const &
 	wide
 		() const;
 
 	//! Size (high() * wide())
 	inline
-	size_t
+	std::size_t
 	size
 		() const;
 
 	//! Index for (high, wide)
 	inline
-	size_t const &
+	std::size_t const &
 	operator[]
-		( size_t const & ndx
+		( std::size_t const & ndx
 		) const;
 
 	//! True if all dimensions are exactly equal
@@ -119,7 +119,7 @@ public: // methods
 	inline
 	bool
 	includes
-		( std::array<size_t, 2u> const & rowcol
+		( std::array<std::size_t, 2u> const & rowcol
 		) const;
 
 	//! Half size in each dimension (NOTE! module 2 division)

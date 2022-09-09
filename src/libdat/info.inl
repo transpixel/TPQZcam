@@ -52,7 +52,7 @@ namespace priv
 	void
 	configStream
 		( std::ostream & strm
-		, size_t const & prec
+		, std::size_t const & prec
 		)
 	{
 		strm << std::fixed << std::setprecision(prec);
@@ -89,7 +89,7 @@ void
 putTitle
 	( std::ostream & strm
 	, std::string const & title
-	, size_t const & fieldWide
+	, std::size_t const & fieldWide
 	)
 {
 	if (! title.empty())
@@ -104,8 +104,8 @@ std::string
 infoString
 	( FType const & value
 	, std::string const & title
-	, size_t const & fieldsWide
-	, size_t const & fieldsPrecision
+	, std::size_t const & fieldsWide
+	, std::size_t const & fieldsPrecision
 	)
 {
 	std::ostringstream oss;
@@ -123,7 +123,7 @@ std::string
 infoString
 	( IType const & arg
 	, std::string const & title
-	, size_t const & fieldsWide
+	, std::size_t const & fieldsWide
 	)
 {
 	std::ostringstream oss;
@@ -139,7 +139,7 @@ std::string
 infoString
 	( bool const & value
 	, std::string const & title
-	, size_t const & fieldsWide
+	, std::size_t const & fieldsWide
 	)
 {
 	std::ostringstream oss;
@@ -155,7 +155,7 @@ std::string
 infoString
 	( void * const & ptValue
 	, std::string const & title
-	, size_t const & fieldsWide
+	, std::size_t const & fieldsWide
 	)
 {
 	std::ostringstream oss;
@@ -172,7 +172,7 @@ std::string
 infoString
 	( std::string const & value
 	, std::string const & title
-	, size_t const & fieldsWide
+	, std::size_t const & fieldsWide
 	)
 {
 	std::ostringstream oss;
@@ -189,8 +189,8 @@ std::string
 infoString
 	( std::complex<FType> const & value
 	, std::string const & title
-	, size_t const & fieldsWide
-	, size_t const & fieldsPrecision
+	, std::size_t const & fieldsWide
+	, std::size_t const & fieldsPrecision
 	)
 {
 	std::ostringstream oss;
@@ -211,17 +211,17 @@ infoString
 	( FwdIter const & beg
 	, FwdIter const & end
 	, std::string const & title
-	, size_t const & nafter
-	, size_t const & nbefore
-	, size_t const & fieldsPerLine
+	, std::size_t const & nafter
+	, std::size_t const & nbefore
+	, std::size_t const & fieldsPerLine
 	)
 {
 	std::ostringstream oss;
-	size_t const twide(std::max(static_cast<size_t>(15u), title.size()));
+	std::size_t const twide(std::max(static_cast<std::size_t>(15u), title.size()));
 	putTitle(oss, title, twide);
 
-	size_t const fwide(1u + nbefore + 1u + nafter);
-	size_t count(0u);
+	std::size_t const fwide(1u + nbefore + 1u + nafter);
+	std::size_t count(0u);
 	for (FwdIter iter(beg) ; end != iter ; ++iter, ++count)
 	{
 		if ((0u != count) && (0u == (count % fieldsPerLine)))
@@ -237,15 +237,15 @@ infoString
 	return oss.str();
 }
 
-template <typename Type, size_t Dim>
+template <typename Type, std::size_t Dim>
 inline
 std::string
 infoString
 	( std::array<Type, Dim> const & arg
 	, std::string const & title
-	, size_t const & nafter
-	, size_t const & nbefore
-	, size_t const & fieldsPerLine
+	, std::size_t const & nafter
+	, std::size_t const & nbefore
+	, std::size_t const & fieldsPerLine
 	)
 {
 	return infoString
@@ -272,7 +272,7 @@ std::string
 infoString
 	( std::pair<Type1, Type2> const & value
 	, std::string const & title
-	, size_t const & fieldsWide
+	, std::size_t const & fieldsWide
 	)
 {
 	std::ostringstream oss;

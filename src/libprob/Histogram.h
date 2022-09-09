@@ -58,9 +58,9 @@ class Histogram
 public: // data
 
 	math::Partition thePart{};
-	std::vector<size_t> theCounts{};
-	size_t theCountUnder{ 0u };
-	size_t theCountOver{ 0u };
+	std::vector<std::size_t> theCounts{};
+	std::size_t theCountUnder{ 0u };
+	std::size_t theCountOver{ 0u };
 
 public: // methods
 
@@ -110,12 +110,12 @@ public: // methods
 		() const;
 
 	//! Number of bins
-	size_t
+	std::size_t
 	size
 		() const;
 
 	//! Total number of counts (sum of bins)
-	size_t
+	std::size_t
 	total
 		() const;
 

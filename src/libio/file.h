@@ -55,7 +55,7 @@ namespace file
 	std::string
 	elidedPath
 		( std::string const & anyPath
-		, size_t const & numParts = 2u
+		, std::size_t const & numParts = 2u
 		, char const & sep = '/'
 		);
 

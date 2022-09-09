@@ -53,7 +53,7 @@ CdfForward :: isValidCdf
 	, FwdIter const & cdfDataEnd
 	)
 {
-	size_t const cdfSize(std::distance(cdfDataBeg, cdfDataEnd));
+	std::size_t const cdfSize(std::distance(cdfDataBeg, cdfDataEnd));
 	bool okay(1u < cdfSize); // need at least the defined end values
 
 	if (okay)
@@ -186,8 +186,8 @@ CdfForward :: preCdfValues
 		}
 
 		// ensure ends have (exact) required values
-		size_t const ndx0(0u);
-		size_t const ndx1(fracValues.size() - 1u);
+		std::size_t const ndx0(0u);
+		std::size_t const ndx1(fracValues.size() - 1u);
 		fracValues[ndx0] = 0.;
 		fracValues[ndx1] = 1.;
 	}
@@ -226,7 +226,7 @@ CdfForward :: fromSamps
 	, math::Partition const & dataPart
 	)
 {
-	std::vector<size_t> const hist
+	std::vector<std::size_t> const hist
 		(prob::histo::countsFromSamps(sampBeg, sampEnd, dataPart));
 	return CdfForward::fromFreqs(hist.begin(), hist.end(), dataPart.range());
 }
@@ -245,7 +245,7 @@ CdfForward :: fromFreqs
 	std::vector<double> const preCdf(preCdfValues(freqBeg, freqEnd));
 
 	// check for something significant to do
-	size_t const cdfSize(std::distance(preCdf.begin(), preCdf.end()));
+	std::size_t const cdfSize(std::distance(preCdf.begin(), preCdf.end()));
 	if (0u < cdfSize)
 	{
 		// find input data discontinuities
@@ -273,7 +273,7 @@ CdfForward :: fromFreqs
 		math::Partition const ndxPart(ndxRange, cdfSize);
 		math::PolyFunc const cdfPoly(verts.begin(), verts.end());
 		std::vector<double> cdf(cdfSize);
-		for (size_t nn(0u) ; nn < cdfSize ; ++nn)
+		for (std::size_t nn(0u) ; nn < cdfSize ; ++nn)
 		{
 			double const dataValue(ndxPart.interpValueFor(double(nn)));
 			double const cdfValue(cdfPoly(dataValue));

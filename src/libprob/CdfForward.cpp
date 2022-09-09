@@ -73,9 +73,9 @@ CdfForward :: dataProbs
 	() const
 {
 	std::vector<std::pair<double, double> > dps;
-	size_t const numElem(theFracValues.size());
+	std::size_t const numElem(theFracValues.size());
 	dps.reserve(numElem);
-	for (size_t nn(0u) ; nn < numElem ; ++nn)
+	for (std::size_t nn(0u) ; nn < numElem ; ++nn)
 	{
 		double const dataValue
 			{ theDataPart.interpValueFor(static_cast<double>(nn)) };

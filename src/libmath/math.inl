@@ -184,13 +184,13 @@ Type
 rms
 	( FwdIter const & beg
 	, FwdIter const & end
-	, size_t const & dofUsed
+	, std::size_t const & dofUsed
 	)
 {
 	Type result(dat::nullValue<Type>());
 	// promote everything for intermediate computations
 	TmpType const sse{ static_cast<TmpType>(sumSqs<Type>(beg, end)) };
-	size_t const size{ static_cast<size_t>(std::distance(beg, end)) };
+	std::size_t const size{ static_cast<std::size_t>(std::distance(beg, end)) };
 	if (dofUsed < size)
 	{
 		TmpType const dof

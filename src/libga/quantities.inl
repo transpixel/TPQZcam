@@ -153,7 +153,7 @@ Vector :: reverse
 inline
 double const &
 Vector :: operator[]
-	( size_t const & validNdx
+	( std::size_t const & validNdx
 	) const
 {
 	return theValues[validNdx];
@@ -162,7 +162,7 @@ Vector :: operator[]
 inline
 double &
 Vector :: operator[]
-	( size_t const & validNdx
+	( std::size_t const & validNdx
 	)
 {
 	return theValues[validNdx];
@@ -235,7 +235,7 @@ BiVector :: reverse
 inline
 double const &
 BiVector :: operator[]
-	( size_t const & validNdx
+	( std::size_t const & validNdx
 	) const
 {
 	return theValues[validNdx];
@@ -244,7 +244,7 @@ BiVector :: operator[]
 inline
 double &
 BiVector :: operator[]
-	( size_t const & validNdx
+	( std::size_t const & validNdx
 	)
 {
 	return theValues[validNdx];

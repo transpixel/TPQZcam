@@ -54,7 +54,7 @@ normalizedToUnitSum
 	)
 {
 	std::vector<double> normVals;
-	size_t const numData(std::distance(freqBeg, freqEnd));
+	std::size_t const numData(std::distance(freqBeg, freqEnd));
 	normVals.resize(numData);
 	normalizeToUnitSum(freqBeg, freqEnd, normVals.begin());
 	return normVals;

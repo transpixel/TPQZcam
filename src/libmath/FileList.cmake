@@ -1,9 +1,5 @@
-#
 
-set(local_NM math)
-set(local_PREFIX ${local_LIBTARGET}_${local_NM})
-
-set(${local_PREFIX}_SOURCES
+set(local_NS_SOURCES
 
 	MapSizeArea.cpp
 	Partition.cpp
@@ -12,7 +8,7 @@ set(${local_PREFIX}_SOURCES
 
 	)
 
-set(${local_PREFIX}_INCLUDES
+set(local_NS_INCLUDES
 
 	angle.h
 	CircleTab.h
@@ -41,6 +37,4 @@ set(${local_PREFIX}_INCLUDES
 	smooth.inl
 
 	)
-
-include(../cmakeLibs.cmake)
 

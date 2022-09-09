@@ -45,7 +45,7 @@ namespace dat
 
 // explicit
 Jump :: Jump
-	( size_t const & ndx
+	( std::size_t const & ndx
 	, double const & lo
 	, double const & hi
 	)

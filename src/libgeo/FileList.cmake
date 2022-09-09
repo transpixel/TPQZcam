@@ -1,9 +1,5 @@
-#
 
-set(local_NM geo)
-set(local_PREFIX ${local_LIBTARGET}_${local_NM})
-
-set(${local_PREFIX}_SOURCES
+set(local_NS_SOURCES
 
 	cube.cpp
 	intersect.cpp
@@ -20,7 +16,7 @@ set(${local_PREFIX}_SOURCES
 
 	)
 
-set(${local_PREFIX}_INCLUDES
+set(local_NS_INCLUDES
 
 	cube.h
 	geo.h
@@ -53,6 +49,4 @@ set(${local_PREFIX}_INCLUDES
 	xform.inl
 
 	)
-
-include(../cmakeLibs.cmake)
 

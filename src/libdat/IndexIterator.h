@@ -42,7 +42,7 @@
 
 namespace dat
 {
-	using IndexPair = std::pair<size_t, size_t>;
+	using IndexPair = std::pair<std::size_t, std::size_t>;
 
 /*! \brief Iterator compatibility for a simple range of index values.
 
@@ -55,7 +55,7 @@ namespace dat
 class IndexIterator
 {
 	IndexPair const theBegEnd;
-	size_t theAt;
+	std::size_t theAt;
 
 public: // methods
 
@@ -79,7 +79,7 @@ public: // methods
 
 	//! Current index within half open range [beg, end)
 	inline
-	size_t const &
+	std::size_t const &
 	operator*
 		() const;
 

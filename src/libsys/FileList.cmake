@@ -1,9 +1,5 @@
-#
 
-set(local_NM sys)
-set(local_PREFIX ${local_LIBTARGET}_${local_NM})
-
-set(${local_PREFIX}_SOURCES
+set(local_NS_SOURCES
 
 	jobCapacity.cpp
 	jobFactory.cpp
@@ -12,8 +8,9 @@ set(${local_PREFIX}_SOURCES
 
 	)
 
-set(${local_PREFIX}_INCLUDES
+set(local_NS_INCLUDES
 
+	GhostTown.h
 	JobBase.h
 	jobCapacity.h
 	jobFactory.h
@@ -24,6 +21,7 @@ set(${local_PREFIX}_INCLUDES
 	Timer.h
 	Utilization.h
 
+	GhostTown.inl
 	jobCapacity.inl
 	jobFactory.inl
 	jobNotification.inl
@@ -32,6 +30,3 @@ set(${local_PREFIX}_INCLUDES
 	Utilization.inl
 
 	)
-
-include(../cmakeLibs.cmake)
-

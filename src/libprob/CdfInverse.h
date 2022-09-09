@@ -71,7 +71,7 @@ public: // static methods
 	ndxLocsForUniformDelta
 		( FwdIter const & cdfFwdBeg
 		, FwdIter const & cdfFwdEnd
-		, size_t const & lutSize
+		, std::size_t const & lutSize
 		);
 
 	//! Create via evaluation of probability function - 'stretch' to range
@@ -80,7 +80,7 @@ public: // static methods
 	generateFor
 		( std::function<double(double const & frac)> const & probFunc
 		, dat::Range<double> const & dataRange
-		, size_t const & lutSize
+		, std::size_t const & lutSize
 		);
 
 	//! Construct by inversion of forward CDF
@@ -88,7 +88,7 @@ public: // static methods
 	CdfInverse
 	fromCdfForward
 		( CdfForward const & cdfFwd
-		, size_t const & lutSize
+		, std::size_t const & lutSize
 		);
 
 	//! Construct from frequency data
@@ -100,7 +100,7 @@ public: // static methods
 		( FwdIter const & freqBeg //!< *iter used as double
 		, FwdIter const & freqEnd
 		, dat::Range<double> const & dataRange
-		, size_t const & lutSize
+		, std::size_t const & lutSize
 		);
 
 	//! Inverse CDF with linear mapping from probabilities to dataRange
@@ -124,7 +124,7 @@ public: // methods
 		( FwdIter const & cdfFwdBeg //!< *iter used as double
 		, FwdIter const & cdfFwdEnd
 		, dat::Range<double> const & dataRange
-		, size_t const & lutSize
+		, std::size_t const & lutSize
 		);
 
 	// copy constructor -- compiler provided

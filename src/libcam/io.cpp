@@ -115,7 +115,7 @@ insertIntoTable
 					{ pntNameNdxMap.find(pntName) };
 				if (pntNameNdxMap.end() != itFind)
 				{
-					size_t const & pntNdx = itFind->second;
+					std::size_t const & pntNdx = itFind->second;
 					if (pntNdx < ptSpotTab->pntCapacity())
 					{
 						(*ptSpotTab)(pntNdx, acqNdx) = meaGroup.theSpot;
@@ -172,7 +172,7 @@ saveToAsciiTrifecta
 {
 	bool okay{ false };
 	assert(acqnames.size() == spotTab.acqCapacity());
-	size_t const numAcqs{ spotTab.acqCapacity() };
+	std::size_t const numAcqs{ spotTab.acqCapacity() };
 	for (AcqNdx acqNdx{0u} ; acqNdx < numAcqs ; ++acqNdx)
 	{
 		std::string const & acqname = acqnames[acqNdx];

@@ -54,7 +54,7 @@ namespace pdf
 	//! Cumulative probabilites (values sum to 1.)
 	std::array<double, 256u>
 	fromHist
-		( std::array<size_t, 256u> const & hist
+		( std::array<std::size_t, 256u> const & hist
 		);
 
 	//! Normalize PDF (to sum of values)
@@ -88,8 +88,8 @@ namespace pdf
 		( std::array<double, 256u> const & inPdf
 		, double * const & ptFractionKept = nullptr
 			//!< set to area under subsection of PDF (before renormalizing)
-		, std::pair<size_t, size_t> const & keepIndexBegEnd
-			= std::pair<size_t, size_t>(0u, 256u)
+		, std::pair<std::size_t, std::size_t> const & keepIndexBegEnd
+			= std::pair<std::size_t, std::size_t>(0u, 256u)
 			//!< iterator bounds [beg,end) defining subset to keep
 		);
 

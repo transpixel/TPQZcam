@@ -40,7 +40,7 @@ namespace job
 inline
 // explicit
 Capacity :: Capacity
-	( size_t const & maxCount
+	( std::size_t const & maxCount
 	)
 	: theUtilization(maxCount)
 	, theNotification{}

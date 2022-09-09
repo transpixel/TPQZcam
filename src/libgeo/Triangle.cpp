@@ -76,7 +76,7 @@ Triangle :: isValid
 
 ga::Vector const &
 Triangle :: operator[]
-	( size_t const & ndx
+	( std::size_t const & ndx
 	) const
 {
 	return theVerts[ndx];

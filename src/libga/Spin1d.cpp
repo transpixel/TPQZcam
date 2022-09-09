@@ -61,7 +61,7 @@ namespace
 			};
 
 		// select one with largest magnitude
-		size_t ndx{ 0u };
+		std::size_t ndx{ 0u };
 		if (mags[0] < mags[1])
 		{
 			ndx = 1u;

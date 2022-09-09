@@ -1,9 +1,6 @@
 #
 
-set(local_NM dat)
-set(local_PREFIX ${local_LIBTARGET}_${local_NM})
-
-set(${local_PREFIX}_SOURCES
+set(local_NS_SOURCES
 
 	Extents.cpp
 	ExtentsIterator.cpp
@@ -19,7 +16,7 @@ set(${local_PREFIX}_SOURCES
 
 	)
 
-set(${local_PREFIX}_INCLUDES
+set(local_NS_INCLUDES
 
 	algorithm.h
 	Area.h
@@ -45,6 +42,7 @@ set(${local_PREFIX}_INCLUDES
 	limits.h
 	MinMax.h
 	NdxBegEnd.h
+	null.h
 	Offset2D.h
 	ops.h
 	QuantumFrac.h
@@ -86,9 +84,6 @@ set(${local_PREFIX}_INCLUDES
 	RowCol.inl
 	SpotX.inl
 	SubExtents.inl
-	validity.inl
 
 	)
-
-include(../cmakeLibs.cmake)
 

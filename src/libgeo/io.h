@@ -58,7 +58,7 @@ namespace io
 	std::vector<ga::Vector>
 	loadFromCSV
 		( std::istream & istrm
-		, size_t const & expectSize = dat::nullValue<size_t>()
+		, std::size_t const & expectSize = dat::nullValue<std::size_t>()
 			//!< if not 0, reserve this much space
 		);
 

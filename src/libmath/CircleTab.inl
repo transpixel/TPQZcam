@@ -68,7 +68,7 @@ CircleTab<Value> :: smoothed
 	assert(0. <= filterHalfAngle);
 
 	double const fdxHalf(orig.theIndexPerAngle * filterHalfAngle);
-	size_t const ndxHalf(static_cast<size_t>(std::floor(fdxHalf)));
+	std::size_t const ndxHalf(static_cast<std::size_t>(std::floor(fdxHalf)));
 
 	// set return values
 	result.theTabValues
@@ -162,15 +162,16 @@ namespace priv
 
 	//! Indices (n1,n2) for which (key[n1] <= key < key[n2])
 	template <typename Value>
-	std::pair<size_t, size_t>
+	std::pair<std::size_t, std::size_t>
 	bracketingIndicesFor
 		( std::deque<std::pair<double, Value> > const & keyVals
 		, double const & keyFind
-		, std::pair<size_t, size_t> const * const & ptPrevLoHi = nullptr
+		, std::pair<std::size_t, std::size_t>
+			const * const & ptPrevLoHi = nullptr
 		)
 	{
-		std::pair<size_t, size_t> pairLoHi(0u, 0u);
-		size_t ndxHi(1u);
+		std::pair<std::size_t, std::size_t> pairLoHi(0u, 0u);
+		std::size_t ndxHi(1u);
 
 		// TODO - replace with std::{lower,upper}_bound
 		//        if find way to make it work on ciruclar data
@@ -178,7 +179,7 @@ namespace priv
 		// NOTE: assume keyVals are unique and circular
 
 		assert(1u < keyVals.size());
-		size_t const ndxLast(keyVals.size() - 1u);
+		std::size_t const ndxLast(keyVals.size() - 1u);
 		if ( (keyFind < keyVals[0].first) // check for special cases
 		  || (keyVals[ndxLast].first < keyFind)
 		   )
@@ -195,8 +196,8 @@ namespace priv
 			ndxHi = 1u;
 			if (ptPrevLoHi)
 			{
-				size_t const & tmpLo = ptPrevLoHi->first;
-				size_t const & tmpHi = ptPrevLoHi->second;
+				std::size_t const & tmpLo = ptPrevLoHi->first;
+				std::size_t const & tmpHi = ptPrevLoHi->second;
 				if (tmpLo != tmpHi)
 				{
 					// start at previous (valid location within queue)
@@ -219,7 +220,8 @@ namespace priv
 		}
 
 		// set lower index
-		size_t const ndxLo((ndxHi + (keyVals.size() - 1u)) % keyVals.size());
+		std::size_t const ndxLo
+			{ (ndxHi + (keyVals.size() - 1u)) % keyVals.size() };
 		pairLoHi = std::make_pair(ndxLo, ndxHi);
 
 		return pairLoHi;
@@ -235,7 +237,7 @@ namespace priv
 		std::vector<double> angles;
 		if (! pavPairs.empty())
 		{
-			size_t const numPairs(pavPairs.size());
+			std::size_t const numPairs(pavPairs.size());
 			angles = std::vector<double>(numPairs + 1u);
 			std::transform
 				( pavPairs.begin(), pavPairs.end()
@@ -254,8 +256,8 @@ namespace priv
 	std::pair<double, double>
 	angleRangeFor
 		( std::deque<std::pair<double, Value> > const & pavPairs
-		, size_t const & ndxLo
-		, size_t const & ndxHi
+		, std::size_t const & ndxLo
+		, std::size_t const & ndxHi
 		)
 	{
 		std::pair<double, double> range;
@@ -285,7 +287,7 @@ inline
 // explicit
 CircleTab<Value> :: CircleTab
 	( std::vector<std::pair<double, Value> > const & aavPairs
-	, size_t const & numNodes
+	, std::size_t const & numNodes
 	)
 	: theTabValues(numNodes)
 	, theIndexPerAngle{ static_cast<double>(theTabValues.size()) / math::twoPi }
@@ -304,16 +306,16 @@ CircleTab<Value> :: CircleTab
 		// fill table in angle ingrements
 		double const da
 			{ math::twoPi / static_cast<double>(theTabValues.size()) };
-		std::pair<size_t, size_t> ndxLoHi(0u, 0u);
-		for (size_t ndx(0u) ; ndx < theTabValues.size() ; ++ndx)
+		std::pair<std::size_t, std::size_t> ndxLoHi(0u, 0u);
+		for (std::size_t ndx(0u) ; ndx < theTabValues.size() ; ++ndx)
 		{
 			// generate angle associated with lookup table
 			double const angleKey(static_cast<double>(ndx) * da - math::pi);
 
 			// find bracketing indices
 			ndxLoHi = priv::bracketingIndicesFor(pavPairs, angleKey, &ndxLoHi);
-			size_t const & ndxLo = ndxLoHi.first;
-			size_t const & ndxHi = ndxLoHi.second;
+			std::size_t const & ndxLo = ndxLoHi.first;
+			std::size_t const & ndxHi = ndxLoHi.second;
 
 			// interpolate between values at this angle
 			std::pair<double, double> const angleRange
@@ -360,10 +362,10 @@ CircleTab<Value> :: nearestTableValue
 	double const fdx(delta * theIndexPerAngle);
 
 	// get index closest to fraction value
-	size_t const ndx(std::floor(fdx + .5));
+	std::size_t const ndx(std::floor(fdx + .5));
 
 	// wrap index at far end
-	size_t const ndxLo(ndx % theTabValues.size());
+	std::size_t const ndxLo(ndx % theTabValues.size());
 
 	// return nearest table value
 	return theTabValues[ndxLo];

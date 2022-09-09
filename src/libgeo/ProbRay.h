@@ -121,7 +121,7 @@ public: // methods
 
 	//! Number of samples in probability distributions
 	inline
-	size_t
+	std::size_t
 	numSamples
 		() const;
 
@@ -226,7 +226,7 @@ private:
 	void
 	accumulateDensity
 		( double const & nextProb
-		, size_t const & ndx
+		, std::size_t const & ndx
 		);
 
 }; // ProbRay

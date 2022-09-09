@@ -53,7 +53,7 @@ Partition
 Partition :: spanning
 	( FwdIter const & beg
 	, FwdIter const & end
-	, size_t const & numParts
+	, std::size_t const & numParts
 	, double const & endEpsilon
 	)
 {
@@ -84,7 +84,7 @@ Partition :: isValid
 }
 
 inline
-size_t
+std::size_t
 Partition :: size
 	() const
 {
@@ -124,7 +124,7 @@ Partition :: range
 inline
 dat::Range<double>
 Partition :: rangeForBin
-	( size_t const & ndx
+	( std::size_t const & ndx
 	) const
 {
 	dat::Range<double> rng;
@@ -139,19 +139,20 @@ Partition :: rangeForBin
 }
 
 inline
-size_t
+std::size_t
 Partition :: binIndexFor
 	( double const & value
 	) const
 {
-	size_t ndx(dat::nullValue<size_t>());
+	std::size_t ndx(dat::nullValue<std::size_t>());
 	if (dat::isValid(value))
 	{
 		if (theMin < value)
 		{
 			double const offset{ value - theMin };
 			double const intervals{ offset / theDelta };
-			size_t const binNdx{ static_cast<size_t>(std::floor(intervals)) };
+			std::size_t const binNdx
+				{ static_cast<std::size_t>(std::floor(intervals)) };
 			if (binNdx < theNumParts)
 			{
 				ndx = binNdx;
@@ -182,7 +183,7 @@ Partition :: interpIndexFor
 	) const
 {
 	double fndx(dat::nullValue<double>());
-	size_t const ndx{binIndexFor(value)};
+	std::size_t const ndx{binIndexFor(value)};
 	if (dat::isValid(ndx))
 	{
 		std::pair<double, double> const bMinMax(rangeForBin(ndx));

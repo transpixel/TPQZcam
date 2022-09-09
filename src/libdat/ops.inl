@@ -67,8 +67,8 @@ scaledCeil
 {
 	double const fhigh(scalar * double(hwSize.high()));
 	double const fwide(scalar * double(hwSize.wide()));
-	size_t const ohigh{ static_cast<size_t>(std::ceil(fhigh)) };
-	size_t const owide{ static_cast<size_t>(std::ceil(fwide)) };
+	std::size_t const ohigh{ static_cast<std::size_t>(std::ceil(fhigh)) };
+	std::size_t const owide{ static_cast<std::size_t>(std::ceil(fwide)) };
 	return dat::Extents(ohigh, owide);
 }
 
@@ -94,7 +94,7 @@ diagonalMag
 }
 
 inline
-size_t
+std::size_t
 areaOf
 	( Extents const & someSize
 	)
@@ -103,7 +103,7 @@ areaOf
 }
 
 inline
-size_t
+std::size_t
 perimeterOf
 	( Extents const & someSize
 	)

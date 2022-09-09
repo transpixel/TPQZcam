@@ -83,7 +83,7 @@ public: // methods
 	CircleTab
 		( std::vector<std::pair<double, Value> > const & avPairs
 			//!< Angle/Value pairs - angle spacing may be irregular !
-		, size_t const & numNodes
+		, std::size_t const & numNodes
 			//!< Interpolation table granularity
 		);
 

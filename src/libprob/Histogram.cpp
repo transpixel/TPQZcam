@@ -79,14 +79,14 @@ Histogram :: isValid
 		);
 }
 
-size_t
+std::size_t
 Histogram :: size
 	() const
 {
 	return theCounts.size();
 }
 
-size_t
+std::size_t
 Histogram :: total
 	() const
 {
@@ -108,7 +108,7 @@ Histogram :: pdf
 				( theCounts.begin(), theCounts.end()
 				, probs.begin()
 				, [&sum]
-					( size_t const & count )
+					( std::size_t const & count )
 					{ return (static_cast<double>(count) / sum); }
 				);
 		}
@@ -123,9 +123,9 @@ Histogram :: binCenters
 	std::vector<double> centers;
 	if (isValid())
 	{
-		size_t const numBins(size());
+		std::size_t const numBins(size());
 		centers.resize(numBins);
-		for (size_t ndx(0u) ; ndx < numBins ; ++ndx)
+		for (std::size_t ndx(0u) ; ndx < numBins ; ++ndx)
 		{
 			std::pair<double, double> const binRange(thePart.rangeForBin(ndx));
 			double const center(.5 * (binRange.first + binRange.second));
@@ -179,11 +179,11 @@ Histogram :: infoStringContents
 	{
 		std::vector<double> const locs(binCenters());
 		std::vector<double> const probs(pdf());
-		size_t const numLocs(locs.size());
+		std::size_t const numLocs(locs.size());
 		assert(numLocs == probs.size());
 
 		double sum(0.);
-		for (size_t nn(0u) ; nn < numLocs ; ++nn)
+		for (std::size_t nn(0u) ; nn < numLocs ; ++nn)
 		{
 			double const & loc = locs[nn];
 			double const & prob = probs[nn];
@@ -211,8 +211,8 @@ Histogram :: writeDataProbs
 		double const sumCounts(total());
 		if (std::numeric_limits<double>::min() < sumCounts)
 		{
-			size_t const numBins(theCounts.size());
-			for (size_t ndx(0u) ; ndx < numBins ; ++ndx)
+			std::size_t const numBins(theCounts.size());
+			for (std::size_t ndx(0u) ; ndx < numBins ; ++ndx)
 			{
 				std::pair<double, double> const binRange
 					(thePart.rangeForBin(ndx));

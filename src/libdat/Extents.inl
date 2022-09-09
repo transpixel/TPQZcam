@@ -41,8 +41,8 @@ inline
 Extents :: Extents
 	()
 	: theArea
-		{{ nullValue<size_t>()
-		 , nullValue<size_t>()
+		{{ nullValue<std::size_t>()
+		 , nullValue<std::size_t>()
 		}}
 {
 }
@@ -51,8 +51,8 @@ constexpr
 inline
 // explicit
 Extents :: Extents
-	( size_t const & high
-	, size_t const & wide
+	( std::size_t const & high
+	, std::size_t const & wide
 	)
 	: theArea{{ high, wide }}
 {
@@ -78,7 +78,7 @@ Extents :: isValid
 }
 
 inline
-size_t const &
+std::size_t const &
 Extents :: high
 	() const
 {
@@ -86,7 +86,7 @@ Extents :: high
 }
 
 inline
-size_t const &
+std::size_t const &
 Extents :: wide
 	() const
 {
@@ -94,7 +94,7 @@ Extents :: wide
 }
 
 inline
-size_t
+std::size_t
 Extents :: size
 	() const
 {
@@ -102,9 +102,9 @@ Extents :: size
 }
 
 inline
-size_t const &
+std::size_t const &
 Extents :: operator[]
-	( size_t const & ndx
+	( std::size_t const & ndx
 	) const
 {
 	assert(ndx < theArea.size());
@@ -126,7 +126,7 @@ Extents :: operator==
 inline
 bool
 Extents :: includes
-	( std::array<size_t, 2u> const & rowcol
+	( std::array<std::size_t, 2u> const & rowcol
 	) const
 {
 	return

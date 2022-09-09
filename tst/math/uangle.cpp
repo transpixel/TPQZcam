@@ -378,6 +378,9 @@ math_angle_test3b
 		double const a0(-math::halfPi);
 		double const half(math::halfPi);
 		{
+			//  *v*                                                ..
+			//  -pi  -3  -2  -pi/2  -1  ()  +1  +pi/2  +2  +3  +pi
+			//  ...1.->         0                  1                (2)
 			size_t const expNdx(1u);
 			size_t const gotNdx(indexForAngle(negpi, numDat, a0));
 			checkIndex(oss, gotNdx, expNdx, "two-value(B) negpi");
@@ -385,6 +388,9 @@ math_angle_test3b
 			checkAngle(oss, gotAngle,  half, "two-value(B) angle (negpi)");
 		}
 		{
+			//                              *v*                    ..
+			//  -pi  -3  -2  -pi/2  -1  ()  +1  +pi/2  +2  +3  +pi
+			//  ...1.->         0                  1                (2)
 			size_t const expNdx(0u);
 			size_t const gotNdx(indexForAngle(   1., numDat, a0));
 			checkIndex(oss, gotNdx, expNdx, "two-value(B) 1.");
@@ -392,6 +398,9 @@ math_angle_test3b
 			checkAngle(oss, gotAngle, -half, "two-value(B) angle (1.)");
 		}
 		{
+			//                                                 *v* ..
+			//  -pi  -3  -2  -pi/2  -1  ()  +1  +pi/2  +2  +3  +pi
+			//  ...1.->         0                  1                (2)
 			size_t const expNdx(1u);
 			size_t const gotNdx(indexForAngle(pospi, numDat, a0));
 			checkIndex(oss, gotNdx, expNdx, "two-value(B) pospi");

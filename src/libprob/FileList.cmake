@@ -1,9 +1,5 @@
-#
 
-set(local_NM prob)
-set(local_PREFIX ${local_LIBTARGET}_${local_NM})
-
-set(${local_PREFIX}_SOURCES
+set(local_NS_SOURCES
 
 	CdfForward.cpp
 	CdfInverse.cpp
@@ -19,7 +15,7 @@ set(${local_PREFIX}_SOURCES
 
 	)
 
-set(${local_PREFIX}_INCLUDES
+set(local_NS_INCLUDES
 
 	CdfForward.h
 	CdfInverse.h
@@ -56,6 +52,4 @@ set(${local_PREFIX}_INCLUDES
 	Stats.inl
 
 	)
-
-include(../cmakeLibs.cmake)
 

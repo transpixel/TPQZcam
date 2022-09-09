@@ -85,14 +85,14 @@ diagonalMag
 
 //! Number of elements contained within Extent
 inline
-size_t
+std::size_t
 areaOf
 	( Extents const & someSize
 	);
 
 //! Number of exterior boundary elements
 inline
-size_t
+std::size_t
 perimeterOf
 	( Extents const & someSize
 	);

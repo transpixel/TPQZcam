@@ -37,26 +37,27 @@
 #include <fstream>
 
 
-template <size_t Dim>
+template <std::size_t Dim>
 inline
 void
 prob::io :: saveToFile
-	( std::array<size_t, Dim> const & hist
+	( std::array<std::size_t, Dim> const & hist
 	, std::string const & fpath
 	)
 {
 	std::ofstream ofs(fpath);
 
 	// compute total count
-	size_t const sumAll(std::accumulate(hist.begin(), hist.end(), size_t(0u)));
+	std::size_t const sumAll
+		{ std::accumulate(hist.begin(), hist.end(), std::size_t(0u)) };
 	double const total(std::max(1., (double)sumAll)); // max: trick 4 zero case
 
 	ofs << "# BinValue Count Fraction Cummulative" << std::endl;
-	size_t const numBins(hist.size());
+	std::size_t const numBins(hist.size());
 	double cdf(0.);
-	for (size_t nn(0u) ; nn < numBins ; ++nn)
+	for (std::size_t nn(0u) ; nn < numBins ; ++nn)
 	{
-		size_t const & count = hist[nn];
+		std::size_t const & count = hist[nn];
 		double const frac((double)count / total);
 		cdf += frac;
 		ofs
